@@ -1,0 +1,4 @@
+1,N,Y,Y,N
+3,Y,N,N,N
+2,Y,Y,Y,N
+7,N,N,N,N

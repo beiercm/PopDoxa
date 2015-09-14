@@ -1,0 +1,67 @@
+florida,Sarasota County,North Port,Sarasota,Venice
+florida,Taylor County,Perry
+florida,Gadsden County,Chattahoochee,Greensboro,Gretna,Havana,Midway,Quincy
+florida,Indian River County,Fellsmere,Indian River Shores,Orchid,Sebastian,Vero Beach
+florida,Flagler County,Beverly Beach,Bunnell,Flagler Beach,Marineland,Palm Coast
+florida,Sumter County,Bushnell,Center Hill,Coleman,Webster,Wildwood
+florida,Baker County,Macclenny
+florida,Wakulla County,Sopchoppy,St. Marks
+florida,Monroe County,Islamorada,Key Colony Beach,Key West,Layton,Marathon
+florida,Levy County,Bronson,Cedar Key,Chiefland,Inglis,Otter Creek,Williston,Yankeetown
+florida,DeSoto County,Arcadia
+florida,Lake County,Astatula,Clermont,Eustis,Fruitland Park,Groveland,Howey-in-the-Hills,Lady Lake,Leesburg,Mascotte,Minneola,Montverde,Mount Dora,Tavares,Umatilla
+florida,Hernando County,Brooksville,Weeki Wachee
+florida,Highlands County,Avon Park,Lake Placid,Sebring
+florida,Nassau County,Callahan,Fernandina Beach,Hilliard
+florida,Collier County,Everglades City,Marco Island,Naples
+florida,Clay County,Green Cove Springs,Orange Park,Penney Farms
+florida,Volusia County,Daytona Beach,Daytona Beach Shores,DeBary,DeLand,Deltona,Edgewater,Holly Hill,Lake Helen,New Smyrna Beach,Oak Hill,Orange City,Ormond Beach,Pierson,Ponce Inlet,Port Orange,South Daytona
+florida,Lafayette County,Mayo
+florida,Polk County,Auburndale,Bartow,Davenport,Dundee,Eagle Lake,Fort Meade,Frostproof,Haines City,Highland Park,Hillcrest Heights,Lake Alfred,Lake Hamilton,Lake Wales,Lakeland,Mulberry,Polk City,Winter Haven
+florida,Madison County,Greenville,Lee,Madison
+florida,Hendry County,Clewiston,LaBelle
+florida,Jackson County,Alford,Bascom,Campbellton,Cottondale,Graceville,Grand Ridge,Greenwood,Jacob City,Malone,Marianna,Sneads
+florida,Hardee County,Bowling Green,Wauchula,Zolfo Springs
+florida,Manatee County,Anna Maria,Bradenton,Bradenton Beach,Holmes Beach,Longboat Key,Palmetto
+florida,Calhoun County,Altha,Blountstown
+florida,Jefferson County,Monticello
+florida,Pinellas County,Belleair,Belleair Beach,Belleair Bluffs,Belleair Shore,Clearwater,Dunedin,Gulfport,Indian Rocks Beach,Indian Shores,Kenneth City,Largo,Madeira Beach,North Redington Beach,Oldsmar,Pinellas Park,Redington Beach,Redington Shores,Safety Harbor,Seminole,South Pasadena,St. Pete Beach,St. Petersburg,Tarpon Springs,Treasure Island
+florida,Lee County,Bonita Springs,Cape Coral,Fort Myers,Fort Myers Beach,Sanibel
+florida,St. Johns County,Hastings,St. Augustine,St. Augustine Beach,Welaka
+florida,Bradford County,Brooker,Hampton,Keystone Heights,Lawtey,Starke
+florida,Santa Rosa County,Gulf Breeze,Jay,Milton
+florida,Gilchrist County,Bell,Fanning Springs,Trenton
+florida,Walton County,DeFuniak Springs,Freeport,Paxton
+florida,Alachua County,Alachua,Archer,Gainesville,Hawthorne,High Springs,La Crosse,Micanopy,Newberry,Waldo
+florida,Union County,Lake Butler,Raiford,Worthington Springs
+florida,Brevard County,Cape Canaveral,Cocoa,Cocoa Beach,Grant-Valkaria,Indialantic,Indian Harbor Beach,Malabar,Melbourne,Melbourne Beach,Melbourne Village,Palm Bay,Palm Shores,Rockledge,Satellite Beach,Titusville,West Melbourne
+florida,Miami-Dade County,Aventura,Bal Harbour,Bay Harbor Islands,Biscayne Park,Coral Gables,Cutler Bay,Doral,El Portal,Florida City,Golden Beach,Hialeah,Hialeah Gardens,Homestead,Indian Creek,Islandia,Key Biscayne,Medley,Miami,Miami Beach,Miami Gardens,Miami Lakes,Miami Shores,Miami Springs,North Bay Village,North Miami,North Miami Beach,Opa-locka,Palmetto Bay,Pinecrest,South Miami,Sunny Isles Beach,Surfside,Sweetwater,Virginia Gardens,West Miami
+florida,Citrus County,Crystal River,Inverness
+florida,Leon County,Tallahassee
+florida,Columbia County,Fort White,Lake City
+florida,Escambia County,Century,Pensacola
+florida,Glades County,Moore Haven
+florida,Marion County,Belleview,Dunnellon,McIntosh,Ocala,Reddick
+florida,St. Lucie County,Fort Pierce,Port St. Lucie,St. Lucie Village
+florida,Bay County,Callaway,Lynn Haven,Mexico Beach,Panama City,Panama City Beach,Parker,Springfield
+florida,Duval County,Atlantic Beach,Baldwin,Jacksonville,Jacksonville Beach,Neptune Beach
+florida,Seminole County,Altamonte Springs,Casselberry,Lake Mary,Longwood,Oviedo,Sanford,Winter Springs
+florida,Holmes County,Bonifay,Esto,Noma,Ponce de Leon,Westville
+florida,Okaloosa County,Cinco Bayou,Crestview,Destin,Fort Walton Beach,Laurel Hill,Mary Esther,Niceville,Shalimar,Valparaiso
+florida,Okeechobee County,Okeechobee
+florida,Franklin County,Apalachicola,Carrabelle,Caryville
+florida,Liberty County,Bristol
+florida,Broward County,Coconut Creek,Cooper City,Coral Springs,Dania Beach,Davie,Deerfield Beach,Fort Lauderdale,Hallandale Beach,Hillsboro Beach,Hollywood,Lauderdale Lakes,Lauderdale-by-the-Sea,Lauderhill,Lazy Lake,Lighthouse Point,Margate,Miramar,North Lauderdale,Oakland Park,Parkland,Pembroke Park,Pembroke Pines,Plantation,Pompano Beach,Sea Ranch Lakes,Southwest Ranches,Sunrise,Tamarac,West Park,Weston,Wilton Manors
+florida,Gulf County,Port St. Joe,Wewahitchka
+florida,Martin County,Jupiter Island,Ocean Breeze Park,Sewall's Point,Stuart
+florida,Orange County,Apopka,Bay Lake,Belle Isle,Eatonville,Edgewood,Lake Buena Vista,Maitland,Oakland,Ocoee,Orlando,Windermere,Winter Garden,Winter Park
+florida,Charlotte County,Punta Gorda
+florida,Hillsborough County,Plant City,Tampa,Temple Terrace
+florida,Osceola County,Kissimmee,St. Cloud
+florida,Dixie County,Cross City,Horseshoe Beach
+florida,Suwannee County,Branford,Live Oak
+florida,Washington County,Chipley,Ebro,Vernon,Wausau
+florida,Putnam County,Crescent City,Interlachen,Palatka,Pomona Park
+florida,Palm Beach County,Atlantis,Belle Glade,Boca Raton,Boynton Beach,Briny Breezes,Cloud Lake,Delray Beach,Glen Ridge,Golf,Greenacres,Gulf Stream,Haverhill,Highland Beach,Hypoluxo,Juno Beach,Jupiter,Jupiter Inlet Colony,Lake Clarke Shores,Lake Park,Lake Worth,Lantana,Loxahatchee Groves,Manalapan,Mangonia Park,North Palm Beach,Ocean Ridge,Pahokee,Palm Beach,Palm Beach Gardens,Palm Beach Shores,Palm Springs,Riviera Beach,Royal Palm Beach,South Bay,South Palm Beach,Tequesta,Wellington,West Palm Beach
+florida,Pasco County,Dade City,New Port Richey,Port Richey,San Antonio,St. Leo,Zephyrhills
+florida,Hamilton County,Jasper,Jennings,White Springs
