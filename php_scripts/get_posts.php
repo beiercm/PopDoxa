@@ -23,13 +23,17 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$state = $argv[1];
+			$county = $argv[2];
+			$city = $argv[3];
 		}
 		else
 		{
 			$state = $_GET['state'];
+			$county = $_GET['county'];
+			$city = $_GET['city'];
 		}
 
-		get_posts($conn, $state);
+		get_posts($conn, $state, $county, $city);
 	}
 	catch (PDOException $e)
 	{
@@ -39,7 +43,7 @@
 
 	$conn = null;
 
-	function get_posts($conn, $state)
+	function get_posts($conn, $state, $county, $city)
 	{
 
 //--------------------
@@ -57,12 +61,67 @@
 		// echo json_encode(SSP::simple($_GET, $conn, $table, $p_key, $columns));
 //---------------------
 		$state = strtolower($state);
+		$county = strtolower($county);
+		$city = strtolower($city);
 
-		$stmt = "SELECT users.username,posts.title,posts.ts,posts.views,posts.replies FROM posts JOIN states on states.id = posts.state JOIN users on users.id=posts.author WHERE states.name = :state;";
+		if(!strcmp($county, "-1"))
+		{
+			$query = "	SELECT users.username,posts.title,posts.ts,posts.views,posts.replies 
+					FROM posts 
+					JOIN states 
+					ON states.id = posts.state 
+					JOIN users ON users.id = posts.author 
+					WHERE states.name = :state 
+					";
 
-		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':state' => $state));
-		$result = $sth->fetchAll();
+		$stmt = $conn->prepare($query);
+		$stmt->bindparam(':state', $state);
+
+		}
+		else if(!strcmp($city, "-1"))
+		{
+			$query = "	SELECT users.username,posts.title,posts.ts,posts.views,posts.replies 
+					FROM posts 
+					JOIN states 
+					ON states.id = posts.state 
+					JOIN counties 
+					ON counties.id = posts.county
+					JOIN users ON users.id = posts.author 
+					WHERE states.name = :state 
+					AND counties.name = :county
+					
+					";
+
+		$stmt = $conn->prepare($query);
+		$stmt->bindparam(':state', $state);
+		$stmt->bindparam(':county', $county);
+		}
+		else
+		{
+			$query = "	SELECT users.username,posts.title,posts.ts,posts.views,posts.replies 
+					FROM posts 
+					JOIN states 
+					ON states.id = posts.state 
+					JOIN counties 
+					ON counties.id = posts.county
+					JOIN cities
+					on cities.id = posts.city
+					JOIN users ON users.id = posts.author 
+					WHERE states.name = :state 
+					AND counties.name = :county
+					AND cities.name = :city;
+					";
+
+		$stmt = $conn->prepare($query);
+		$stmt->bindparam(':state', $state);
+		$stmt->bindparam(':county', $county);
+		$stmt->bindparam(':city', $city);
+
+		}
+
+		
+		$stmt->execute();
+		$result = $stmt->fetchAll();
 
 		$length = count($result);
 
