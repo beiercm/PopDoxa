@@ -29,8 +29,13 @@
 		else
 		{
 			$state = $_GET['state'];
-			$county = $_GET['county'];
-			$city = $_GET['city'];
+			if(isset($_GET['county']))
+				$county = $_GET['county'];	
+			else
+				$county = -1;
+			if(isset($_GET['city']))
+				$city = $_GET['city'];
+			else $city = -1;
 		}
 
 		get_posts($conn, $state, $county, $city);
@@ -45,106 +50,61 @@
 
 	function get_posts($conn, $state, $county, $city)
 	{
-
-//--------------------
-		// // require ('ssp.class.php');
-		// $columns = array(
-		// //    array( 'db' => 'author', 	'dt' => 0 ),
-		//     array( 'db' => 'title',		'dt' => 1 ),
-		//     array( 'db' => 'views', 	'dt' => 2 ),
-		//     array( 'db' => 'replies', 	'dt' => 3 ),
-		//     array( 'db' => 'ts', 		'dt' => 4 ),
-		//     );
-
-		// $table = 'posts';
-		// $p_key = 'id';
-		// echo json_encode(SSP::simple($_GET, $conn, $table, $p_key, $columns));
-//---------------------
 		$state = strtolower($state);
 		$county = strtolower($county);
 		$city = strtolower($city);
 
-		if(!strcmp($county, "-1"))
-		{
-			$query = "	SELECT users.username,posts.title,posts.ts,posts.views,posts.replies 
-					FROM posts 
-					JOIN states 
-					ON states.id = posts.state 
-					JOIN users ON users.id = posts.author 
-					WHERE states.name = :state 
-					";
-
-		$stmt = $conn->prepare($query);
+		$stmt = "SELECT id from states where name = :state";
+		$stmt = $conn->prepare($stmt);
 		$stmt->bindparam(':state', $state);
+		$stmt->execute();
+		$results = $stmt->fetchAll();
+
+		$state_id = $results[0][0];
+
+		if($county == -1)
+		{
+			$stmt = "SELECT id from counties where state_id = :state AND name = :county" ;
+			$stmt = $conn->prepare($stmt);
+			$stmt->bindparam(':state', $state_id);
+			$stmt->bindparam(':county', $county);
+			$stmt->execute();
+			$results = $stmt->fetchAll();
+
+			$county_id = $results[0][0];
 
 		}
-		else if(!strcmp($city, "-1"))
-		{
-			$query = "	SELECT users.username,posts.title,posts.ts,posts.views,posts.replies 
-					FROM posts 
-					JOIN states 
-					ON states.id = posts.state 
-					JOIN counties 
-					ON counties.id = posts.county
-					JOIN users ON users.id = posts.author 
-					WHERE states.name = :state 
-					AND counties.name = :county
-					
-					";
+		else 
+			$county_id = -1;
 
-		$stmt = $conn->prepare($query);
-		$stmt->bindparam(':state', $state);
-		$stmt->bindparam(':county', $county);
+		if($city == -1)
+		{
+			$stmt = "SELECT id from cities where county_id = :county AND name = :city";
+			$stmt = $conn->prepare($stmt);
+			$stmt->bindparam(':county', $county_id);
+			$stmt->bindparam(':city', $city);
+			$stmt->execute();
+			$results = $stmt->fetchAll();
+
+			$city_id = $results[0][0];
 		}
 		else
-		{
-			$query = "	SELECT users.username,posts.title,posts.ts,posts.views,posts.replies 
-					FROM posts 
-					JOIN states 
-					ON states.id = posts.state 
-					JOIN counties 
-					ON counties.id = posts.county
-					JOIN cities
-					on cities.id = posts.city
-					JOIN users ON users.id = posts.author 
-					WHERE states.name = :state 
-					AND counties.name = :county
-					AND cities.name = :city;
-					";
+			$city_id = -1;
 
-		$stmt = $conn->prepare($query);
-		$stmt->bindparam(':state', $state);
-		$stmt->bindparam(':county', $county);
-		$stmt->bindparam(':city', $city);
+		 require ('ssp.class.php');
+		$columns = array(
+		  array( 'db' => 'title',	'dt' => 0 ),
+		  array( 'db' => 'views', 	'dt' => 1 ),
+		  array( 'db' => 'replies', 'dt' => 2 ),
+		  array( 'db' => 'ts', 		'dt' => 3 ),
+		  );
 
-		}
+		 $table = 'posts';
+		 $primaryKey = 'id';
+		 $where = "posts.state = " . $state_id ;// . " AND posts.county = " . $county_id . " AND posts.city = " . $city_id . ";";
+		 $joinQuery = "";
 
-		
-		$stmt->execute();
-		$result = $stmt->fetchAll();
-
-		$length = count($result);
-
-		for($i = 0; $i < $length; $i++)
-		{
-			$output = 	sprintf("
-						<tr>
-							<td>
-								<a href=\"#\"> %s </a>
-								<div class =\"subtitle\">Start by: %s</div>
-							</td>
-							<td> %s </td>
-							<td> %s </td>
-							<td> %s </td>
-						</tr>
-						", $result[$i][1], $result[$i][0], $result[$i][3], $result[$i][4], $result[$i][2]);
-
-			echo $output;
-
-		}
-
-		
-		
+		 echo json_encode(SSP::simple($_GET, $conn, $table, $primaryKey, $columns, $where));		
 	}
 
 ?>

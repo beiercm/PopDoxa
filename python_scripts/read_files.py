@@ -18,6 +18,11 @@ def read_users(cursor):
 def read_votes(cursor):
 	pass
 
+def read_opinions(cursor):
+	pass
+
+def read_user_opin(cursor):
+	pass	 
 def read_polls(cursor):
 	print("Reading in users.txt")
 	polls = list(open("polls.txt"))

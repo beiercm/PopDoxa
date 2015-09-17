@@ -60,8 +60,7 @@
 
 			$city = ucwords($city);
 			//echo $city ."\n". $url . $city . "\n";
-			echo 		"<br />
-				 		<a href = " . $url . ">"
+			echo 		"<a href = " . $url . " class='list-group-item'>"
 				 		. $city .
 				 		"</a>";
 		} 

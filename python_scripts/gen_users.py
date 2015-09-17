@@ -10,18 +10,10 @@ def get_names(files):
 
 	return names
 
-def normalize_unicode(lists):
-	new_list = []
-	for some_list in lists:
-		some_list = [s.encode('ascii', 'ignore') for s in some_list]
-		new_list.append(some_list)
-
-	return new_list
-
 def gen_locations():
 
-	login_info [e.strip() for e in list(open("login.txt"))]
-	cnx = mysql.connector.connect(user='login_info[1]', password='login_info[2]', database = 'login_info[3]')
+	login_info = [e.strip() for e in list(open("login.txt"))]
+	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database = login_info[3])
 	cursor = cnx.cursor()
 
 	# query = "select states.name from states;"
@@ -30,7 +22,7 @@ def gen_locations():
 	# states = normalize_unicode(cursor.fetchall())
 	# print(states)
 	query = 	"""
-				select states.name,counties.name,cities.name
+				select states.id,counties.id,cities.id
 				from states
 				join counties
 				on states.id = counties.state_id
@@ -40,7 +32,7 @@ def gen_locations():
 				"""
 
 	cursor.execute(query)
-	locations = normalize_unicode(cursor.fetchall())
+	locations = cursor.fetchall()
 
 	return locations
 

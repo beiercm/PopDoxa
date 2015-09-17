@@ -1,9 +1,9 @@
 <?php
 
-	$path = chdir("/home/christopher");
+	$path = chdir("/home/christopher/data");
 	if($path)
 	{
-		$myfile = fopen("login.txt", "r") or die("Unable to open login file!");
+		$myfile = fopen("cblogin.txt", "r") or die("Unable to open login file!");
 		$servername = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$username = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$password = trim(fgets($myfile, filesize("login.txt")), "\n.");

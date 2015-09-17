@@ -10,9 +10,9 @@ tables = {
 					age INT (3) NOT NULL,
 					email VARCHAR (30) NOT NULL,
 					gender CHAR (1) NOT NULL,
-					state VARCHAR (20) NOT NULL,
-					county VARCHAR (30) NOT NULL,
-					city VARCHAR (30) NOT NULL
+					state INT (2) NOT NULL,
+					county INT (5) NOT NULL,
+					city INT (6) NOT NULL
 					)
 					""",
 		'votes' : 	"""
@@ -20,7 +20,8 @@ tables = {
 					id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 					poll_id INT (6) UNSIGNED NOT NULL,
 					user_id INT (6) UNSIGNED NOT NULL,
-					vote CHAR (1) NOT NULL
+					vote CHAR (1) NOT NULL,
+					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 					)
 					""",
 		'polls' :	"""
@@ -29,7 +30,8 @@ tables = {
 					question VARCHAR (200) NOT NULL,
 					yes INT (5),
 					no INT (5),
-					neutral INT (5)
+					neutral INT (5),
+					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 					)
 					""",
 		'states':	"""
@@ -53,14 +55,18 @@ tables = {
 					county_id INT(3) NOT NULL
 					)
 					""",
-		'clubs' :	"""
-					create table if not exists clubs (
+		'opinions' :	"""
+					create table if not exists opinions (
 					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-					user_id INT(6) NOT NULL,
-					nra CHAR (1) DEFAULT 'N',
-					green_energy CHAR (1) DEFAULT 'N',
-					aca CHAR (1) DEFAULT 'N',
-					common_core CHAR (1) DEFAULT 'N'
+					opin_name VARCHAR (30) NOT NULL,
+					opin_descrip VARCHAR (200) NOT NULL
+					)
+					""",
+		'user_opin': 	"""
+					create table if not exists user_opin (
+					user_id INT (6) NOT NULL PRIMARY KEY,
+					opin_id INT (3) NOT NULL,
+					opinion VARCHAR (3)
 					)
 					""",
 		'news':		"""
@@ -91,11 +97,9 @@ tables = {
 		'replies' : """
 					create table if not exists replies (
 					id INT (6) AUTO_INCREMENT PRIMARY KEY,
-					author VARCHAR(20) NOT NULL,
+					author INT(6) NOT NULL,
+					post_id INT (6) NOT NULL,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-					state_id INT(2) NOT NULL,
-					county_id INT(5) NOT NULL,
-					city_id INT(10) NOT NULL,
 					url VARCHAR (50) NOT NULL
 					)
 					"""

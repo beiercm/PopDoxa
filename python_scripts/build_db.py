@@ -117,6 +117,7 @@ def help_screen():
 def main(*args):	
 	os.chdir("../data")
 	login_info = get_login_info()
+	
 	if len(args) >= 1:
 		if not parse_args(args[0][1::], login_info):
 			return
