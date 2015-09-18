@@ -4,7 +4,7 @@ from mysql.connector import errorcode
 import os
 
 def get_login_info():
-	return [e.strip() for e in list(open("login.txt"))]
+	return [e.strip() for e in list(open("/home/christopher/data/login.txt"))]
 
 def create_db(login_info):
 	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2])
@@ -77,7 +77,7 @@ def kill_table(table, cursor):
 def parse_args(tables, login_info):
 	valid_tables = bt.tables.keys()
 
-	if "help" in tables:
+	if "help" in tables or len(tables) < 1:
 		help_screen()
 		return
 
@@ -115,8 +115,8 @@ def help_screen():
 		)
 
 def main(*args):	
-	os.chdir("../data")
 	login_info = get_login_info()
+	os.chdir("/home/christopher/data")
 	
 	if len(args) >= 1:
 		if not parse_args(args[0][1::], login_info):

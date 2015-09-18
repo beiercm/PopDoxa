@@ -1,2 +1,2 @@
-Do you like Florida?,4,3,4
-Are you pro-NRA?,2,2,3
+394,Do you like Florida?
+13,Are you pro-NRA?

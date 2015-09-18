@@ -27,10 +27,8 @@ tables = {
 		'polls' :	"""
 					create table if not exists polls (
 					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					author INT(6) NOT NULL,
 					question VARCHAR (200) NOT NULL,
-					yes INT (5),
-					no INT (5),
-					neutral INT (5),
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 					)
 					""",
@@ -52,7 +50,7 @@ tables = {
 					create table if not exists cities (
 					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 					name VARCHAR (40) NOT NULL,
-					county_id INT(3) NOT NULL
+					county_id INT(3) UNSIGNED NOT NULL
 					)
 					""",
 		'opinions' :	"""
@@ -64,9 +62,10 @@ tables = {
 					""",
 		'user_opin': 	"""
 					create table if not exists user_opin (
-					user_id INT (6) NOT NULL PRIMARY KEY,
+					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					user_id INT (6) NOT NULL,
 					opin_id INT (3) NOT NULL,
-					opinion VARCHAR (3)
+					opinion VARCHAR (4) DEFAULT 'N/A'
 					)
 					""",
 		'news':		"""
@@ -74,7 +73,7 @@ tables = {
 					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 					title VARCHAR (100) NOT NULL,
 					url VARCHAR (200) NOT NULL,
-					descrip VARCHAR (1000) DEFAULT "",
+					descrip VARCHAR (1000),
 					img_url VARCHAR (200) NOT NULL
 					)
 					""",

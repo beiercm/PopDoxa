@@ -3,7 +3,7 @@
 	$path = chdir("/home/christopher/data");
 	if($path)
 	{
-		$myfile = fopen("cblogin.txt", "r") or die("Unable to open login file!");
+		$myfile = fopen("login.txt", "r") or die("Unable to open login file!");
 		$servername = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$username = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$password = trim(fgets($myfile, filesize("login.txt")), "\n.");
@@ -20,16 +20,7 @@
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);		
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		if(PHP_SAPI === 'cli')
-		{
-			$state = $argv[1];
-		}
-		else
-		{
-			$state = $_GET['state'];
-		}
-
-		get_urls($conn, $state);
+		get_urls($conn);
 	}
 	catch (PDOException $e)
 	{
@@ -39,11 +30,9 @@
 
 	$conn = null;
 
-	function get_urls($conn, $state)
+	function get_urls($conn)
 	{
-		$state = strtolower($state);
-
-		$stmt = "SELECT counties.name FROM counties JOIN states ON counties.state_id = states.id WHERE states.name = :state";
+		$stmt = "SELECT name FROM states";
 
 		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 		$sth->execute(array(':state' => $state));
@@ -53,26 +42,20 @@
 
 		for($i = 0; $i < $length; $i++)
 		{
-			$county = $result[$i][0];
+			$state = $result[$i][0];
 
-			$url = "http://10.171.204.135/?page_id=688?topic=" . $state . "/" . $county;
+			$url = "http://10.171.204.135/?page_id=610?topic=" . $state;
 			//echo $county ."\n". $url . $county . "\n";
 
-			$county = str_replace("_", " ", $county);
+			$state = str_replace("_", " ", $state);
 
-			$county = ucwords($county);
-
-
+			$state = ucwords($state);
 
 
+			echo 		"<div class='col-sm-4 links-states'><a href = " . $url . ">"
+				 		. $state.
+				 		"</a></div>";
 
-
-			echo 		"<a href = " . $url . " class = 'list-group-item'>"
-				 		. $county .
-				 		"</a>";
-
-		} 
-		
+		} 		
 	}
-
 ?>

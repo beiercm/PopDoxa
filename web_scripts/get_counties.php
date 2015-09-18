@@ -3,7 +3,7 @@
 	$path = chdir("/home/christopher/data");
 	if($path)
 	{
-		$myfile = fopen("cblogin.txt", "r") or die("Unable to open login file!");
+		$myfile = fopen("login.txt", "r") or die("Unable to open login file!");
 		$servername = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$username = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$password = trim(fgets($myfile, filesize("login.txt")), "\n.");
@@ -22,14 +22,14 @@
 
 		if(PHP_SAPI === 'cli')
 		{
-			$county = $argv[1];
+			$state = $argv[1];
 		}
 		else
 		{
-			$county = $_GET['county'];
+			$state = $_GET['state'];
 		}
 
-		get_urls($conn, $county);
+		get_urls($conn, $state);
 	}
 	catch (PDOException $e)
 	{
@@ -39,30 +39,38 @@
 
 	$conn = null;
 
-	function get_urls($conn, $county)
+	function get_urls($conn, $state)
 	{
-		$county = strtolower($county);
+		$state = strtolower($state);
 
-		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id = counties.id WHERE counties.name = :county";
+		$stmt = "SELECT counties.name FROM counties JOIN states ON counties.state_id = states.id WHERE states.name = :state";
 
 		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':county' => $county));
+		$sth->execute(array(':state' => $state));
 		$result = $sth->fetchAll();
 
 		$length = count($result);
 
 		for($i = 0; $i < $length; $i++)
 		{
-			$city = $result[$i][0];
+			$county = $result[$i][0];
 
-			$url = "http://10.171.204.135/?state=florida/" . $county . "/" . $city;
-			$city = str_replace("_", " ", $city);
+			$url = "http://10.171.204.135/?page_id=688?topic=" . $state . "/" . $county;
+			//echo $county ."\n". $url . $county . "\n";
 
-			$city = ucwords($city);
-			//echo $city ."\n". $url . $city . "\n";
-			echo 		"<a href = " . $url . " class='list-group-item'>"
-				 		. $city .
+			$county = str_replace("_", " ", $county);
+
+			$county = ucwords($county);
+
+
+
+
+
+
+			echo 		"<a href = " . $url . " class = 'list-group-item'>"
+				 		. $county .
 				 		"</a>";
+
 		} 
 		
 	}

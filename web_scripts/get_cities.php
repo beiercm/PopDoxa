@@ -3,7 +3,7 @@
 	$path = chdir("/home/christopher/data");
 	if($path)
 	{
-		$myfile = fopen("cblogin.txt", "r") or die("Unable to open login file!");
+		$myfile = fopen("login.txt", "r") or die("Unable to open login file!");
 		$servername = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$username = trim(fgets($myfile, filesize("login.txt")), "\n.");
 		$password = trim(fgets($myfile, filesize("login.txt")), "\n.");
@@ -20,7 +20,16 @@
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);		
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		get_urls($conn);
+		if(PHP_SAPI === 'cli')
+		{
+			$county = $argv[1];
+		}
+		else
+		{
+			$county = $_GET['county'];
+		}
+
+		get_urls($conn, $county);
 	}
 	catch (PDOException $e)
 	{
@@ -30,32 +39,32 @@
 
 	$conn = null;
 
-	function get_urls($conn)
+	function get_urls($conn, $county)
 	{
-		$stmt = "SELECT name FROM states";
+		$county = strtolower($county);
+
+		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id = counties.id WHERE counties.name = :county";
 
 		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':state' => $state));
+		$sth->execute(array(':county' => $county));
 		$result = $sth->fetchAll();
 
 		$length = count($result);
 
 		for($i = 0; $i < $length; $i++)
 		{
-			$state = $result[$i][0];
+			$city = $result[$i][0];
 
-			$url = "http://10.171.204.135/?page_id=610?topic=" . $state;
-			//echo $county ."\n". $url . $county . "\n";
+			$url = "http://10.171.204.135/?state=florida/" . $county . "/" . $city;
+			$city = str_replace("_", " ", $city);
 
-			$state = str_replace("_", " ", $state);
-
-			$state = ucwords($state);
-
-
-			echo 		"<div class='col-sm-4 links-states'><a href = " . $url . ">"
-				 		. $state.
-				 		"</a></div>";
-
-		} 		
+			$city = ucwords($city);
+			//echo $city ."\n". $url . $city . "\n";
+			echo 		"<a href = " . $url . " class='list-group-item'>"
+				 		. $city .
+				 		"</a>";
+		} 
+		
 	}
+
 ?>
