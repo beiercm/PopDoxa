@@ -7,6 +7,7 @@ tables = {
 					first VARCHAR (30) NOT NULL,
 					last VARCHAR (30) NOT NULL,
 					username VARCHAR (30) NOT NULL,
+					password VARCHAR (20) NOT NULL,
 					age INT (3) NOT NULL,
 					email VARCHAR (30) NOT NULL,
 					gender CHAR (1) NOT NULL,
@@ -31,6 +32,13 @@ tables = {
 					question VARCHAR (200) NOT NULL,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 					)
+					""",
+		'poll_results': """
+						create table if not exists poll_results (
+						poll_id INT (6) UNSIGNED PRIMARY KEY,
+						user_id INT (6) UNSIGNED,
+						user_vote CHAR (1)
+						)
 					""",
 		'states':	"""
 					create table if not exists states (

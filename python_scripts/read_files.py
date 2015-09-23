@@ -5,12 +5,14 @@ def read_users(cursor):
 	for user_list in users_file:
 		user = [x.strip().lower() for x in user_list.split(',')]
 		username = user[0] + "_" + user[1]
+		password = "userbot"
 		user.insert(2, username)
+		user.insert(3, password)
 		query = 	"""
 					INSERT INTO users 
-					(first, last, username, gender, age, email, state, county, city)
+					(first, last, username, password, gender, age, email, state, county, city)
 					VALUES 
-					(%s,%s,%s,%s,%s,%s,%s,%s,%s);
+					(%s,%s,%s,%s, %s, %s,%s,%s,%s,%s);
 					"""
 		cursor.execute(query, user)
 
@@ -52,6 +54,9 @@ def read_polls(cursor):
 					(%s,%s);
 					"""
 		cursor.execute(query,poll)
+
+def read_poll_results(cursor):
+	pass
 
 
 def read_states(cursor):
