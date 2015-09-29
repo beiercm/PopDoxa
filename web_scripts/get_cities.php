@@ -37,7 +37,7 @@
 		{
 			$city = $result[$i][0];
 
-			$url = "http://10.171.204.135/?state=florida/" . $county . "/" . $city;
+			$url = "http://10.171.204.135/?state=" . $state . "/" . $county . "/" . $city;
 			$city = str_replace("_", " ", $city);
 
 			$city = ucwords($city);
