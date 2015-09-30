@@ -25,7 +25,7 @@
 	{
 		$county_id = strtolower($county_id);
 
-		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id_id = counties.id WHERE counties.id = :county_id";
+		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id = counties.id WHERE counties.id = :county_id";
 
 		$sth = $conn->prepare($stmt);
 		$sth->bindparam(':county_id', $county_id);
