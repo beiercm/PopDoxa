@@ -38,14 +38,19 @@
 		{
 			$city = $result[$i][0];
 
-			$url = "http://10.171.204.135/?state=" . $state . "/" . $county_id . "/" . $city;
-			$city = str_replace("_", " ", $city);
+			echo 		"<option value='" . $city . "'>". $city . "</option>";
+		}	
 
-			$city = ucwords($city);
-			//echo $city ."\n". $url . $city . "\n";
-			echo 		"<a href = " . $url . " class='list-group-item'>"
-				 		. $city .
-				 		"</a>";
-		}		
+		for($i = 0; $i < $length; $i++)
+		{
+			$city = $result[$i][0];
+
+			$city = str_replace("_", " ", $county);
+
+			$city = ucwords($county);
+
+			echo 		"<option value='" . $city . "'>". $city . "</option>";
+
+		} 	
 	}
 ?>
