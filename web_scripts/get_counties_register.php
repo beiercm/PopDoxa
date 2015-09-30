@@ -12,7 +12,7 @@
 			$state = $_GET['state'];
 		}
 
-		get_urls($conn, $state);
+		get_counties($conn, $state);
 	}
 	catch (PDOException $e)
 	{
@@ -22,14 +22,15 @@
 
 	$conn = null;
 
-	function get_urls($conn, $state)
+	function get_counties($conn, $state)
 	{
 		$state = strtolower($state);
 
 		$stmt = "SELECT counties.name, counties.id FROM counties JOIN states ON counties.state_id = states.id WHERE states.name = :state";
 
-		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':state' => $state));
+		$sth = $conn->prepare($stmt);
+		$sth->bindparam(':state', $state);
+		$sth->execute();
 		$result = $sth->fetchAll();
 
 		$length = count($result);
