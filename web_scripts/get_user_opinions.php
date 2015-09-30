@@ -23,7 +23,7 @@
 
 	function get_opinions($conn, $user_id)
 	{
-		$query = "SELECT opinions.opin_name, user_opin.opinion FROM opinions JOIN user_opin ON opinions.id = user_opin.opin_id WHERE user_opin.user_id = :user_id;"
+		$query = $conn->prepare("SELECT opinions.opin_name, user_opin.opinion FROM opinions JOIN user_opin ON opinions.id = user_opin.opin_id WHERE user_opin.user_id = :user_id;");
 		$query->bindparam(':user_id', $user_id);
 		$query->execute();
 		$result = $query->fetchAll();

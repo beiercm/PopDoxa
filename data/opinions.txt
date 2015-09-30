@@ -1,2 +1,8 @@
 nra,Nation Rifle Association
 green_energy,Green and Renewable Energy
+cc,Common Core
+dem,Democrat
+rep,Republican
+ind,Independent
+warme,War in the Middle East
+aca,Affordable Care Act
