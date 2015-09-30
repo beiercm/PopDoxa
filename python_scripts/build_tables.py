@@ -69,7 +69,8 @@ tables = {
 					)
 					""",
 		'user_opin': 	"""
-					create table if not exists user_opin (				
+					create table if not exists user_opin (
+					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,				
 					user_id INT (6) NOT NULL PRIMARY KEY,
 					opin_id INT (3) NOT NULL,
 					opinion VARCHAR (4) DEFAULT 'N/A'
