@@ -34,7 +34,7 @@
 
 		$length = count($result);
 
-		for($i = 0; $i < $length; $i++)
+		for($i = 1; $i < $length; $i++)
 		{
 			$city = $result[$i][0];
 
