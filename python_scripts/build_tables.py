@@ -26,7 +26,8 @@ tables = {
 					""",
 		'poll_results': """
 						create table if not exists poll_results (
-						poll_id INT (6) UNSIGNED PRIMARY KEY,
+						id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY
+						poll_id INT (6) UNSIGNED,
 						user_id INT (6) UNSIGNED,
 						user_vote CHAR (1)
 						)
