@@ -36,7 +36,23 @@ def read_opinions(cursor):
 		cursor.execute(query, opinion)
 
 def read_user_opin(cursor):
-	pass	 
+	print("Reading in user opinions.txt") 
+	uo_file = list(open("user_opin.txt"))
+
+	for line in uo_file:
+		line = line.strip().split(',')
+		line[len(line) - 1] = line[len(line) - 1].strip()
+
+		query = """
+				INSERT INTO user_opin
+				(user_id, opin_id, opinion)
+				VALUES
+				(%s,%s,%s);
+				"""
+		cursor.execute(query, line)
+
+
+
 	
 def read_polls(cursor):
 	print("Reading in polls.txt")
