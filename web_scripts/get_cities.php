@@ -4,14 +4,14 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$county = $argv[1];
+			$county_id = $argv[1];
 		}
 		else
 		{
-			$county = $_GET['county'];
+			$county_id = $_GET['county_id'];
 		}
 
-		get_urls($conn, $county);
+		get_urls($conn, $county_id);
 	}
 	catch (PDOException $e)
 	{
@@ -21,14 +21,15 @@
 
 	$conn = null;
 
-	function get_urls($conn, $county)
+	function get_urls($conn, $county_id)
 	{
-		$county = strtolower($county);
+		$county_id = strtolower($county_id);
 
-		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id = counties.id WHERE counties.name = :county";
+		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id_id = counties.id WHERE counties.id = :county_id";
 
-		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':county' => $county));
+		$sth = $conn->prepare($stmt);
+		$sth->bindparam(':county_id', $county_id);
+		$sth->execute();
 		$result = $sth->fetchAll();
 
 		$length = count($result);
@@ -37,7 +38,7 @@
 		{
 			$city = $result[$i][0];
 
-			$url = "http://10.171.204.135/?state=" . $state . "/" . $county . "/" . $city;
+			$url = "http://10.171.204.135/?state=" . $state . "/" . $county_id . "/" . $city;
 			$city = str_replace("_", " ", $city);
 
 			$city = ucwords($city);
