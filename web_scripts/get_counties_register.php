@@ -26,7 +26,7 @@
 	{
 		$state = strtolower($state);
 
-		$stmt = "SELECT counties.name FROM counties JOIN states ON counties.state_id = states.id WHERE states.name = :state";
+		$stmt = "SELECT counties.name, counties.id FROM counties JOIN states ON counties.state_id = states.id WHERE states.name = :state";
 
 		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 		$sth->execute(array(':state' => $state));
@@ -37,12 +37,13 @@
 		for($i = 0; $i < $length; $i++)
 		{
 			$county = $result[$i][0];
+			$county_id = $result[$i][1];
 
 			$county = str_replace("_", " ", $county);
 
 			$county = ucwords($county);
 
-			echo 		"<option value='" . $county . "'>". $county . "</option>";
+			echo 		"<option value='" . $county_id . "'>". $county . "</option>";
 
 		} 
 		

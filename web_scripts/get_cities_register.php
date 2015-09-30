@@ -34,20 +34,15 @@
 
 		$length = count($result);
 
-		for($i = 0; $i < $length; $i++)
-		{
-			$city = $result[$i][0];
-
-			echo 		"<option value='" . $city . "'>". $city . "</option>";
-		}	
+		
 
 		for($i = 0; $i < $length; $i++)
 		{
 			$city = $result[$i][0];
 
-			$city = str_replace("_", " ", $county);
+			$city = str_replace("_", " ", $city);
 
-			$city = ucwords($county);
+			$city = ucwords($city);
 
 			echo 		"<option value='" . $city . "'>". $city . "</option>";
 
