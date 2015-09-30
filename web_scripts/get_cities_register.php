@@ -38,16 +38,9 @@
 		{
 			$city = $result[$i][0];
 
-			echo 		"<option value='" . $city . "'>". $city . "</option>";
-		}	
+			$city = str_replace("_", " ", $city);
 
-		for($i = 0; $i < $length; $i++)
-		{
-			$city = $result[$i][0];
-
-			$city = str_replace("_", " ", $county);
-
-			$city = ucwords($county);
+			$city = ucwords($city);
 
 			echo 		"<option value='" . $city . "'>". $city . "</option>";
 
