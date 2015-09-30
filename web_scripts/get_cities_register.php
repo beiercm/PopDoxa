@@ -33,19 +33,5 @@
 		$result = $sth->fetchAll();
 
 		$length = count($result);
-
-		
-
-		for($i = 0; $i < $length; $i++)
-		{
-			$city = $result[$i][0];
-
-			$city = str_replace("_", " ", $city);
-
-			$city = ucwords($city);
-
-			echo 		"<option value='" . $city . "'>". $city . "</option>";
-
-		} 	
 	}
 ?>
