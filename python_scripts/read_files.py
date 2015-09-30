@@ -16,9 +16,6 @@ def read_users(cursor):
 					"""
 		cursor.execute(query, user)
 
-def read_votes(cursor):
-	pass
-
 def read_opinions(cursor):
 	print("Reading in opinions.txt")
 	opin_file = list(open("opinions.txt"))
@@ -51,9 +48,6 @@ def read_user_opin(cursor):
 				"""
 		cursor.execute(query, line)
 
-
-
-	
 def read_polls(cursor):
 	print("Reading in polls.txt")
 	polls = list(open("polls.txt"))
@@ -71,7 +65,20 @@ def read_polls(cursor):
 		cursor.execute(query,poll)
 
 def read_poll_results(cursor):
-	pass
+	print("Reading in user poll_results.txt") 
+	pr_file = list(open("poll_results.txt"))
+
+	for line in pr_file:
+		line = line.strip().split(',')
+		line[len(line) - 1] = line[len(line) - 1].strip()
+
+		query = """
+				INSERT INTO poll_results
+				(poll_id, user_id, user_vote)
+				VALUES
+				(%s,%s,%s);
+				"""
+		cursor.execute(query, line)
 
 
 def read_states(cursor):
@@ -139,9 +146,6 @@ def read_clubs(cursor):
 		query = "INSERT INTO clubs (user_id, nra, green_energy, aca, common_core) VALUES (%s,%s,%s,%s,%s);"
 		cursor.execute(query, clubs_list)
 
-def read_recent_news(cursor):
-	pass
-
 def read_posts(cursor):
 	print("Reading in posts.txt")
 	posts = list(open("posts.txt"))
@@ -174,9 +178,6 @@ def read_replies(cursor):
 		cursor.execute(query, (post, author, content))
 
 def read_news(cursor):
-	pass
-
-def user_polls(cursor):
 	pass
 
 def read_user_roles(cursor):

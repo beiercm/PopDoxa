@@ -1,2 +1,3 @@
 394,Do you like Florida?
 13,Are you pro-NRA?
+28,Do you like Obama?

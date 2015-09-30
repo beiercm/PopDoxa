@@ -16,15 +16,6 @@ tables = {
 					city INT (6) NOT NULL
 					)
 					""",
-		'votes' : 	"""
-					create table if not exists votes (
-					id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-					poll_id INT (6) UNSIGNED NOT NULL,
-					user_id INT (6) UNSIGNED NOT NULL,
-					vote CHAR (1) NOT NULL,
-					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-					)
-					""",
 		'polls' :	"""
 					create table if not exists polls (
 					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
