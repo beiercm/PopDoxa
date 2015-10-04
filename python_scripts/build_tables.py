@@ -3,7 +3,7 @@ import read_files as rf
 tables = {
 		'users' :	"""
 					create table if not exists users (
-					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(6) AUTO_INCREMENT PRIMARY KEY,
 					first VARCHAR (30) NOT NULL,
 					last VARCHAR (30) NOT NULL,
 					username VARCHAR (30) NOT NULL,
@@ -18,7 +18,7 @@ tables = {
 					""",
 		'polls' :	"""
 					create table if not exists polls (
-					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(6) AUTO_INCREMENT PRIMARY KEY,
 					author INT(6) NOT NULL,
 					question VARCHAR (200) NOT NULL,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -26,7 +26,7 @@ tables = {
 					""",
 		'poll_results': """
 						create table if not exists poll_results (
-						id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+						id INT (6) AUTO_INCREMENT PRIMARY KEY,
 						poll_id INT (6) NOT NULL,
 						user_id INT (6) NOT NULL,
 						user_vote CHAR (1) NOT NULL
@@ -34,35 +34,35 @@ tables = {
 					""",
 		'states':	"""
 					create table if not exists states (
-					id INT(2) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(2) AUTO_INCREMENT PRIMARY KEY,
 					name VARCHAR(25) NOT NULL,
 					url VARCHAR (100) NOT NULL
 					)
 					""",
 		'counties' :"""
 					create table if not exists counties (
-					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(3) AUTO_INCREMENT PRIMARY KEY,
 					name VARCHAR(40) NOT NULL,
 					state_id INT (2) NOT NULL
 					)
 					""",
 		'cities' :	"""
 					create table if not exists cities (
-					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(3) AUTO_INCREMENT PRIMARY KEY,
 					name VARCHAR (40) NOT NULL,
-					county_id INT(3) UNSIGNED NOT NULL
+					county_id INT(3) NOT NULL
 					)
 					""",
 		'opinions' :	"""
 					create table if not exists opinions (
-					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(3) AUTO_INCREMENT PRIMARY KEY,
 					opin_name VARCHAR (30) NOT NULL,
 					opin_descrip VARCHAR (200) NOT NULL
 					)
 					""",
 		'user_opin': 	"""
 					create table if not exists user_opin (
-					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,				
+					id INT(6) AUTO_INCREMENT PRIMARY KEY,				
 					user_id INT (6) NOT NULL,
 					opin_id INT (3) NOT NULL,
 					opinion VARCHAR (4) DEFAULT 'N/A'
@@ -70,7 +70,7 @@ tables = {
 					""",
 		'news':		"""
 					create table if not exists news (
-					id INT(3) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(3) AUTO_INCREMENT PRIMARY KEY,
 					title VARCHAR (100) NOT NULL,
 					url VARCHAR (200) NOT NULL,
 					descrip VARCHAR (1000),
@@ -79,7 +79,7 @@ tables = {
 					""",
 		'posts' :	"""
 					create table if not exists posts (
-					id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					id INT(6) AUTO_INCREMENT PRIMARY KEY,
 					author INT (6) NOT NULL,
 					title VARCHAR (200) NOT NULL,
 					content VARCHAR (1000) NOT NULL,
@@ -105,15 +105,15 @@ tables = {
 					""",
 		'user_roles':	"""
 					create table if not exists user_roles (
-						id INT (6) UNSIGNED AUTO_INCREMENT PRIMAY KEY,
-						user_id INT (6) UNSIGNED,
+						id INT (6) AUTO_INCREMENT PRIMAY KEY,
+						user_id INT (6) NOT NULL,
 						access_level VARCHAR (20) NOT NULL
 						)
 					""",
 		'feedback': """
 					create table if not exists feedback (
-						id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-						user_id INT (6) UNSIGNED,
+						id INT (6) AUTO_INCREMENT PRIMARY KEY,
+						user_id INT (6),
 						content VARCHAR (2000) NOT NULL,
 						ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 						)
