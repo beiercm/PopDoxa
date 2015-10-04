@@ -16,7 +16,7 @@
 
 	$conn = null;
 
-	function insert_post($conn, $author, $content)
+	function insert_feedback($conn, $author, $content)
 	{
 		$stmt = $conn->prepare("INSERT INTO feedback (author, content) VALUES (:author,:content);");
 		$stmt->bindparam(':author', $author);
