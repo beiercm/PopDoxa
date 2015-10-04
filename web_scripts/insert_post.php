@@ -10,8 +10,6 @@
 		$county = -1;
 		$city = -1;
 
-		var_dump($_POST);
-
 		insert_post($conn, $author, $title, $content, $state, $county, $city);
 	}
 	catch (PDOException $e)
@@ -34,8 +32,6 @@
 
 		$stmt->execute();
 
-		echo "Here";
-		
 	}
 
 ?>

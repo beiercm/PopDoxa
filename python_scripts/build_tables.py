@@ -105,13 +105,15 @@ tables = {
 					""",
 		'user_roles':	"""
 					create table if not exists user_roles (
-						user_id INT (6) UNSIGNED PRIMARY KEY,
+						id INT (6) UNSIGNED AUTO_INCREMENT PRIMAY KEY
+						user_id INT (6) UNSIGNED,
 						access_level VARCHAR (20) NOT NULL
 						)
 					""",
 		'feedback': """
 					create table if not exists feedback (
-						user_id INT (6) UNSIGNED PRIMARY KEY,
+						id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+						user_id INT (6) UNSIGNED,
 						content VARCHAR (2000) NOT NULL,
 						ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 						)
