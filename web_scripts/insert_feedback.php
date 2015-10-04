@@ -3,10 +3,10 @@
 	include 'get_connection.php';
 
 	try {
-		$author = $_POST['author'];
+		$user_id = $_POST['user_id'];
 		$content = $_POST['#038;content'];
 		
-		insert_feedback($conn, $author, $content);
+		insert_feedback($conn, $user_id, $content);
 	}
 	catch (PDOException $e)
 	{
@@ -16,10 +16,10 @@
 
 	$conn = null;
 
-	function insert_feedback($conn, $author, $content)
+	function insert_feedback($conn, $user_id, $content)
 	{
-		$stmt = $conn->prepare("INSERT INTO feedback (author, content) VALUES (:author,:content);");
-		$stmt->bindparam(':author', $author);
+		$stmt = $conn->prepare("INSERT INTO feedback (user_id, content) VALUES (:user_id,:content);");
+		$stmt->bindparam(':user_id', $user_id);
 		$stmt->bindparam(':content', $content);
 		
 		$stmt->execute();
