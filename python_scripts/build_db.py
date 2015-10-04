@@ -19,7 +19,6 @@ def get_connec(tables, login_info):
 	try:
 		create_db(login_info)
 		cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database=login_info[3])
-		tables = check_existing_tables(tables, cnx.cursor())
 		if tables == "all":
 			bt.build_all(cnx.cursor())
 		else:
@@ -29,37 +28,7 @@ def get_connec(tables, login_info):
 	except mysql.connector.Error as err:
 		print(err)
 
-def check_existing_tables(tables, cursor):
-	query = "select table_name from information_schema.tables where table_schema='cbpopdoxa';"
-	cursor.execute(query)
 
-	table_list = [table[0].encode('ascii', 'ignore') for table in list(cursor)]
-
-	if "all" in tables:
-		if len(table_list) > 0:
-			confirm = raw_input("There are currently tables in the database\nType 'Y' to drop the database or press any key to skip\n")
-			if confirm == "Y":
-				kill_database()
-				create_db(login_info)
-				#bt.build_all_tables(cursor)
-				return "all"
-			else:
-				return
-		bt.build_all(cursor)
-		return
-
-	for table in tables:
-		if table in table_list:
-			confirm = raw_input(table +" table already exists, Y to drop and rebuild or N to skip\n")
-			
-			if confirm == "Y":
-				kill_table(table, cursor)
-			else:
-				tables.remove(table)
-
-	tables.remove("build")
-
-	return tables
 
 def kill_database(confirm, login_info):
 	if confirm != "Yes":
