@@ -12,7 +12,7 @@
 		
 		{
 			$user_id = $_GET['user_id'];
-			$content = $_GET['#038;content'];
+			$content = $_GET['content'];
 		}
 		
 		insert_feedback($conn, $user_id, $content);
