@@ -105,7 +105,7 @@ tables = {
 					""",
 		'user_roles':	"""
 					create table if not exists user_roles (
-						id INT (6) UNSIGNED AUTO_INCREMENT PRIMAY KEY
+						id INT (6) UNSIGNED AUTO_INCREMENT PRIMAY KEY,
 						user_id INT (6) UNSIGNED,
 						access_level VARCHAR (20) NOT NULL
 						)
