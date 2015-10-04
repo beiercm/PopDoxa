@@ -79,14 +79,14 @@
 			$where = "posts.state = " . $state_id . " AND posts.county = -1 AND posts.city = -1";
 
 
-		$query = PDO_MySQL("SELECT posts.id, posts.title from posts JOIN states on states.id = posts.state where state.id = 9;");
+		$query = "SELECT posts.id, posts.title from posts JOIN states on states.id = posts.state where states.id = 9;";
 		$result = $conn->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
 		$return = array();
 
 		foreach($result as $row) {
 			$return[] = array(	'id' => $row['id'],
-								'title' => $row['title']));
+								'title' => $row['title']);
 		}
 
 		echo json_encode($return);
