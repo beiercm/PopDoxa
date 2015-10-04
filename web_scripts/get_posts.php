@@ -48,7 +48,7 @@
 
 		$state_id = $results[0][0];
 
-		if($county == -1)
+		if($county != -1)
 		{
 			$stmt = "SELECT id from counties where state_id = :state AND name = :county" ;
 			$stmt = $conn->prepare($stmt);
@@ -58,12 +58,11 @@
 			$results = $stmt->fetchAll();
 
 			$county_id = $results[0][0];
+			$where = "posts.county = " . $county_id. " AND posts.city = -1";
 
 		}
-		else 
-			$county_id = -1;
 
-		if($city == -1)
+		if($city != -1)
 		{
 			$stmt = "SELECT id from cities where county_id = :county AND name = :city";
 			$stmt = $conn->prepare($stmt);
@@ -73,9 +72,13 @@
 			$results = $stmt->fetchAll();
 
 			$city_id = $results[0][0];
+			$where = "posts.city = " . $city_id;
 		}
-		else
-			$city_id = -1;
+
+		if($county == -1 && $city == -1)
+			$where = "posts.state = " . $state_id . " AND posts.county = -1 AND posts.city = -1";
+		
+
 
 		 require ('ssp.class.php');
 		$columns = array(
@@ -87,7 +90,6 @@
 
 		 $table = 'posts';
 		 $primaryKey = 'id';
-		 $where = "posts.state = " . $state_id ;// . " AND posts.county = " . $county_id . " AND posts.city = " . $city_id . ";";
 		 $joinQuery = "";
 
 		 echo json_encode(SSP::simple($_GET, $conn, $table, $primaryKey, $columns, $where));		
