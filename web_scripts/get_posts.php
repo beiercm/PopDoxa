@@ -34,52 +34,27 @@
 
 	$conn = null;
 
-	function get_posts($conn, $state, $county, $city)
+	function get_posts($conn, $state_id, $county_id, $city_id)
 	{
-		$state = strtolower($state);
-		$county = strtolower($county);
-		$city = strtolower($city);
-
-		$stmt = "SELECT id from states where name = :state";
-		$stmt = $conn->prepare($stmt);
-		$stmt->bindparam(':state', $state);
-		$stmt->execute();
-		$results = $stmt->fetchAll();
-
-		$state_id = $results[0][0];
 
 		if($county != -1)
 		{
-			$stmt = "SELECT id from counties where state_id = :state AND name = :county" ;
-			$stmt = $conn->prepare($stmt);
-			$stmt->bindparam(':state', $state_id);
-			$stmt->bindparam(':county', $county);
-			$stmt->execute();
-			$results = $stmt->fetchAll();
-
-			$county_id = $results[0][0];
-			$where = "posts.county = " . $county_id. " AND posts.city = -1";
-
+		$query= "SELECT posts.id from posts join counties on posts.counties = counties.id where  posts.county = :county_id AND posts.city = -1;";
+		$query->bindparam(':county_id', $county_id);
 		}
 
 		if($city != -1)
 		{
-			$stmt = "SELECT id from cities where county_id = :county AND name = :city";
-			$stmt = $conn->prepare($stmt);
-			$stmt->bindparam(':county', $county_id);
-			$stmt->bindparam(':city', $city);
-			$stmt->execute();
-			$results = $stmt->fetchAll();
-
-			$city_id = $results[0][0];
-			$where = "posts.city = " . $city_id;
+			query = "SELECT posts.id from posts join cities on posts.city = cities.id where  posts.city =  :city_id;";
+			query->bindparam(':city_id', $city_id);
 		}
 
 		if($county == -1 && $city == -1)
-			$where = "posts.state = " . $state_id . " AND posts.county = -1 AND posts.city = -1";
+		{
+			$query = "SELECT posts.id from posts join states on posts.state = states.id where states.id = :state_id AND posts.county = -1 AND posts.city = -1;";
+			$query->bindparam(':state_id', $state_id);
+		}
 
-
-		$query = "SELECT posts.id, posts.title from posts JOIN states on states.id = posts.state where states.id = 9;";
 		$result = $conn->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
 		$return = array();
