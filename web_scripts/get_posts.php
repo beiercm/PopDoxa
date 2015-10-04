@@ -39,19 +39,19 @@
 
 		if($county_id != -1)
 		{
-			$query= $conn->prepare("SELECT posts.id from posts join counties on posts.counties = counties.id where  posts.county = :county_id AND posts.city = -1;");
+			$query= $conn->prepare("SELECT posts.id,posts.title from posts join counties on posts.counties = counties.id where  posts.county = :county_id AND posts.city = -1;");
 			$query->bindparam(':county_id', $county_id);
 		}
 
 		if($city_id != -1)
 		{
-			$query = $conn->prepare("SELECT posts.id from posts join cities on posts.city = cities.id where  posts.city =  :city_id;");
+			$query = $conn->prepare("SELECT posts.id,posts.title from posts join cities on posts.city = cities.id where  posts.city =  :city_id;");
 			$query->bindparam(':city_id', $city_id);
 		}
 
 		if($county_id == -1 && $city_id == -1)
 		{
-			$query = $conn->prepare("SELECT posts.id from posts join states on posts.state = states.id where states.id = :state_id AND posts.county = -1 AND posts.city = -1;");
+			$query = $conn->prepare("SELECT posts.id,posts.title from posts join states on posts.state = states.id where states.id = :state_id AND posts.county = -1 AND posts.city = -1;");
 			$query->bindparam(':state_id', $state_id);
 		}
 
