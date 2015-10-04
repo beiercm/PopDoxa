@@ -39,19 +39,19 @@
 
 		if($county_id != -1)
 		{
-			$query= $conn->prepare("SELECT posts.id,posts.title from posts join counties on posts.counties = counties.id where  posts.county = :county_id AND posts.city = -1;");
+			$query= $conn->prepare("SELECT posts.author,posts.title,posts.views,posts.replies,posts.ts from posts join counties on posts.counties = counties.id where  posts.county = :county_id AND posts.city = -1;");
 			$query->bindparam(':county_id', $county_id);
 		}
 
 		if($city_id != -1)
 		{
-			$query = $conn->prepare("SELECT posts.id,posts.title from posts join cities on posts.city = cities.id where  posts.city =  :city_id;");
+			$query = $conn->prepare("SELECT posts.author,posts.title,posts.views,posts.replies,posts.ts from posts join cities on posts.city = cities.id where  posts.city =  :city_id;");
 			$query->bindparam(':city_id', $city_id);
 		}
 
 		if($county_id == -1 && $city_id == -1)
 		{
-			$query = $conn->prepare("SELECT posts.id,posts.title from posts join states on posts.state = states.id where states.id = :state_id AND posts.county = -1 AND posts.city = -1;");
+			$query = $conn->prepare("SELECT posts.author,posts.title,posts.views,posts.replies,posts.ts from posts join states on posts.state = states.id where states.id = :state_id AND posts.county = -1 AND posts.city = -1;");
 			$query->bindparam(':state_id', $state_id);
 		}
 
@@ -62,8 +62,12 @@
 		$return = array();
 
 		foreach($result as $row) {
-			$return[] = array(	'id' => $row['id'],
-								'title' => $row['title']);
+			$return[] = array(	'author' => $row['author'],
+								'title' => $row['title'],
+								'views' => $row['views'],
+								'replies' => $row['replies'],
+								'ts' => $row['ts']
+								);
 		}
 
 		echo json_encode($return);
