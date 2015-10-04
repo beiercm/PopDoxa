@@ -3,8 +3,17 @@
 	include 'get_connection.php';
 
 	try {
-		$user_id = $_POST['user_id'];
-		$content = $_POST['#038;content'];
+		if(PHP_SAPI === 'cli')
+		{
+			$user_id = $argv[1];
+			$content = $argv[2];
+		}
+		else
+		
+		{
+			$user_id = $_POST['user_id'];
+			$content = $_POST['#038;content'];
+		}
 		
 		insert_feedback($conn, $user_id, $content);
 	}
