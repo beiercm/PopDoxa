@@ -11,8 +11,8 @@
 		else
 		
 		{
-			$user_id = $_POST['user_id'];
-			$content = $_POST['#038;content'];
+			$user_id = $_GET['user_id'];
+			$content = $_GET['#038;content'];
 		}
 		
 		insert_feedback($conn, $user_id, $content);
