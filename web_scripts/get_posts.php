@@ -77,22 +77,33 @@
 
 		if($county == -1 && $city == -1)
 			$where = "posts.state = " . $state_id . " AND posts.county = -1 AND posts.city = -1";
+
+
+		$query = mysqli_query("SELECT posts.id from posts JOIN states on states.id = posts.state where state.id = 9;");
+		$rows = array();
+
+		while($r = mysqli_fetch_assoc($query))
+		{
+			$rows[] = $r;
+		}
+
+		print json_encode($rows);
 		
 
 
-		 require ('ssp.class.php');
-		$columns = array(
-		  array( 'db' => 'title',	'dt' => 0 ),
-		  array( 'db' => 'views', 	'dt' => 1 ),
-		  array( 'db' => 'replies', 'dt' => 2 ),
-		  array( 'db' => 'ts', 		'dt' => 3 ),
-		  );
+		//  require ('ssp.class.php');
+		// $columns = array(
+		//   array( 'db' => 'title',	'dt' => 0 ),
+		//   array( 'db' => 'views', 	'dt' => 1 ),
+		//   array( 'db' => 'replies', 'dt' => 2 ),
+		//   array( 'db' => 'ts', 		'dt' => 3 ),
+		//   );
 
-		 $table = 'posts';
-		 $primaryKey = 'id';
-		 $joinQuery = "";
+		//  $table = 'posts';
+		//  $primaryKey = 'id';
+		//  $joinQuery = "";
 
-		 echo json_encode(SSP::simple($_GET, $conn, $table, $primaryKey, $columns, $where));		
+		//  echo json_encode(SSP::simple($_GET, $conn, $table, $primaryKey, $columns, $where));		
 	}
 
 ?>
