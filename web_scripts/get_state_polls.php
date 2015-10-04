@@ -1,13 +1,9 @@
 <?php
-	include 'get_login.php';
+	include 'get_connection.php';
 
 	try {
-		$servername = $login_info['servername'];
-		$dbname = $login_info['dbname'];
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $login_info['username'], $login_info['password']);		
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		get_urls($conn);
+		
+		get_states($conn);
 	}
 	catch (PDOException $e)
 	{
@@ -17,7 +13,7 @@
 
 	$conn = null;
 
-	function get_urls($conn)
+	function get_states($conn)
 	{
 		$stmt = "SELECT name FROM states";
 

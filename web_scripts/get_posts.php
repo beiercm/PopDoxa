@@ -10,11 +10,15 @@
 		}
 		else
 		{
-			$state = $_GET['state'];
+			if(isset($_GET['state']))
+				$state = $_GET['state'];
+			else $state = -1;
+			
 			if(isset($_GET['county']))
 				$county = $_GET['county'];	
 			else
 				$county = -1;
+			
 			if(isset($_GET['city']))
 				$city = $_GET['city'];
 			else $city = -1;
