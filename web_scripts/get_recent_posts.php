@@ -78,7 +78,7 @@
 
 		for($i = 0; $i < $length; $i++)
 		{
-			echo "<span>".$results[$i]['username'].$results[$i]['title']."</span>"
+			echo "<span>".$results[$i]['username'].$results[$i]['title']."</span>";
 
 		} 		
 	}
