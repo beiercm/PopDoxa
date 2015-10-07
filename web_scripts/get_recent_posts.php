@@ -76,6 +76,10 @@
 		$query->execute();
 		$results = $query->fetchAll();
 
-		print_r($results);
+		for($i = 0; $i < $length; $i++)
+		{
+			echo "<span>".$results[$i]['username'].$results[$i]['title']."</span>"
+
+		} 		
 	}
 ?>
