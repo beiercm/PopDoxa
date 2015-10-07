@@ -42,7 +42,7 @@
 
 		 $table = 'posts';
 		 $primaryKey = 'id';
-		 $where = "posts.state = " . $state_id . "ORDER BY posts.ts LIMIT 5";// . " AND posts.county = " . $county_id . " AND posts.city = " . $city_id . ";";
+		 $where = "posts.state = " . $state_id;// . "ORDER BY posts.ts LIMIT 5";// . " AND posts.county = " . $county_id . " AND posts.city = " . $city_id . ";";
 		 $joinQuery = "";
 
 		 echo json_encode(SSP::simple($_GET, $conn, $table, $primaryKey, $columns, $where));		
