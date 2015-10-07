@@ -59,6 +59,6 @@
 		$query->execute();
 		$results = $query->fetchAll();
 
-		echo $results;
+		print_r($results);
 	}
 ?>
