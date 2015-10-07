@@ -20,6 +20,7 @@
 		return;
 	}
 
+
 	$conn = null;
 
 	function get_counties($conn, $state)

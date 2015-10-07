@@ -3,10 +3,10 @@
 	include 'get_connection.php';
 
 	try {
-		$author = $_POST['author'];
-		$title = $_POST['#038;title'];
-		$content = $_POST['#038;content'];
-		$state = strtolower($_POST['#038;state']);
+		$author = $_GET'author'];
+		$title = $_GET'#038;title'];
+		$content = $_GET'#038;content'];
+		$state = strtolower($_GET'#038;state']);
 		$county = -1;
 		$city = -1;
 
