@@ -25,7 +25,7 @@
 			else $city_id = -1;
 		}
 			
-		get_recent_state_posts($conn, $state_id);
+		get_recent_state_posts($conn, $state_id, $county_id, $city_id);
 		
 	}
 	catch (PDOException $e)
