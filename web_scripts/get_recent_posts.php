@@ -38,25 +38,25 @@
 
 	function get_recent_state_posts($conn, $state_id, $county_id, $city_id)
 	{
-		if($state_id != -1)
+		if(strcmp($state_id, '-1'))
 		{
 			$query = $conn->prepare("SELECT posts.author,posts.title FROM posts WHERE posts.state = :state_id AND posts.county = -1 ORDER BY posts.ts DESC LIMIT 5;");
 			$query->bindparam(':state_id', $state_id);
 		}
 
-		if($county_id != -1)
+		if(strcmp($county_id, '-1'))
 		{
 			$query = $conn->prepare("SELECT posts.author,posts.title FROM posts WHERE posts.county = :county_id AND posts.city = -1 ORDER BY posts.ts DESC LIMIT 5;");
 			$query->bindparam(':county_id', $county_id);
 		}
 
-		if($city_id != -1)
+		if(strcmp($city_id, '-1'))
 		{
 			$query = $conn->prepare("SELECT posts.author,posts.title FROM posts WHERE posts.city = :city_id ORDER BY posts.ts DESC LIMIT 5;");
 			$query->bindparam(':city_id', $city_id);
 		}
 
-		$query->exeecute();
+		$query->execute();
 		$results = $query->fetchAll();
 
 		echo $results;
