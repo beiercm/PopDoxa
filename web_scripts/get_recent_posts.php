@@ -40,19 +40,36 @@
 	{
 		if(strcmp($state_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT posts.author,posts.title FROM posts WHERE posts.state = :state_id AND posts.county = -1 ORDER BY posts.ts DESC LIMIT 5;");
+			$query = $conn->prepare("SELECT users.username,posts.title
+									from posts
+									join users
+									where posts.author = users.id 
+									AND posts.state = :state_id
+									AND posts.county = -1
+									ORDER BY posts.ts DESC LIMIT 5;");
 			$query->bindparam(':state_id', $state_id);
 		}
 
 		if(strcmp($county_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT posts.author,posts.title FROM posts WHERE posts.county = :county_id AND posts.city = -1 ORDER BY posts.ts DESC LIMIT 5;");
+			$query = $conn->prepare("SELECT users.username,posts.title
+									from posts
+									join users
+									where posts.author = users.id 
+									AND posts.county = :county_id
+									AND posts.city = -1
+									ORDER BY posts.ts DESC LIMIT 5;");
 			$query->bindparam(':county_id', $county_id);
 		}
 
 		if(strcmp($city_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT posts.author,posts.title FROM posts WHERE posts.city = :city_id ORDER BY posts.ts DESC LIMIT 5;");
+			$query = $conn->prepare("SELECT users.username,posts.title
+									from posts
+									join users
+									where posts.author = users.id 
+									AND posts.city = :city_id
+									ORDER BY posts.ts DESC LIMIT 5;");
 			$query->bindparam(':city_id', $city_id);
 		}
 
