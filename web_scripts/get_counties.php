@@ -28,7 +28,8 @@
 		$stmt = "SELECT counties.id, counties.name FROM counties JOIN states ON counties.state_id = :state";
 
 		$sth = $conn->prepare($stmt);
-		$sth->execute(':state', $state);
+		$sth->bindparam(':state', $state);
+		$sth->execute();
 		$result = $sth->fetchAll();
 
 		$length = count($result);
