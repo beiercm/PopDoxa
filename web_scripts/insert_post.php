@@ -6,7 +6,7 @@
 		$author = $_GET['author'];
 		$title = $_GET['title'];
 		$content = $_GET['content'];
-		
+
 		if(isset($_GET['state']))
 				$state_id = $_GET['state'];
 			else $state_id = -1;
@@ -32,6 +32,8 @@
 
 	function insert_post($conn, $author, $title, $content, $state, $county, $city)
 	{
+		echo $state;
+
 		$stmt = $conn->prepare("INSERT INTO posts (author, title, content, state, county, city) VALUES (:author,:title,:content,:state,:county,:city);");
 		$stmt->bindparam(':author', $author);
 		$stmt->bindparam(':title', $title);
