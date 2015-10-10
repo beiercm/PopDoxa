@@ -11,7 +11,7 @@
 			$state = $_GET['state'];
 		}
 
-		get_urls($conn, $state);
+		get_counties($conn, $state);
 	}
 	catch (PDOException $e)
 	{
@@ -21,26 +21,24 @@
 
 	$conn = null;
 
-	function get_urls($conn, $state)
+	function get_counties($conn, $state)
 	{
 		$state = strtolower($state);
 
-		$stmt = "SELECT counties.name FROM counties JOIN states ON counties.state_id = states.id WHERE states.name = :state";
+		$stmt = "SELECT counties.id, counties.name FROM counties JOIN states ON counties.state_id = :state";
 
-		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':state' => $state));
+		$sth = $conn->prepare($stmt);
+		$sth->execute(':state', $state);
 		$result = $sth->fetchAll();
 
 		$length = count($result);
 
 		for($i = 0; $i < $length; $i++)
 		{
-			$county = $result[$i][0];
-
-			$url = "http://10.171.204.135/?page_id=688?topic=" . $state . "/" . $county;
+			$url = "http://10.171.204.135/?page_id=688?topic=" . $state . "/" . $result[$i]['id'];
 			//echo $county ."\n". $url . $county . "\n";
 
-			$county = str_replace("_", " ", $county);
+			$county = str_replace("_", " ", $results[$i]['name']);
 
 			$county = ucwords($county);
 
