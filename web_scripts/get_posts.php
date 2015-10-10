@@ -45,7 +45,7 @@
 				on posts.author = users.id 
 				where posts.county = :county_id 
 				AND posts.city = -1;");
-			
+
 			$query->bindparam(':county_id', $county_id);
 			
 		}
@@ -69,8 +69,7 @@
 				join users 
 				on posts.author = users.id 
 				where posts.state = :state_id 
-				AND posts.county = -1 
-				AND posts.city = -1;");
+				AND posts.county = -1;");
 
 			$query->bindparam(':state_id', $state_id);
 		}
@@ -81,7 +80,7 @@
 
 		for($i = 0; $i < count($result); $i++)
 		{
-			$url = "10.171.204.135/topic_id.html?id =". $result[$i]['id'];
+			$url = "10.171.204.135/topic_id.html?id= ". $result[$i]['id'];
 
 			echo "<tr><td><a href = " . $url . ">" . $result[$i]['title'] . "</a><br>" . 
 				$result[$i]['username'] . "</td><td>". $result[$i]['views'] . "</td><td>" . 
