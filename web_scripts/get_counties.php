@@ -41,7 +41,7 @@
 			$url = "http://10.171.204.135/?page_id=688?topic=" . $state . "/" . $result[$i]['id'];
 			//echo $county ."\n". $url . $county . "\n";
 
-			$county = str_replace("_", " ", $results[$i]['name']);
+			$county = str_replace("_", " ", $result[$i]['name']);
 
 			$county = ucwords($county);
 
