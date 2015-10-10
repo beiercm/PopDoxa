@@ -23,8 +23,6 @@
 
 	function get_counties($conn, $state)
 	{
-		$state = strtolower($state);
-
 		$stmt = "SELECT counties.id, counties.name FROM counties JOIN states ON counties.state_id = :state";
 
 		$sth = $conn->prepare($stmt);
@@ -33,6 +31,8 @@
 		$result = $sth->fetchAll();
 
 		$length = count($result);
+
+		print_r($length);
 
 		for($i = 0; $i < $length; $i++)
 		{
