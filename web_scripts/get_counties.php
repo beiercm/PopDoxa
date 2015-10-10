@@ -34,7 +34,7 @@
 
 		$length = count($result);
 
-		print_r($results);
+		print_r($result);
 
 		for($i = 0; $i < $length; $i++)
 		{
