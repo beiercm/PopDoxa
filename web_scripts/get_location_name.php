@@ -10,7 +10,8 @@
 		{
 			if(isset($_GET['state']))
 				$state = $_GET['state'];
-			else $state = -1;
+			else 
+				$state = -1;
 			
 			if(isset($_GET['county']))
 				$county = $_GET['county'];	
@@ -19,7 +20,8 @@
 			
 			if(isset($_GET['city']))
 				$city = $_GET['city'];
-			else $city = -1;
+			else 
+				$city = -1;
 		}
 
 		get_loc_name($conn, $state, $county, $city);
@@ -54,7 +56,7 @@
 
 		$query->execute();
 
-		$results = $query->fetchAll();
+		$result = $query->fetchAll();
 
 		echo $result[0]['name'];
 		
