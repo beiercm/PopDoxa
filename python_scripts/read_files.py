@@ -132,7 +132,7 @@ def read_cities(cursor):
 		cursor.execute(query, (state,county,))
 		county_id = cursor.fetchall()[0][0]
 
-		for city in city_list[1::]:
+		for city in city_list[2::]:
 			city = city.strip().lower()
 			query = "INSERT INTO cities (name, county_id) VALUES (%s, %s);"
 			cursor.execute(query, (city, county_id))
