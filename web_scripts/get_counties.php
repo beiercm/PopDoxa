@@ -43,14 +43,9 @@
 
 			$county = ucwords($county);
 
-
-
-
-
-
-			echo 		"<a href = " . $url . " class = 'list-group-item'>"
-				 		. $county .
-				 		"</a>";
+			// echo 		"<a href = " . $url . " class = 'list-group-item'>"
+			// 	 		. $county .
+			// 	 		"</a>";
 
 		} 
 		
