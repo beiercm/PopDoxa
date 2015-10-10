@@ -28,7 +28,7 @@
 
 	function insert_reply($conn, $author, $content, $post)
 	{
-		$stmt = $conn->prepare("INSERT INTO replies (author, content, post) VALUES (:author, :content,:post);");
+		$stmt = $conn->prepare("INSERT INTO replies (author, content, post_id) VALUES (:author, :content,:post);");
 		$stmt->bindparam(':author', $author);
 		$stmt->bindparam(':content', $content);
 		$stmt->bindparam(':post', $post);
