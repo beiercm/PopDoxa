@@ -20,8 +20,6 @@
 				$city = $_GET['city'];
 			else $city = -1;
 
-		echo $state
-
 		insert_post($conn, $author, $title, $content, $state, $county, $city);
 	}
 	catch (PDOException $e)
