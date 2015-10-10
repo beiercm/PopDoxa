@@ -78,7 +78,9 @@
 
 		$length = count($results);
 
-		for($i = 0; $i < $length; $i++)
+		print_r($results);
+
+		for($i = 0; $i > $length; $i++)
 		{
 
 			$url = "10.171.204.135/topic_id= " . $results[$i]['id'];
