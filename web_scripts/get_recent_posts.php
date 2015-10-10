@@ -83,6 +83,8 @@
 
 			$url = "10.171.204.135/topic_id=" . $results[$i]['id'];
 
+			$result[$i]['title'] = $result[$i]['title'] . "\n";
+
 			if($i == 0)
 				echo "<div class = \"item active\" >
 						<blockquote>		
