@@ -4,7 +4,7 @@
 	get_urls($conn);
 	$conn = null;
 	
-	function get_urls($conn)
+	function get_states($conn)
 	{
 		$stmt = "SELECT name FROM states";
 
