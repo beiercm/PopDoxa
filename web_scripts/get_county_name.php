@@ -30,7 +30,7 @@
 		$sth->execute();
 		$result = $sth->fetchAll();
 		
-		echo $result['name'];
+		echo $result[0]['name'];
 		
 	}
 
