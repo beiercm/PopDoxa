@@ -4,14 +4,14 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$county_id = $argv[1];
+			$county = $argv[1];
 		}
 		else
 		{
-			$county_id = $_GET['county_id'];
+			$county = $_GET['county'];
 		}
 
-		get_urls($conn, $county_id);
+		get_urls($conn, $county);
 	}
 	catch (PDOException $e)
 	{
@@ -21,13 +21,13 @@
 
 	$conn = null;
 
-	function get_urls($conn, $county_id)
+	function get_urls($conn, $county)
 	{
 
-		$stmt = "SELECT name, id FROM cities where county_id = :county_id";
+		$stmt = "SELECT name, id FROM cities where county_id = :county";
 
 		$sth = $conn->prepare($stmt);
-		$sth->bindparam(':county_id', $county_id);
+		$sth->bindparam(':county', $county);
 		$sth->execute();
 		$result = $sth->fetchAll();
 
