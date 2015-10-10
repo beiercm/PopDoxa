@@ -85,30 +85,30 @@
 
 			if($i == 0)
 				echo "<div class = \"item active\" >
-						<a href =" . $url . "
-							<blockquote>
+						<blockquote>		
+							<a href =" . $url . "
 								<div class = \"row\"
 									<div class = \"col-sm-9\">
 										<p>" . $results[$i]['title'] . "</p>
 									<small>" . $results[$i]['username'] ."</small>
 									</div
 								</div>
-							</blockquote>
-						</a>
+							</a>
+						</blockquote>
 					</div>";
 			else
-			echo "<div class = \"item\" >
-					<a href =" . $url . "
-							<blockquote>
+			echo 	"<div class = \"item\" >
+						<blockquote>		
+							<a href =" . $url . "
 								<div class = \"row\"
 									<div class = \"col-sm-9\">
 										<p>" . $results[$i]['title'] . "</p>
 									<small>" . $results[$i]['username'] ."</small>
 									</div
 								</div>
-							</blockquote>
-						</a>
-				</div>";
+							</a>
+						</blockquote>
+					</div>";
 		} 		
 	}
 ?>
