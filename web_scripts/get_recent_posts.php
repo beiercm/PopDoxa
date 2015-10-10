@@ -40,7 +40,7 @@
 	{
 		if(strcmp($state_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title
+			$query = $conn->prepare("SELECT users.username,posts.title,posts.id
 									from posts
 									join users
 									where posts.author = users.id 
@@ -52,7 +52,7 @@
 
 		if(strcmp($county_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title, posts.id
+			$query = $conn->prepare("SELECT users.username,posts.title,posts.id
 									from posts
 									join users
 									where posts.author = users.id 
@@ -64,7 +64,7 @@
 
 		if(strcmp($city_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title, posts.id
+			$query = $conn->prepare("SELECT users.username,posts.title,posts.id
 									from posts
 									join users
 									where posts.author = users.id 
@@ -78,14 +78,10 @@
 
 		$length = count($results);
 
-		print_r($results);
-
-		for($i = 0; $i > $length; $i++)
+		for($i = 0; $i < $length; $i++)
 		{
 
 			$url = "10.171.204.135/topic_id= " . $results[$i]['id'];
-
-			echo $result[$i]['id'];
 
 			if($i == 0)
 				echo "<div class = \"item active\" >
