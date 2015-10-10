@@ -4,9 +4,9 @@
 
 	try {
 		$author = $_GET['author'];
-		$title = $_GET['#038;title'];
+		$title = $_GET['&title'];
 		$content = $_GET['#038;content'];
-		
+
 		if(isset($_GET['#038;state']))
 				$state_id = $_GET['#038;state'];
 		else $state_id = -1;
