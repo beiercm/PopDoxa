@@ -8,17 +8,19 @@
 		$content = $_GET['content'];
 
 		if(isset($_GET['state']))
-				$state_id = $_GET['state'];
-			else $state_id = -1;
+				$state = $_GET['state'];
+			else $state = -1;
 			
 			if(isset($_GET['county']))
-				$county_id = $_GET['county'];	
+				$county = $_GET['county'];	
 			else
-				$county_id = -1;
+				$county = -1;
 			
 			if(isset($_GET['city']))
-				$city_id = $_GET['city'];
-			else $city_id = -1;
+				$city = $_GET['city'];
+			else $city = -1;
+
+		echo $state
 
 		insert_post($conn, $author, $title, $content, $state, $county, $city);
 	}
