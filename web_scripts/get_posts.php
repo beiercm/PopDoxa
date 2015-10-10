@@ -76,7 +76,7 @@
 
 		$query->execute();
 
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		$result = $query->fetchAll();
 
 		for($i = 0; $i < count($result); $i++)
 		{
