@@ -4,9 +4,8 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$state = $argv[1];
-			$county = $argv[2];
-			$city = $argv[3];
+			$username = $argv[1];
+
 		}
 		else
 		{
