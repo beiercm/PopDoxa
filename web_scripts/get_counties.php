@@ -23,7 +23,7 @@
 
 	function get_counties($conn, $state)
 	{
-		$stmt = "SELECT counties.id, counties.name FROM counties JOIN states ON counties.state_id = :state";
+		$stmt = "SELECT counties.id, counties.name FROM counties where counties.state_id = :state;
 
 		$sth = $conn->prepare($stmt);
 		$sth->bindparam(':state', $state);
