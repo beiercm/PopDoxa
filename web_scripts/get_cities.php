@@ -37,8 +37,8 @@
 		{
 			$city = $result[$i][0];
 
-			$url = "http://10.171.204.135/city.html?topic=" . $result[0]['id'];
-			$city = str_replace("_", " ", $result[0]['name']);
+			$url = "http://10.171.204.135/city.html?topic=" . $result[$i]['id'];
+			$city = str_replace("_", " ", $result[$i]['name']);
 
 			$city = ucwords($city);
 			//echo $city ."\n". $url . $city . "\n";
