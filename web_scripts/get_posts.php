@@ -39,24 +39,40 @@
 
 		if($county_id != -1)
 		{
-			$query= $conn->prepare("SELECT users.username,posts.title,posts.views,posts.replies,posts.ts from posts join users on posts.author = users.id where posts.county = :county_id AND posts.city = -1;");
+			$query= $conn->prepare("SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
+				from posts 
+				join users 
+				on posts.author = users.id 
+				where posts.county = :county_id 
+				AND posts.city = -1;");
+			
 			$query->bindparam(':county_id', $county_id);
-			$url = "10.171.204.135/forum_id.html?city =". $city_id;
+			
 		}
 
 		if($city_id != -1)
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title,posts.views,posts.replies,posts.ts from posts join users on posts.author = users.id where posts.city =  :city_id;");
+			$query = $conn->prepare("SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
+				from posts 
+				join users 
+				on posts.author = users.id 
+				where posts.city =  :city_id;");
+
 			$query->bindparam(':city_id', $city_id);
 
-			$url = "10.171.204.135/forum_id.html?county =". $county_id;
 		}
 
 		if($county_id == -1 && $city_id == -1)
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title,posts.views,posts.replies,posts.ts from posts join users on posts.author = users.id where posts.state = :state_id AND posts.county = -1 AND posts.city = -1;");
+			$query = $conn->prepare("SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
+				from posts 
+				join users 
+				on posts.author = users.id 
+				where posts.state = :state_id 
+				AND posts.county = -1 
+				AND posts.city = -1;");
+
 			$query->bindparam(':state_id', $state_id);
-			$url = "10.171.204.135/forum_id.html?state =". $state_id;
 		}
 
 		$query->execute();
@@ -65,6 +81,8 @@
 
 		for($i = 0; $i < count($result); $i++)
 		{
+			$url = "10.171.204.135/topic_id.html?id =". $result[$i]['id'];
+
 			echo "<tr><td><a href = " . $url . ">" . $result[$i]['title'] . "</a><br>" . 
 				$result[$i]['username'] . "</td><td>". $result[$i]['views'] . "</td><td>" . 
 				$result[$i]['replies'] . "</td><td>" . $result[$i]['ts'] . "</tr>";
