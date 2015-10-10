@@ -89,7 +89,7 @@
 							<a href =" . $url . ">
 								<div class = \"row\"
 									<div class = \"col-sm-9\">
-										<p>" . $results[$i]['title'] . "</p>
+										<p>" . $results[$i]['title'] . "<br></p>
 									<small>" . $results[$i]['username'] ."</small>
 									</div
 								</div>
@@ -102,7 +102,7 @@
 							<a href =" . $url . ">
 								<div class = \"row\"
 									<div class = \"col-sm-9\">
-										<p>" . $results[$i]['title'] . "</p>
+										<p>" . $results[$i]['title'] . "<br></p>
 									<small>" . $results[$i]['username'] ."</small>
 									</div
 								</div>
