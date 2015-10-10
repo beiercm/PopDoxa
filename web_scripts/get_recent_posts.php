@@ -87,7 +87,7 @@
 				echo "<div class = \"item active\" >
 						<blockquote>		
 							<a href =" . $url . ">
-								<div class = \"row\"
+								<div class = \"row\">
 									<div class = \"col-sm-9\">
 										<p>" . $results[$i]['title'] . "<br></p>
 									<small>" . $results[$i]['username'] ."</small>
@@ -100,7 +100,7 @@
 			echo 	"<div class = \"item\" >
 						<blockquote>		
 							<a href =" . $url . ">
-								<div class = \"row\"
+								<div class = \"row\">
 									<div class = \"col-sm-9\">
 										<p>" . $results[$i]['title'] . "<br></p>
 									<small>" . $results[$i]['username'] ."</small>
