@@ -35,7 +35,7 @@
 		echo $results[0][0];
 	}
 
-	function get_user_id_w_username($conn, $username);
+	function get_user_id_w_username($conn, $username)
 	{
 		$query = $conn->prepare("SELECT id FROM users WHERE username = :username");
 		$query->bindparam(':username', $username);
