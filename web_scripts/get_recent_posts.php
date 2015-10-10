@@ -81,7 +81,7 @@
 		for($i = 0; $i < $length; $i++)
 		{
 
-			$url = "10.171.204.135/topic_id= " . $results[$i]['id'];
+			$url = "10.171.204.135/topic_id=" . $results[$i]['id'];
 
 			if($i == 0)
 				echo "<div class = \"item active\" >
