@@ -3,12 +3,22 @@
 	include 'get_connection.php';
 
 	try {
-		$author = $_GET'author'];
-		$title = $_GET'#038;title'];
-		$content = $_GET'#038;content'];
-		$state = strtolower($_GET'#038;state']);
-		$county = -1;
-		$city = -1;
+		$author = $_GET['author'];
+		$title = $_GET['title'];
+		$content = $_GET['content'];
+		
+		if(isset($_GET['state']))
+				$state_id = $_GET['state'];
+		else $state_id = -1;
+			
+		if(isset($_GET['county']))
+			$county_id = $_GET['county'];	
+		else
+			$county_id = -1;
+		
+		if(isset($_GET['city']))
+			$city_id = $_GET['city'];
+		else $city_id = -1;
 
 		insert_post($conn, $author, $title, $content, $state, $county, $city);
 	}
