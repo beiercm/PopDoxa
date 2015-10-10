@@ -11,13 +11,12 @@
 		}
 		else
 		{	
-			$author = $_POST['author'];
-			$content = $_POST['#038;content'];
-			$post_id = $_POST['#038;post_id'];
+			$author = $_GET['author'];
+			$content = $_GET['content'];
+			$post_id = $_GET['post_id'];
 		}	
-		var_dump($_POST);
 
-		insert_post($conn, $author, $content, $post_id);
+		insert_reply($conn, $author, $content, $post_id);
 	}
 	catch (PDOException $e)
 	{
@@ -27,7 +26,7 @@
 
 	$conn = null;
 
-	function insert_post($conn, $author, $content, $post_id)
+	function insert_reply($conn, $author, $content, $post_id)
 	{
 		$stmt = $conn->prepare("INSERT INTO replies (author, content, post_id) VALUES (:author, :content,:post_id);");
 		$stmt->bindparam(':author', $author);
