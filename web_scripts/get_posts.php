@@ -66,7 +66,7 @@
 		for($i = 0; $i < count($result); $i++)
 		{
 			echo "<tr><td><a href = " . $url . ">" . $result[$i]['title'] . "</a><br>" . 
-				$result[$i]['author'] . "</td><td>". $result[$i]['views'] . "</td><td>" . 
+				$result[$i]['username'] . "</td><td>". $result[$i]['views'] . "</td><td>" . 
 				$result[$i]['replies'] . "</td><td>" . $result[$i]['ts'] . "</tr>";
 		}
 	}
