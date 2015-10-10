@@ -34,6 +34,8 @@
 
 		$length = count($result);
 
+		print_r($results)
+
 		for($i = 0; $i < $length; $i++)
 		{
 			$url = "http://10.171.204.135/?page_id=688?topic=" . $state . "/" . $result[$i]['id'];
@@ -48,9 +50,9 @@
 
 
 
-			echo 		"<a href = " . $url . " class = 'list-group-item'>"
-				 		. $county .
-				 		"</a>";
+			// echo 		"<a href = " . $url . " class = 'list-group-item'>"
+			// 	 		. $county .
+			// 	 		"</a>";
 
 		} 
 		
