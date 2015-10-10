@@ -52,7 +52,7 @@
 
 		if(strcmp($county_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title
+			$query = $conn->prepare("SELECT users.username,posts.title, posts.id
 									from posts
 									join users
 									where posts.author = users.id 
@@ -64,7 +64,7 @@
 
 		if(strcmp($city_id, '-1'))
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title
+			$query = $conn->prepare("SELECT users.username,posts.title, posts.id
 									from posts
 									join users
 									where posts.author = users.id 
@@ -80,27 +80,34 @@
 
 		for($i = 0; $i < $length; $i++)
 		{
+
+			$url = "10.171.204.135/topic_id= " . $results[$i]['id'];
+
 			if($i == 0)
 				echo "<div class = \"item active\" >
-						<blockquote>
-							<div class = \"row\"
-								<div class = \"col-sm-9\">
-									<p>" . $results[$i]['title'] . "</p>
-								<small>" . $results[$i]['username'] ."</small>
-								</div
-							</div>
-						</blockquote>
+						<a href =" . $url . "
+							<blockquote>
+								<div class = \"row\"
+									<div class = \"col-sm-9\">
+										<p>" . $results[$i]['title'] . "</p>
+									<small>" . $results[$i]['username'] ."</small>
+									</div
+								</div>
+							</blockquote>
+						</a>
 					</div>";
 			else
-				echo "<div class = \"item\" >
-					<blockquote>
-						<div class = \"row\"
-							<div class = \"col-sm-9\">
-								<p>" . $results[$i]['title'] . "</p>
-							<small>" . $results[$i]['username'] ."</small>
-							</div
-						</div>
-					</blockquote>
+			echo "<div class = \"item\" >
+					<a href =" . $url . "
+							<blockquote>
+								<div class = \"row\"
+									<div class = \"col-sm-9\">
+										<p>" . $results[$i]['title'] . "</p>
+									<small>" . $results[$i]['username'] ."</small>
+									</div
+								</div>
+							</blockquote>
+						</a>
 				</div>";
 		} 		
 	}
