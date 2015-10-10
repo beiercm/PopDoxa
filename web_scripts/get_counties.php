@@ -34,7 +34,7 @@
 
 		for($i = 0; $i < $length; $i++)
 		{
-			$url = "http://10.171.204.135/county.html?topic=" $result[$i]['id'];
+			$url = "http://10.171.204.135/county.html?topic=" . $result[$i]['id'];
 			//echo $county ."\n". $url . $county . "\n";
 
 			$county = str_replace("_", " ", $result[$i]['name']);
