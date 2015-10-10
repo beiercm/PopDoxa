@@ -23,9 +23,8 @@
 
 	function get_urls($conn, $county_id)
 	{
-		$county_id = strtolower($county_id);
 
-		$stmt = "SELECT cities.name FROM counties JOIN cities ON cities.county_id = counties.id WHERE counties.id = :county_id";
+		$stmt = "SELECT name, id FROM cities where city_id = :county_id";
 
 		$sth = $conn->prepare($stmt);
 		$sth->bindparam(':county_id', $county_id);
@@ -38,8 +37,8 @@
 		{
 			$city = $result[$i][0];
 
-			$url = "http://10.171.204.135/?state=" . $state . "/" . $county_id . "/" . $city;
-			$city = str_replace("_", " ", $city);
+			$url = "http://10.171.204.135/city.html?topic=" . $result[0]['id'];
+			$city = str_replace("_", " ", $result[0]['name']);
 
 			$city = ucwords($city);
 			//echo $city ."\n". $url . $city . "\n";
