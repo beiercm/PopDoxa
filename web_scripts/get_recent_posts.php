@@ -80,8 +80,28 @@
 
 		for($i = 0; $i < $length; $i++)
 		{
-			echo "<span>".$results[$i]['username'].$results[$i]['title']."</span>";
-
+			if($i == 0)
+				echo "<div class = \"item active\" >
+						<blockquote>
+							<div class = \"row\"
+								<div class = \"col-sm-9\">
+									<p>" . $results[$i]['title'] . "</p>
+								<small>" . $results[$i]['username'] ."</small>
+								</div
+							</div>
+						</blockquote>
+					</div>";
+			else
+				echo "<div class = \"item\" >
+					<blockquote>
+						<div class = \"row\"
+							<div class = \"col-sm-9\">
+								<p>" . $results[$i]['title'] . "</p>
+							<small>" . $results[$i]['username'] ."</small>
+							</div
+						</div>
+					</blockquote>
+				</div>";
 		} 		
 	}
 ?>
