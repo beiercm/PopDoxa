@@ -24,7 +24,7 @@
 	function get_urls($conn, $county_id)
 	{
 
-		$stmt = "SELECT name, id FROM cities where city_id = :county_id";
+		$stmt = "SELECT name, id FROM cities where county_id = :county_id";
 
 		$sth = $conn->prepare($stmt);
 		$sth->bindparam(':county_id', $county_id);
