@@ -1,7 +1,7 @@
 <?php
 	include 'get_connection.php';
 
-	get_urls($conn);
+	get_states($conn);
 	$conn = null;
 	
 	function get_states($conn)
