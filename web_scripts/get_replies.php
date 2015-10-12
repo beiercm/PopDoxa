@@ -30,7 +30,7 @@
 		$results->execute();
 		$results = $results->fetchAll();
 
-		print_r($results);
+		echo json_encode($results);
 	}
 
 
