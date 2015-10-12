@@ -1,9 +1,9 @@
 <?php
 
 	session_start();	
-	if (isset($_SESSION["username"])) 
+	if(isset($_SESSION["username"]))
 	{
-    	echo "true"; 
+		echo $_SESSION["user_id"]; 
 	}
 	else
 	{
