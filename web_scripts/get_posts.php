@@ -80,7 +80,7 @@
 
 		for($i = 0; $i < count($result); $i++)
 		{
-			$url = "10.171.204.135/topic_id.html?id= ". $result[$i]['id'];
+			$url = "10.171.204.135/topic_id.html?id=". $result[$i]['id'];
 
 			echo "<tr><td><a href ='" . $url . "'>" . $result[$i]['title'] . "</a><br>" . 
 				$result[$i]['username'] . "</td><td>". $result[$i]['views'] . "</td><td>" . 
