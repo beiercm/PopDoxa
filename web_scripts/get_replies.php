@@ -24,7 +24,7 @@
 	function get_replies($conn, $post)
 	{
 
-		$query = "SELECT users.username, posts.content, posts.ts FROM posts JOIN ON posts.author = users.id where posts.id = :post";
+		$query = "SELECT users.username, posts.content, posts.ts FROM posts JOIN users ON posts.author = users.id where posts.id = :post";
 		$results = $conn->prepare($query);
 		$results->bindparam(':post', $post);
 		$results->execute();
