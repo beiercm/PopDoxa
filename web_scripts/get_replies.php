@@ -25,8 +25,8 @@
 	{
 
 		$query = "SELECT users.username, posts.content, posts.ts FROM posts JOIN users ON posts.author = users.id where posts.id = :post";
-		$results = $conn->prepare($query);
-		$results->bindparam(':post', $post);
+		$post_results = $conn->prepare($query);
+		$post_results->bindparam(':post', $post);
 		$post_results->execute();
 		$post_results = $post_results->fetchAll();
 
