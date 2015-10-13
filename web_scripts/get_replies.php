@@ -27,10 +27,10 @@
 		$query = "SELECT users.username, posts.content, posts.ts FROM posts JOIN users ON posts.author = users.id where posts.id = :post";
 		$results = $conn->prepare($query);
 		$results->bindparam(':post', $post);
-		$results->execute();
-		$results = $results->fetchAll();
+		$post_results->execute();
+		$post_results = $post_results->fetchAll();
 
-		echo json_encode($results);
+		
 
 
 		$query = "SELECT users.username, replies.content, replies.ts FROM replies JOIN posts ON replies.post_id = posts.id JOIN users ON replies.author = users.id WHERE posts.id = :post";
@@ -40,7 +40,9 @@
 		$results->execute();
 		$results = $results->fetchAll();
 
-		echo json_encode($results);
+		$final_results = array_merge($post_results, $results);
+
+		echo json_encode($final_results);
 	}
 
 
