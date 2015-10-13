@@ -44,7 +44,8 @@
 				join users 
 				on posts.author = users.id 
 				where posts.county = :county_id 
-				AND posts.city = -1;");
+				AND posts.city = -1
+				ORDER BY posts.ts DESC;");
 
 			$query->bindparam(':county_id', $county_id);
 			
@@ -56,7 +57,8 @@
 				from posts 
 				join users 
 				on posts.author = users.id 
-				where posts.city =  :city_id;");
+				where posts.city =  :city_id
+				ORDER BY posts.ts DESC;");
 
 			$query->bindparam(':city_id', $city_id);
 
@@ -69,7 +71,8 @@
 				join users 
 				on posts.author = users.id 
 				where posts.state = :state_id 
-				AND posts.county = -1;");
+				AND posts.county = -1
+				ORDER BY posts.ts DESC;");
 
 			$query->bindparam(':state_id', $state_id);
 		}
