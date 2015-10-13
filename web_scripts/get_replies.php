@@ -24,7 +24,10 @@
 	function get_replies($conn, $post)
 	{
 
-		$query = "SELECT users.username, posts.content, posts.ts FROM posts JOIN users ON posts.author = users.id where posts.id = :post";
+		$query = "SELECT users.username, posts.content, posts.ts 
+				FROM posts 
+				JOIN users 
+				ON posts.author = users.id WHERE posts.id = :post";
 		$post_results = $conn->prepare($query);
 		$post_results->bindparam(':post', $post);
 		$post_results->execute();
@@ -33,7 +36,14 @@
 		
 
 
-		$query = "SELECT users.username, replies.content, replies.ts FROM replies JOIN posts ON replies.post_id = posts.id JOIN users ON replies.author = users.id WHERE posts.id = :post";
+		$query = "SELECT users.username, replies.content, replies.ts 
+				FROM replies 
+				JOIN posts 
+				ON replies.post_id = posts.id 
+				JOIN users 
+				ON replies.author = users.id 
+				WHERE posts.id = :post 
+				ORDER BY replies.ts DESC ";
 
 		$results = $conn->prepare($query);
 		$results->bindparam(':post', $post);
