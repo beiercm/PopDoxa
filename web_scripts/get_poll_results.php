@@ -8,7 +8,7 @@
 		}
 		else
 		{
-			$poll_id = $_GET['poll'];
+			$poll_id = $_GET['poll_id'];
 		}
 
 		print_r($argv);
