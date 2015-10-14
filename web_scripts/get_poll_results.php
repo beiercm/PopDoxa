@@ -51,5 +51,7 @@
 		$results['no'] = $no_results;
 		$results['undecided'] = $undecided_results;
 
+		echo json_encode($results);
+
 	}
 ?>
