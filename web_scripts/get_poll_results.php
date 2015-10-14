@@ -45,9 +45,7 @@
 		$results['no'] = $no_results[0][0];
 		$results['undecided'] = $undecided_results[0][0];
 
-		echo $yes_results;
-
-		echo json_encode($results);
+		echo json_encode($results['yes']);
 
 	}
 ?>
