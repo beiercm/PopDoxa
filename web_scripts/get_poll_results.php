@@ -11,8 +11,6 @@
 			$poll_id = $_GET['poll_id'];
 		}
 
-		print_r($argv);
-
 		get_poll_results($conn, $poll_id);
 	}
 	catch (PDOException $e)
