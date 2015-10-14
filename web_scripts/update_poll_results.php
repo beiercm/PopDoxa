@@ -27,6 +27,12 @@
 
 	function update_poll_results($conn, $poll_id, $user_id, $vote)
 	{
+
+		echo $poll_id;
+		echo $user_id;
+		echo $vote;
+		
+
 		$query = "INSERT INTO poll_results (poll_id, user_id, user_vote) VALUES (:poll_id, :user_id, :vote)";
 
 		$query = $conn->prepare($query);
