@@ -25,19 +25,31 @@
 
 	function get_poll_results($conn, $poll_id)
 	{
-		$stmt = "SELECT polls.yes,polls.no,polls.neutral FROM polls WHERE polls.id = " . $poll_id;
-
+		$stmt = "select count(user_vote) from poll_results where user_vote = 'y' AND poll_id = :poll_id";
 		$stmt = $conn->prepare($stmt);
+		$stmt->bindparam(':poll_id', $poll_id)
 		$stmt->execute();
-		$results = $stmt->fetchall();
+		$yes_results = $stmt->fetchall();
 
-		$yes = $results[0][0];
-		$no = $results[0][1];
-		$neutral = $results[0][2];
+		$stmt = "select count(user_vote) from poll_results where user_vote = 'n' AND poll_id = :poll_id";
+		$stmt = $conn->prepare($stmt);
+		$stmt->bindparam(':poll_id', $poll_id)
+		$stmt->execute();
+		$no_results = $stmt->fetchall();
 
-		$res = "";
-		$res = $res. $yes . "|" . $no . "|" . $neutral;
+		$stmt = "select count(user_vote) from poll_results where user_vote = 'u' AND poll_id = :poll_id";
+		$stmt = $conn->prepare($stmt);
+		$stmt->bindparam(':poll_id', $poll_id)
+		$stmt->execute();
+		$undecided_results = $stmt->fetchall();
 
-		echo $res;
+		$yes = $yes_results[0][0];
+		$no = $no_results[0][1];
+		$neutral = $undecided_results[0][2];
+
+		$results['yes'] = $yes_results;
+		$results['no'] = $no_results;
+		$results['undecided'] = $undecided_results;
+
 	}
 ?>
