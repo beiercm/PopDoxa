@@ -74,7 +74,7 @@ def read_poll_results(cursor):
 
 		query = """
 				INSERT INTO poll_results
-				(poll_id, user_id, user_vote)
+				(user_id, poll_id, user_vote)
 				VALUES
 				(%s,%s,%s);
 				"""

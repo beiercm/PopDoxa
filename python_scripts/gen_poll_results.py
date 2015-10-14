@@ -1,7 +1,7 @@
 import random
 
 def gen_poll_results():
-	for i in range(1000):
+	for i in range(10000):
 
 		for j in range(3):
 			output = str(i) + ',' + str(j) + ','
