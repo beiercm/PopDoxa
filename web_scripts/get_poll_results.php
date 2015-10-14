@@ -27,19 +27,19 @@
 	{
 		$stmt = "select count(user_vote) from poll_results where user_vote = 'y' AND poll_id = :poll_id";
 		$stmt = $conn->prepare($stmt);
-		$stmt->bindparam(':poll_id', $poll_id)
+		$stmt->bindparam(':poll_id', $poll_id);
 		$stmt->execute();
 		$yes_results = $stmt->fetchall();
 
 		$stmt = "select count(user_vote) from poll_results where user_vote = 'n' AND poll_id = :poll_id";
 		$stmt = $conn->prepare($stmt);
-		$stmt->bindparam(':poll_id', $poll_id)
+		$stmt->bindparam(':poll_id', $poll_id);
 		$stmt->execute();
 		$no_results = $stmt->fetchall();
 
 		$stmt = "select count(user_vote) from poll_results where user_vote = 'u' AND poll_id = :poll_id";
 		$stmt = $conn->prepare($stmt);
-		$stmt->bindparam(':poll_id', $poll_id)
+		$stmt->bindparam(':poll_id', $poll_id);
 		$stmt->execute();
 		$undecided_results = $stmt->fetchall();
 
