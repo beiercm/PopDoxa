@@ -22,6 +22,8 @@ def get_connec(tables, login_info):
 		if tables == "all":
 			bt.build_all(cnx.cursor())
 		else:
+			for table in tables:
+				kill_table(table)
 			bt.build_tables(tables, cnx.cursor())
 		cnx.commit()
 		
@@ -71,7 +73,9 @@ def parse_args(tables, login_info):
 
 		return
 
-	for table in tables[1::]:
+	tables = tables[1:]
+
+	for table in tables:
 		if table not in valid_tables:
 			print(table + " is not a valid table")
 			print("\nValid tables: ")
