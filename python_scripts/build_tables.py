@@ -29,7 +29,7 @@ tables = {
 						id INT (6) AUTO_INCREMENT PRIMARY KEY,
 						poll_id INT (6) NOT NULL,
 						user_id INT (6) NOT NULL,
-						user_vote CHAR (1) NOT NULL
+						vote CHAR (1) NOT NULL
 						)
 					""",
 		'states':	"""
