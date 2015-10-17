@@ -24,7 +24,7 @@
 	function get_recent_polls($conn, $user_id)
 	{
 		$query = "
-				SELECT polls.id, polls.question, polls.author
+				SELECT polls.id, polls.question, users.username
 				from polls
 				join users
 				on users.state = polls.state
@@ -49,7 +49,7 @@
 	                    </div>
 	                  </div>
 	                    <div class='username'>
-	                      Created by: ". $results[$i]['author'] ."
+	                      Created by: ". $results[$i]['username'] ."
 	                    </div>
 	                </a>";
         }
