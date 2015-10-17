@@ -47,7 +47,7 @@
 
 		switch($sort_by) {
 			case "title":
-				$order_by = "posts.ts";
+				$order_by = "posts.title";
 				break;
 
 			case "views":
