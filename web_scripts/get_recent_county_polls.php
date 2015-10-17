@@ -27,7 +27,7 @@
 				SELECT polls.id, polls.question, users.username
 				from polls
 				join users
-				on users.county = polls.state
+				on users.county = polls.county
 				where users.id = :user_id;
 				";
 		$query = $conn->prepare($query);
