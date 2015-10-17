@@ -2,3 +2,4 @@
 994,Are you pro-NRA?,9,1916,387
 517,Do you like Obama?,9,1908,63
 1000,What time is it?,9,1924,445
+333,Do you like Sanders?,9,1908,63
