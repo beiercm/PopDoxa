@@ -70,7 +70,7 @@ tables = {
 					id INT(6) AUTO_INCREMENT PRIMARY KEY,				
 					user_id INT (6) NOT NULL,
 					opin_id INT (3) NOT NULL,
-					opinion VARCHAR (4) DEFAULT 'N/A'
+					opinion VARCHAR (1) DEFAULT 'u'
 					)
 					""",
 		'news':		"""
@@ -106,7 +106,8 @@ tables = {
 					author INT(6) NOT NULL,
 					post_id INT (6) NOT NULL,
 					content VARCHAR(1000) NOT NULL,
-					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+					opinion char(1) NOT NULL DEFAULT 'u'
 					)
 					""",
 		'user_roles':	"""
