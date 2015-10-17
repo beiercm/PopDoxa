@@ -51,7 +51,7 @@
 			case "votes":
 				$order_by = "polls.votes DESC";
 				break;
-				
+
 			default:
 				$order_by = "polls.ts DESC";
 				break;
@@ -113,7 +113,7 @@
 
 		for($i = 0; $i < count($result); $i++)
 		{
-			$url = "/topic_id.html?post=". $result[$i]['id'];
+			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $results[$i]['id'];
 
 			echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
 					<br>" . $result[$i]['username'] . "</td>
