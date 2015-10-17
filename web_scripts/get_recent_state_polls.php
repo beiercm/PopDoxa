@@ -29,7 +29,7 @@
 				join users
 				on users.state = polls.state
 				where users.id = :user_id;
-				"
+				";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_id', $user_id);
 		$query->execute();
