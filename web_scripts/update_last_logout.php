@@ -12,7 +12,7 @@
 			$user_id = $_GET['user_id'];
 		}	
 
-		update_last_login($conn, $user_id);
+		update_last_logout($conn, $user_id);
 	}
 	catch (PDOException $e)
 	{
@@ -22,9 +22,9 @@
 
 	$conn = null;
 
-	function update_last_login($conn, $user_id)
+	function update_last_logout($conn, $user_id)
 	{
-		$stmt = $conn->prepare("UPDATE users SET last_login = now() WHERE id = :user_id");
+		$stmt = $conn->prepare("UPDATE users SET last_logout = now() WHERE id = :user_id");
 		$stmt->bindparam(':user_id', $user_id);
 		$stmt->execute();
 	}

@@ -45,7 +45,7 @@
 				on users.id = posts.author
 				where posts.county = :user_county
 				AND posts.city = -1
-				AND posts.ts < :last_logout;
+				AND posts.ts > :last_logout;
 				";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_county', $user_county);

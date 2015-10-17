@@ -64,13 +64,16 @@
 
 		if($county_id != -1)
 		{
-			$query= $conn->prepare("SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
-				from posts 
+			$query= $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,posts.ts 
+				from polls 
 				join users 
-				on posts.author = users.id 
-				where posts.county = :county_id 
-				AND posts.city = -1
-				ORDER BY ". $order_by);
+				on polls.author = users.id 
+				where polls.county = :county_id 
+				AND polls.city = -1
+				ORDER BY ". $order_by
+				);
 
 			$query->bindparam(':county_id', $county_id);
 			
@@ -78,12 +81,15 @@
 
 		if($city_id != -1)
 		{
-			$query = $conn->prepare("SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
-				from posts 
+			$query = $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,posts.ts 
+				from polls 
 				join users 
-				on posts.author = users.id 
-				where posts.city =  :city_id
-				ORDER BY ". $order_by);
+				on polls.author = users.id 
+				where polls.city = :city_id 
+				ORDER BY ". $order_by
+				);
 
 			$query->bindparam(':city_id', $city_id);
 
@@ -91,14 +97,16 @@
 
 		if($county_id == -1 && $city_id == -1)
 		{
-			$query = $conn->prepare("
-				SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
-				from posts 
+			$query = $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,posts.ts 
+				from polls 
 				join users 
-				on posts.author = users.id 
-				where posts.state = :state_id 
-				AND posts.county = -1
-				ORDER BY ". $order_by);
+				on polls.author = users.id 
+				where polls.state = :state_id 
+				AND polls.county = -1
+				ORDER BY ". $order_by
+				);
 
 			$query->bindparam(':state_id', $state_id);
 		}
@@ -111,9 +119,9 @@
 		{
 			$url = "/topic_id.html?post=". $result[$i]['id'];
 
-			echo "<tr><td><a href ='" . $url . "'>" . $result[$i]['title'] . "</a><br>" . 
-				$result[$i]['username'] . "</td><td>". $result[$i]['views'] . "</td><td>" . 
-				$result[$i]['replies'] . "</td><td>" . $result[$i]['ts'] . "</td></tr>";
+			echo "<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a><br>" . 
+				$result[$i]['username'] . "</td><td>". $result[$i]['votes'] . "</td><td>" . 
+				$result[$i]['replies'] . "</td><td>" . $result[$i]['ts'] . "</tr>";
 		}
 	}
 

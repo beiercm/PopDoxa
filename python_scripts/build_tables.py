@@ -23,6 +23,7 @@ tables = {
 					id INT(6) AUTO_INCREMENT PRIMARY KEY,
 					author INT(6) NOT NULL,
 					question VARCHAR (200) NOT NULL,
+					votes INT(6) NOT NULL DEFAULT 0,
 					state INT (2) NOT NULL,
 					county INT (5) NOT NULL DEFAULT -1,
 					city INT (6) NOT NULL DEFAULT -1,

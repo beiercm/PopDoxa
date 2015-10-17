@@ -44,7 +44,7 @@
 				join users
 				on users.id = posts.author
 				where posts.city = :user_city
-				AND posts.ts < :last_logout;
+				AND posts.ts > :last_logout;
 				";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_city', $user_city);
