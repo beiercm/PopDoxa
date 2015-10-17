@@ -35,7 +35,7 @@
 		$stmt->execute();
 
 		//Updates the parent post's last_post timestamp
-		$stmt = $conn->prepare("UPDATE posts SET last_post = now() WHERE id = :post");
+		$stmt = $conn->prepare("UPDATE posts SET last_post = now(), replies = replies + 1 WHERE id = :post");
 		$stmt->bindparam(':post', $post);
 		$stmt->execute();
 	}
