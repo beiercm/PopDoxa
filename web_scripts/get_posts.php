@@ -7,6 +7,8 @@
 			$state = $argv[1];
 			$county = $argv[2];
 			$city = $argv[3];
+
+			$sort_by = 'default';
 		}
 		else
 		{
