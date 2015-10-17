@@ -44,7 +44,7 @@
 				where users.city = :user_city
 				";
 		$query = $conn->prepare($query);
-		$query->bindparam(':user_city', $user_city)
+		$query->bindparam(':user_city', $user_city);
 		$query->execute();
 
 		$results = $query->fetchAll();
