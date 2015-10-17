@@ -176,6 +176,9 @@ def read_replies(cursor):
 		query = "INSERT INTO replies(post_id, author, content) VALUES (%s,%s,%s);"
 		cursor.execute(query, (post, author, content))
 
+		query = "UPDATE posts SET last_post = now(), replies = replies + 1 WHERE id =" + post
+		cursor.execute(query)
+
 def read_news(cursor):
 	pass
 
