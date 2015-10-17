@@ -47,19 +47,19 @@
 
 		switch($sort_by) {
 			case "title":
-				$order_by = "posts.title";
+				$order_by = "posts.title ASC";
 				break;
 
 			case "views":
-				$order_by = "posts.views";
+				$order_by = "posts.views DESC";
 				break;
 
 			case "replies":
-				$order_by = "posts.replies";
+				$order_by = "posts.replies DESC";
 				break;
 
 			default:
-				$order_by = "posts.ts";
+				$order_by = "posts.ts DESC";
 				break;
 		}
 
@@ -72,7 +72,7 @@
 				on posts.author = users.id 
 				where posts.county = :county_id 
 				AND posts.city = -1
-				ORDER BY ". $order_by ." DESC;");
+				ORDER BY ". $order_by);
 
 			$query->bindparam(':county_id', $county_id);
 			
@@ -85,7 +85,7 @@
 				join users 
 				on posts.author = users.id 
 				where posts.city =  :city_id
-				ORDER BY ". $order_by ." DESC;");
+				ORDER BY ". $order_by);
 
 			$query->bindparam(':city_id', $city_id);
 
@@ -99,7 +99,7 @@
 				on posts.author = users.id 
 				where posts.state = :state_id 
 				AND posts.county = -1
-				ORDER BY ". $order_by ." DESC;");
+				ORDER BY ". $order_by);
 
 			$query->bindparam(':state_id', $state_id);
 		}
