@@ -40,7 +40,8 @@
 				from posts
 				join users
 				on users.id = posts.author
-				where posts.state = :user_state;
+				where posts.state = :user_state
+				AND posts.county = -1;
 				";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_state', $user_state);

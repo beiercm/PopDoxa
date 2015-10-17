@@ -24,8 +24,8 @@ tables = {
 					author INT(6) NOT NULL,
 					question VARCHAR (200) NOT NULL,
 					state INT (2) NOT NULL,
-					county INT (5) NOT NULL,
-					city INT (6) NOT NULL,
+					county INT (5) NOT NULL DEFAULT -1,
+					city INT (6) NOT NULL DEFAULT -1,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 					post INT(6) NOT NULL
 					)
