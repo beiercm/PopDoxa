@@ -119,9 +119,10 @@
 		{
 			$url = "/topic_id.html?post=". $result[$i]['id'];
 
-			echo "<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a><br>" . 
-				$result[$i]['username'] . "</td><td>". $result[$i]['votes'] . "</td><td>" . 
-				$result[$i]['replies'] . "</td><td>" . $result[$i]['ts'] . "</tr>";
+			echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
+					<br>" . $result[$i]['username'] . "</td>
+					<td>". $result[$i]['votes'] . "</td>
+					<td>" . $result[$i]['ts'] . "</td></tr>";
 		}
 	}
 
