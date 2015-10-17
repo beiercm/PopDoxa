@@ -27,6 +27,8 @@
 		$stmt = $conn->prepare("UPDATE users SET last_login = now() WHERE id = :user_id");
 		$stmt->bindparam(':user_id', $user_id);
 		$stmt->execute();
+
+		echo "updated";
 	}
 
 ?>
