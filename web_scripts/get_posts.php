@@ -43,6 +43,8 @@
 
 	function get_posts($conn, $state_id, $county_id, $city_id, $sort_by)
 	{
+		echo $sort_by;
+
 		switch($sort_by) {
 			case "title":
 				$order_by = "posts.ts";
