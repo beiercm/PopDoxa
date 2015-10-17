@@ -23,7 +23,8 @@ def get_connec(tables, login_info):
 			bt.build_all(cnx.cursor())
 		else:
 			for table in tables:
-				kill_table(table, cnx.cursor())
+				if table != 'build':
+					kill_table(table, cnx.cursor())
 			bt.build_tables(tables, cnx.cursor())
 		cnx.commit()
 		

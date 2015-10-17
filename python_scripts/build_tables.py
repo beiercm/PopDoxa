@@ -13,7 +13,8 @@ tables = {
 					gender CHAR (1) NOT NULL,
 					state INT (2) NOT NULL,
 					county INT (5) NOT NULL,
-					city INT (6) NOT NULL
+					city INT (6) NOT NULL,
+					last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 					)
 					""",
 		'polls' :	"""
@@ -21,6 +22,9 @@ tables = {
 					id INT(6) AUTO_INCREMENT PRIMARY KEY,
 					author INT(6) NOT NULL,
 					question VARCHAR (200) NOT NULL,
+					state INT (2) NOT NULL,
+					county INT (5) NOT NULL,
+					city INT (6) NOT NULL,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 					)
 					""",

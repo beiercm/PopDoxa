@@ -53,14 +53,13 @@ def read_polls(cursor):
 	polls = list(open("polls.txt"))
 
 	for poll in polls:
-		poll = poll.split(',')
-		poll[1] = poll[1].strip()
+		poll = poll.strip().split(',')
 
 		query =		"""
 					INSERT INTO polls
-					(author, question)
+					(author, question, state, county, city)
 					VALUES
-					(%s,%s);
+					(%s,%s,%s,%s,%s);
 					"""
 		cursor.execute(query,poll)
 

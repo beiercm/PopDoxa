@@ -1,3 +1,4 @@
-394,Do you like Florida?
-13,Are you pro-NRA?
-28,Do you like Obama?
+509,Do you like Florida?,9,1876,32
+994,Are you pro-NRA?,9,1916,387
+517,Do you like Obama?,9,1908,63
+1000,What time is it?,9,1924,445
