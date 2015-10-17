@@ -25,7 +25,8 @@ tables = {
 					state INT (2) NOT NULL,
 					county INT (5) NOT NULL,
 					city INT (6) NOT NULL,
-					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+					post INT(6) NOT NULL
 					)
 					""",
 		'poll_results': """
