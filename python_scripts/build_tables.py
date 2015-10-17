@@ -134,13 +134,14 @@ def build_tables(table_list, cursor):
 
 def build_all(cursor):
 	#for tables that either can't be built or need a specific order
-	do_not_build = ['states', 'counties', 'cities', 'build']
+	do_not_build = ['states', 'counties', 'cities', 'build', 'replies']
 	for table in tables:
 		print("Building " + table + " table...")
 		cursor.execute(tables[table])
 		if table not in do_not_build:
 			method = getattr(rf, 'read_' + table)(cursor)
 
+	rf.read_replies(cursor)
 	rf.read_states(cursor)
 	rf.read_counties(cursor)
 	rf.read_cities(cursor)
