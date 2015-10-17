@@ -24,10 +24,10 @@
 	function get_recent_polls($conn, $user_id)
 	{
 		$query = "
-				SELECT polls.id, users.id
+				SELECT polls.id, polls.question, users.username
 				from polls
 				join users
-				on users.county = polls.county
+				on users.county = polls.state
 				where users.id = :user_id;
 				";
 		$query = $conn->prepare($query);
@@ -36,9 +36,23 @@
 
 		$results = $query->fetchAll();
 		
-		print_r($results);
+		for($i = 0; $i < count($results); $i++)
+		{
+			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $results[$i]['id'];
 
-		//echo json_encode($results);
+			echo " <a class='item' href='" . $url . "'>
+	                <!-- Show question from the poll -->
+	                    <div class='truncate1'>
+	                        <div class='truncate2'> " 
+	                        . $results[$i]['question'] . 
+	                        "
+	                    </div>
+	                  </div>
+	                    <div class='username'>
+	                      Created by: ". $results[$i]['username'] ."
+	                    </div>
+	                </a>";
+        }
 
 	}
 ?>
