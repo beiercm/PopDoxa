@@ -22,6 +22,11 @@
 			if(isset($_GET['city']))
 				$city = $_GET['city'];
 			else $city = -1;
+
+			if(isset($_GET['sort_by']))
+				$sort_by = $_GET['sort_by'];
+			else
+				$sort_by = 'default';
 		}
 
 		get_posts($conn, $state, $county, $city);
@@ -34,8 +39,26 @@
 
 	$conn = null;
 
-	function get_posts($conn, $state_id, $county_id, $city_id)
+	function get_posts($conn, $state_id, $county_id, $city_id, $sort_by)
 	{
+		switch($sort_by) {
+			case "title":
+				$order_by = "posts.ts";
+				break;
+
+			case "views":
+				$order_by = "posts.views";
+				break;
+
+			case "replies":
+				$order_by = "posts.replies";
+				break;
+
+			default:
+				$order_by = "posts.ts";
+				break;
+		}
+
 
 		if($county_id != -1)
 		{
@@ -45,7 +68,7 @@
 				on posts.author = users.id 
 				where posts.county = :county_id 
 				AND posts.city = -1
-				ORDER BY posts.ts DESC;");
+				ORDER BY ". $order_by ." DESC;");
 
 			$query->bindparam(':county_id', $county_id);
 			
@@ -58,7 +81,7 @@
 				join users 
 				on posts.author = users.id 
 				where posts.city =  :city_id
-				ORDER BY posts.ts DESC;");
+				ORDER BY ". $order_by ." DESC;");
 
 			$query->bindparam(':city_id', $city_id);
 
@@ -72,7 +95,7 @@
 				on posts.author = users.id 
 				where posts.state = :state_id 
 				AND posts.county = -1
-				ORDER BY posts.ts DESC;");
+				ORDER BY ". $order_by ." DESC;");
 
 			$query->bindparam(':state_id', $state_id);
 		}
