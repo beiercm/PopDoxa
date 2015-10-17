@@ -24,7 +24,7 @@
 	function get_recent_polls($conn, $user_id)
 	{
 		$query = "
-				SELECT polls.id, polls.title, polls.author
+				SELECT polls.id, polls.question, polls.author
 				from polls
 				join users
 				on users.state = polls.state
