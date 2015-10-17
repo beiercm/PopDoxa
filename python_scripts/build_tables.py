@@ -97,7 +97,7 @@ tables = {
 					county INT(3) NOT NULL DEFAULT -1,
 					city INT (5) NOT NULL DEFAULT -1,
 					url VARCHAR (50) NOT NULL,
-					post INT(3) NOT NULL DEFAULT -1
+					poll INT(3) NOT NULL DEFAULT -1
 					)
 					""",
 		'replies' : """
