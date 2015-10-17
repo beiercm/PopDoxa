@@ -14,7 +14,8 @@ tables = {
 					state INT (2) NOT NULL,
 					county INT (5) NOT NULL,
 					city INT (6) NOT NULL,
-					last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+					last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+					image VARCHAR (200)
 					)
 					""",
 		'polls' :	"""
