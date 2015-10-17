@@ -31,7 +31,7 @@
 				$sort_by = 'default';
 		}
 
-		get_posts($conn, $state, $county, $city, $sort_by);
+		get_polls($conn, $state, $county, $city, $sort_by);
 	}
 	catch (PDOException $e)
 	{
@@ -41,23 +41,19 @@
 
 	$conn = null;
 
-	function get_posts($conn, $state_id, $county_id, $city_id, $sort_by)
+	function get_polls($conn, $state_id, $county_id, $city_id, $sort_by)
 	{
 		switch($sort_by) {
 			case "title":
-				$order_by = "posts.title ASC";
+				$order_by = "polls.title ASC";
 				break;
 
-			case "views":
-				$order_by = "posts.views DESC";
+			case "votes":
+				$order_by = "polls.votes DESC";
 				break;
-
-			case "replies":
-				$order_by = "posts.replies DESC";
-				break;
-
+				
 			default:
-				$order_by = "posts.ts DESC";
+				$order_by = "polls.ts DESC";
 				break;
 		}
 
@@ -66,7 +62,7 @@
 		{
 			$query= $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,posts.ts 
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id 
@@ -83,7 +79,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,posts.ts 
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id 
@@ -99,7 +95,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,posts.ts 
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id 
