@@ -44,7 +44,7 @@
 	                <!-- Show question from the poll -->
 	                    <div class='truncate1'>
 	                        <div class='truncate2'> " 
-	                        . $results[$i]['title'] . 
+	                        . $results[$i]['question'] . 
 	                        "
 	                    </div>
 	                  </div>
