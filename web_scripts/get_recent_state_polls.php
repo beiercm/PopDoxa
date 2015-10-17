@@ -52,7 +52,7 @@
 	                      Created by: ". $results[$i]['author'] ."
 	                    </div>
 	                </a>
-	               "
+	               ";
         }
 
 	}
