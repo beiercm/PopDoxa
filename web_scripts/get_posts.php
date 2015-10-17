@@ -31,7 +31,7 @@
 				$sort_by = 'default';
 		}
 
-		get_posts($conn, $state, $county, $city);
+		get_posts($conn, $state, $county, $city, $sort_by);
 	}
 	catch (PDOException $e)
 	{
