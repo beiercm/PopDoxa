@@ -24,7 +24,7 @@
 	function get_recent_polls($conn, $user_id)
 	{
 		$query = "
-				SELECT state, last_login
+				SELECT state, last_logout
 				FROM users
 				WHERE id = :user_id
 				";
@@ -36,7 +36,7 @@
 		$results = $query->fetchAll();
 
 		$user_state = $results[0]['state'];
-		$last_login = $results[0]['last_login'];
+		$last_logout = $results[0]['last_logout'];
 
 		$query = "
 				SELECT users.username,posts.title,posts.id,posts.views,posts.replies,posts.ts 
@@ -45,11 +45,11 @@
 				on users.id = posts.author
 				where posts.state = :user_state
 				AND posts.county = -1
-				AND posts.ts > :last_login;
+				AND posts.ts > :last_logout;
 				";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_state', $user_state);
-		$query->bindparam(':last_login', $last_login);
+		$query->bindparam(':last_logout', $last_logout);
 		$query->execute();
 
 		$results = $query->fetchAll();
