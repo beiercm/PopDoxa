@@ -40,8 +40,7 @@
 				from posts
 				join users
 				on users.id = posts.author
-				AND posts.city = users.city
-				where users.city = :user_city
+				where posts.city = :user_city;
 				";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_city', $user_city);
