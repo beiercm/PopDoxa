@@ -113,7 +113,7 @@
 
 		for($i = 0; $i < count($result); $i++)
 		{
-			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $results[$i]['id'];
+			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $result[$i]['id'];
 
 			echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
 					<br>" . $result[$i]['username'] . "</td>
