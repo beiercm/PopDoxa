@@ -41,14 +41,13 @@
 			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $results[$i]['id'];
 
 			echo " <a class='item' href='" . $url . "'>
-	                <!-- Show question from the poll -->
 	                    <div class='truncate1'>
 	                        <div class='truncate2'> " 
 	                        . $results[$i]['question'] . 
 	                        "
 	                    </div>
 	                  </div>
-	                    <div class='username'>
+	                    <div class='usernameItem'>
 	                      Created by: ". $results[$i]['username'] ."
 	                    </div>
 	                </a>";

@@ -48,7 +48,7 @@
 	                        "
 	                    </div>
 	                  </div>
-	                    <div class='username'>
+	                    <div class='usernameItem'>
 	                      Created by: ". $results[$i]['username'] ."
 	                    </div>
 	                </a>";
