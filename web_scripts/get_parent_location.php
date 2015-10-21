@@ -32,7 +32,7 @@
 
 	function get_parent_location($conn, $county_id, $city_id)
 	{
-		if(strcmp($city_id, "-1"))
+		if(!strcmp($city_id, "-1"))
 		{
 			$query = $conn->prepare("SELECT state_id FROM counties WHERE id = :county_id");
 			$query->bindparam(':county_id', $county_id);
@@ -42,7 +42,7 @@
 			echo $results[0]['state_id'];
 		}
 
-		else if(strcmp($county_id, "-1"))
+		else if(!strcmp($county_id, "-1"))
 		{
 			$query = $conn->prepare("SELECT county_id FROM cities WHERE id = :city_id");
 			$query->bindparam(':city_id', $city_id);
