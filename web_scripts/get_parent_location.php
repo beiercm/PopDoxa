@@ -4,8 +4,8 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$county = $argv[2];
-			$city = $argv[3];
+			$county = $argv[1];
+			$city = $argv[2];
 		}
 		else
 		{
@@ -42,7 +42,7 @@
 			echo $results[0]['state_id'];
 		}
 
-		else if(strcmp($city_id, "-1"))
+		else if(strcmp($county_id, "-1"))
 		{
 			$query = $conn->prepare("SELECT county_id FROM cities WHERE id = :city_id");
 			$query->bindparam(':city_id', $city_id);
