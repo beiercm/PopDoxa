@@ -20,7 +20,7 @@
 			else $city = -1;
 		}
 
-		get_parent_location($conn, $county, $city,);
+		get_parent_location($conn, $county, $city);
 	}
 	catch (PDOException $e)
 	{
