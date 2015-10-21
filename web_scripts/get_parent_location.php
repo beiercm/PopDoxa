@@ -34,22 +34,22 @@
 	{
 		if(strcmp($city_id, "-1"))
 		{
-			$query = $conn->prepare("SELECT state FROM counties WHERE id = :city_id");
+			$query = $conn->prepare("SELECT state_id FROM counties WHERE id = :city_id");
 			$query->bindparam(':city_id', $city_id);
 			$query->execute();
 			$results = $query->fetchAll();
 
-			echo $results[0]['state'];
+			echo $results[0]['state_id'];
 		}
 
 		else if(strcmp($city_id, "-1"))
 		{
-			$query = $conn->prepare("SELECT county FROM cities WHERE id = :city_id");
+			$query = $conn->prepare("SELECT county_id FROM cities WHERE id = :city_id");
 			$query->bindparam(':city_id', $city_id);
 			$query->execute();
 			$results = $query->fetchAll();
 
-			echo $results[0]['county'];
+			echo $results[0]['county_id'];
 		}
 	}
 
