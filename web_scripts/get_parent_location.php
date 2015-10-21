@@ -44,7 +44,9 @@
 			$query->execute();
 			$results = $query->fetchAll();
 
-			echo $results[0]['name'];
+			$state = ucwords($results[0]['name']);
+
+			echo $state;
 		}
 
 		else if(!strcmp($county_id, "-1"))
@@ -59,7 +61,9 @@
 			$query->execute();
 			$results = $query->fetchAll();
 
-			echo $results[0]['name'];
+			$county = ucwords($results[0]['name']);
+
+			echo $county;
 		}
 	}
 
