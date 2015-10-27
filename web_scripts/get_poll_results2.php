@@ -47,8 +47,9 @@
 		$query->bindparam(':poll_id', $poll_id);
 		$query->bindparam(':stance', $stance);
 		$query->bindparam(':vote', $vote);
+		$query->execute();
 
-		$results = $query->execute()->fetchAll();
+		$results = $query->fetchAll();
 
 		echo json_encode($results);
 
