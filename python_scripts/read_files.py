@@ -169,14 +169,14 @@ def read_replies(cursor):
 	n = 3
 
 	for i in range((len(replies) / n)):
-		post = replies[(i*n) + 0]
+		poll = replies[(i*n) + 0]
 		author = replies[(i*n) + 1]
 		content = replies[(i*n) + 2]
 
-		query = "INSERT INTO replies(post_id, author, content) VALUES (%s,%s,%s);"
-		cursor.execute(query, (post, author, content))
+		query = "INSERT INTO poll_replies(poll_id, author, content) VALUES (%s,%s,%s);"
+		cursor.execute(query, (poll, author, content))
 
-		query = "UPDATE posts SET last_post = now(), replies = replies + 1 WHERE id =" + post
+		query = "UPDATE polls SET last_poll = now(), replies = replies + 1 WHERE id =" + post
 		cursor.execute(query)
 
 def read_news(cursor):

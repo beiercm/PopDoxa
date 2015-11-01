@@ -30,6 +30,7 @@ tables = {
 					county INT (5) NOT NULL DEFAULT -1,
 					city INT (6) NOT NULL DEFAULT -1,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+					last_poll TIMESTAMP,
 					post INT(6) NOT NULL
 					)
 					""",
@@ -40,6 +41,16 @@ tables = {
 						user_id INT (6) NOT NULL,
 						vote CHAR (1) NOT NULL
 						)
+					""",
+		'poll_replies' : """
+					create table if not exists replies (
+					id INT (6) AUTO_INCREMENT PRIMARY KEY,
+					author INT(6) NOT NULL,
+					poll_id INT (6) NOT NULL,
+					content VARCHAR(1000) NOT NULL,
+					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+					opinion char(1) NOT NULL DEFAULT 'u'
+					)
 					""",
 		'states':	"""
 					create table if not exists states (
