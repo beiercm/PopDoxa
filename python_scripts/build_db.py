@@ -98,8 +98,8 @@ def help_screen():
 
 def main(*args):	
 	login_info = get_login_info()
-	os.chdir("/home/christopher/popdoxa/data")
-	#os.chdir("../data")
+	#os.chdir("/home/christopher/popdoxa/data")
+	os.chdir("../data")
 	
 	if len(args) >= 1:
 		if not parse_args(args[0][1::], login_info):

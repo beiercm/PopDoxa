@@ -64,20 +64,7 @@ def read_polls(cursor):
 		cursor.execute(query,poll)
 
 def read_poll_results(cursor):
-	print("Reading in user poll_results.txt") 
-	pr_file = list(open("poll_results.txt"))
-
-	for line in pr_file:
-		line = line.strip().split(',')
-		line[len(line) - 1] = line[len(line) - 1].strip()
-
-		query = """
-				INSERT INTO poll_results
-				(user_id, poll_id, vote)
-				VALUES
-				(%s,%s,%s);
-				"""
-		cursor.execute(query, line)
+	pass
 
 def read_poll_replies(cursor):
 	print("Reading in poll_replies.txt")
