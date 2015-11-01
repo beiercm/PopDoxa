@@ -24,10 +24,10 @@
 	function get_poll_replies($conn, $poll)
 	{
 
-		$query = "SELECT users.username, polls.content, polls.ts 
-				FROM polls 
+		$query = "SELECT users.username, pr.content, pr.ts 
+				FROM poll_replies as pr
 				JOIN users 
-				ON polls.author = users.id WHERE polls.id = :poll";
+				ON pr.author = users.id WHERE pr.id = :poll";
 		$poll_results = $conn->prepare($query);
 		$poll_results->bindparam(':poll', $poll);
 		$poll_results->execute();
