@@ -24,7 +24,7 @@
 	function get_poll_replies($conn, $poll)
 	{
 
-		$query = "SELECT users.username, polls.title, polls.content, polls.ts 
+		$query = "SELECT users.username, polls.content, polls.ts 
 				FROM polls 
 				JOIN users 
 				ON polls.author = users.id WHERE polls.id = :poll";
