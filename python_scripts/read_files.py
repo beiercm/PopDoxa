@@ -79,7 +79,7 @@ def read_poll_results(cursor):
 				"""
 		cursor.execute(query, line)
 
-def read_replies(cursor):
+def read_poll_replies(cursor):
 	print("Reading in replies.txt")
 	replies = list(open("replies.txt"))
 
