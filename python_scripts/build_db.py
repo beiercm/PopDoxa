@@ -62,6 +62,7 @@ def parse_args(tables, login_info):
 		return
 
 	if "rebuild" in tables:
+		create_db(login_info)
 		kill_database("Yes", login_info)
 		create_db(login_info)
 		cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database=login_info[3])
