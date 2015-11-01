@@ -62,7 +62,6 @@ def parse_args(tables, login_info):
 		return
 
 	if "rebuild" in tables:
-		create_db(login_info)	
 		kill_database("Yes", login_info)
 		create_db(login_info)
 		cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database=login_info[3])
@@ -99,8 +98,8 @@ def help_screen():
 
 def main(*args):	
 	login_info = get_login_info()
-	#os.chdir("/home/christopher/popdoxa/data")
-	os.chdir("../data")
+	os.chdir("/home/christopher/popdoxa/data")
+	#os.chdir("../data")
 	
 	if len(args) >= 1:
 		if not parse_args(args[0][1::], login_info):
