@@ -80,8 +80,8 @@ def read_poll_results(cursor):
 		cursor.execute(query, line)
 
 def read_poll_replies(cursor):
-	print("Reading in replies.txt")
-	replies = list(open("replies.txt"))
+	print("Reading in poll_replies.txt")
+	replies = list(open("poll_replies.txt"))
 
 	n = 3
 
@@ -93,7 +93,7 @@ def read_poll_replies(cursor):
 		query = "INSERT INTO poll_replies(poll_id, author, content) VALUES (%s,%s,%s);"
 		cursor.execute(query, (poll, author, content))
 
-		query = "UPDATE polls SET last_poll = now(), replies = replies + 1 WHERE id =" + post
+		query = "UPDATE polls SET last_poll = now(), poll_replies = poll_replies + 1 WHERE id =" + post
 		cursor.execute(query)
 
 
