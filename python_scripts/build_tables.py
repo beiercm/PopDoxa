@@ -43,7 +43,7 @@ tables = {
 						)
 					""",
 		'poll_replies' : """
-					create table if not exists replies (
+					create table if not exists poll_replies (
 					id INT (6) AUTO_INCREMENT PRIMARY KEY,
 					author INT(6) NOT NULL,
 					poll_id INT (6) NOT NULL,
@@ -152,6 +152,7 @@ def build_tables(table_list, cursor):
 
 def build_all(cursor):
 	#for tables that either can't be built or need a specific order
+	print tables.keys()
 	do_not_build = ['states', 'counties', 'cities', 'build', 'replies']
 	for table in tables:
 		print("Building " + table + " table...")
@@ -159,7 +160,7 @@ def build_all(cursor):
 		if table not in do_not_build:
 			method = getattr(rf, 'read_' + table)(cursor)
 
-	rf.read_replies(cursor)
+	# rf.read_replies(cursor)
 	rf.read_states(cursor)
 	rf.read_counties(cursor)
 	rf.read_cities(cursor)
