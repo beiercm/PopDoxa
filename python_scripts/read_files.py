@@ -93,7 +93,7 @@ def read_poll_replies(cursor):
 		query = "INSERT INTO poll_replies(poll_id, author, content) VALUES (%s,%s,%s);"
 		cursor.execute(query, (poll, author, content))
 
-		query = "UPDATE polls SET last_poll = now(), poll_replies = poll_replies + 1 WHERE id =" + poll
+		query = "UPDATE polls SET last_poll = now(), replies = replies + 1 WHERE id =" + poll
 		cursor.execute(query)
 
 
