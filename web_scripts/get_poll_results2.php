@@ -173,9 +173,9 @@
 			$query->execute();
 			$undecided_results = $query->fetchall();
 
-			$results[$yes_results['opin_descrip']]['yes'] = $yes_results;
-			$results[$yes_results['opin_descrip']]['no'] = $no_results;
-			$results[$yes_results['opin_descrip']]['undecided'] = $undecided_results;
+			$results[$yes_results[0]['opin_descrip']]['yes'] = $yes_results;
+			$results[$yes_results[0]['opin_descrip']]['no'] = $no_results;
+			$results[$yes_results[0]['opin_descrip']]['undecided'] = $undecided_results;
 
 			
 
