@@ -39,7 +39,6 @@ def read_user_opin(cursor):
 	for line in uo_file:
 		line = line.strip().split(',')
 		line[len(line) - 1] = line[len(line) - 1].strip()
-		print line
 
 		query = """
 				INSERT INTO user_opin
@@ -55,6 +54,7 @@ def read_polls(cursor):
 
 	for poll in polls:
 		poll = poll.strip().split(',')
+		print poll
 
 		query =		"""
 					INSERT INTO polls

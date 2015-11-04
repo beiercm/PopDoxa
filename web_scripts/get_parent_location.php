@@ -35,7 +35,7 @@
 		if(!strcmp($city_id, "-1"))
 		{
 			$query = $conn->prepare("
-				SELECT states.name 
+				SELECT states.name, states.id
 				FROM counties 
 				JOIN states
 				on counties.state_id = states.id
@@ -52,7 +52,7 @@
 		else if(!strcmp($county_id, "-1"))
 		{
 			$query = $conn->prepare("
-				SELECT counties.name 
+				SELECT counties.name, counties.id 
 				FROM cities 
 				JOIN counties
 				ON cities.county_id = counties.id
