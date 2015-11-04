@@ -173,13 +173,11 @@
 			$query->execute();
 			$undecided_results = $query->fetchall();
 
-			$results['yes'] = $yes_results;
-			$results['no'] = $no_results;
-			$results['undecided'] = $undecided_results;
+			$results[$yes_results['opin_descrip']]['yes'] = $yes_results;
+			$results[$yes_results['opin_descrip']]['no'] = $no_results;
+			$results[$yes_results['opin_descrip']]['undecided'] = $undecided_results;
 
-			print_r($results);
-
-			echo json_encode($results);
+			
 
 			// $query = 
 			// "
@@ -315,6 +313,10 @@
 
 			// break;
 		}
+
+		print_r($results);
+
+		echo json_encode($results);
 
 		// $query = 
 		// "
