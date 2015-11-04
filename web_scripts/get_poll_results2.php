@@ -34,7 +34,7 @@
 		$query->execute();
 		$opinions = $query->fetchall();
 
-		for($i = 0; $i < count($opinions); $i++)
+		for($i = 1; $i <= count($opinions); $i++)
 		{
 			$query = 
 			"
