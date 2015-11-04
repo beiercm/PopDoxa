@@ -56,9 +56,6 @@
 			$results[$index]['No'] = $these_results[1][2];
 			$results[$index]['Undecided'] = $these_results[2][2];
 		}
-
-		print_r($results);
-
 		//unset($results);
 
 // 		$results[0]['category2'] = "NRA";
@@ -75,8 +72,6 @@
 // $results[2]['Yes'] = "1000";
 // $results[2]['No'] = "2000";
 // $results[2]['Undecided'] = "1500";
-
-		print_r($results);
 
 		echo json_encode($results);
 
