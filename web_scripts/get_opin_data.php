@@ -13,7 +13,7 @@
 
 	$conn = null;
 
-	function get_poll_results($conn)
+	function get_opin_data($conn)
 	{
 		$query = "SELECT id from opinions";
 		$query = $conn->prepare($query);
