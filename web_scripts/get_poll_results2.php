@@ -44,7 +44,7 @@
 			on uo.user_id = pr.user_id
 			join opinions as op
 			on uo.opin_id = op.id
-			where uo.opin_name = " . $opinions[$i]['opin_name'] . "
+			where op.opin_name = " . $opinions[$i]['opin_name'] . "
 			and pr.poll_id = :poll_id
 			and pr.vote = 'y'
 			";	
