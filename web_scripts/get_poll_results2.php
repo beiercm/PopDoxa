@@ -29,7 +29,7 @@
 
 	function get_poll_results($conn, $poll_id)//, $opin_id, $stance, $vote)
 	{
-		$query = "SELECT opin_name from opinions";
+		$query = "SELECT id from opinions";
 		$query = $conn->prepare($query);
 		$query->execute();
 		$opinions = $query->fetchall();
@@ -37,7 +37,7 @@
 		for($i = 1; $i <= count($opinions); $i++)
 		{
 			$query = "
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -50,7 +50,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'y'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -63,7 +63,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'y'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -76,7 +76,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'y'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -89,7 +89,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'n'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -102,7 +102,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'n'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -115,7 +115,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'n'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -128,7 +128,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'u'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -141,7 +141,7 @@
 			and pr.poll_id = :poll_id
 			and pr.vote = 'u'
 			UNION
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -164,7 +164,7 @@
 
 			// $query = 
 			// "
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -175,7 +175,7 @@
 			// and pr.poll_id = :poll_id
 			// and pr.vote = 'y'
 			// UNION
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -186,7 +186,7 @@
 			// and pr.poll_id = :poll_id
 			// and pr.vote = 'y'
 			// UNION
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -206,7 +206,7 @@
 
 			// $query = 
 			// "
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -217,7 +217,7 @@
 			// and pr.poll_id = :poll_id
 			// and pr.vote = 'n'
 			// UNION
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -228,7 +228,7 @@
 			// and pr.poll_id = :poll_id
 			// and pr.vote = 'n'
 			// UNION
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -248,7 +248,7 @@
 
 			// $query = 
 			// "
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -259,7 +259,7 @@
 			// and pr.poll_id = :poll_id
 			// and pr.vote = 'u'
 			// UNION
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -270,7 +270,7 @@
 			// and pr.poll_id = :poll_id
 			// and pr.vote = 'u'
 			// UNION
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			// from user_opin as uo
 			// join poll_results as pr
 			// on uo.user_id = pr.user_id
@@ -299,7 +299,7 @@
 
 		// $query = 
 		// "
-		// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+		// SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 		// from user_opin as uo
 		// join poll_results as pr
 		// on uo.user_id = pr.user_id
@@ -323,7 +323,7 @@
 
 
 		/*
-		$query = "SELECT opin_name from opinions";
+		$query = "SELECT opin_descrip from opinions";
 		$query = $conn->prepare($query);
 		$query->execute();
 
@@ -333,7 +333,7 @@
 		{
 			$query = 
 			"
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -352,7 +352,7 @@
 
 			$query = 
 			"
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
@@ -371,7 +371,7 @@
 
 			$query = 
 			"
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
