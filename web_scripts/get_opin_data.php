@@ -57,6 +57,24 @@
 
 
 		}
+
+		unset($results);
+
+		$results[0]['category2'] = "NRA";
+$results[0]['Yes'] = "100";
+$results[0]['No'] = "200";
+$results[0]['Undecided'] = "150";
+
+$results[1]['category2'] = "Tax";
+$results[1]['Yes'] = "500";
+$results[1]['No'] = "550";
+$results[1]['Undecided'] = "650";
+
+$results[2]['category2'] = "Education";
+$results[2]['Yes'] = "1000";
+$results[2]['No'] = "2000";
+$results[2]['Undecided'] = "1500";
+
 		echo json_encode($results);
 
 		// $query = 
