@@ -5,19 +5,19 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$poll_id = $argv[1];
-			$opin_id = $argv[2];
-			$stance = $argv[3];
-			$vote = $argv[4];
+			// $opin_id = $argv[2];
+			// $stance = $argv[3];
+			// $vote = $argv[4];
 		}
 		else
 		{
 			$poll_id = $_GET['poll_id'];
-			$opin_id = $_GET['opin_id'];
-			$stance = $_GET['stance'];
-			$vote = $_GET['vote'];
+			// $opin_id = $_GET['opin_id'];
+			// $stance = $_GET['stance'];
+			// $vote = $_GET['vote'];
 		}
 
-		get_poll_results($conn, $poll_id, $opin_id, $stance, $vote);
+		get_poll_results($conn, $poll_id)//, $opin_id, $stance, $vote);
 	}
 	catch (PDOException $e)
 	{
@@ -27,7 +27,7 @@
 
 	$conn = null;
 
-	function get_poll_results($conn, $poll_id, $opin_id, $stance, $vote)
+	function get_poll_results($conn, $poll_id)//, $opin_id, $stance, $vote)
 	{
 		$query = "SELECT opin_name from opinions";
 		$query = $conn->prepare($query);
@@ -36,21 +36,28 @@
 
 		for($i = 0; $i < count($opinions); $i++)
 		{
-			print_r($opinions);
+			$query = 
+			"
+			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			from user_opin as uo
+			join poll_results as pr
+			on uo.user_id = pr.user_id
+			join opinions as op
+			on uo.opin_id = op.id
+			where uo.opin_name = " . $opinions[$i]['opin_name'] . "
+			and pr.poll_id = :poll_id
+			and pr.vote = 'y'
+			";	
 
-			// $query = 
-			// "
-			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
-			// from user_opin as uo
-			// join poll_results as pr
-			// on uo.user_id = pr.user_id
-			// join opinions as op
-			// on uo.opin_id = op.id
-			// where uo.opin_name = " . $opinions[0][$i] . "
-			// and uo.opinion = :stance
-			// and pr.poll_id = :poll_id
-			// and pr.vote = :vote;
-			// ";	
+			$query = $conn->prepare($query);
+			$query->bindparam(':poll_id', $poll_id);
+			$query->execute();
+
+			$results = $query->fetchall();
+
+			echo json_encode($results);
+
+
 		}
 
 		// $query = 
