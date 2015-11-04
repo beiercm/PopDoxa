@@ -51,7 +51,7 @@
 
 		$results = $query->fetchAll();
 		
-		for($i = 0; $i < count($results); $i++)
+		for($i = 0; $i < count($results[0]); $i++)
 		{
 			unset($results[0][$i]);
 		}
