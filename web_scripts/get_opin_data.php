@@ -50,10 +50,10 @@
 			$these_results = $query->fetchall();
 
 			//array_push($results, $these_results);
-			$results[$i]['category2'] = $these_results[$i][0];
-			$results[$i]['For'] = $these_results[$i][1];
-			$results[$i]['Against'] = $these_results[$i][2];
-			$results[$i]['Undecided'] = $these_results[$i][3];
+			$results[$i]['category2'] = $these_results[0][0];
+			$results[$i]['For'] = $these_results[0][2];
+			$results[$i]['Against'] = $these_results[1][2];
+			$results[$i]['Undecided'] = $these_results[2][2];
 
 
 		}
