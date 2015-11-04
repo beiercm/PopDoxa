@@ -49,12 +49,12 @@
 			$query->execute();
 			$these_results = $query->fetchall();
 
-			$i--;
+			$index = $i - 1;
 			//array_push($results, $these_results);
-			$results[$i]['category2'] = $these_results[0][0];
-			$results[$i]['Yes'] = $these_results[0][2];
-			$results[$i]['No'] = $these_results[1][2];
-			$results[$i]['Undecided'] = $these_results[2][2];
+			$results[$index]['category2'] = $these_results[0][0];
+			$results[$index]['Yes'] = $these_results[0][2];
+			$results[$index]['No'] = $these_results[1][2];
+			$results[$index]['Undecided'] = $these_results[2][2];
 		}
 
 		print_r($results);
