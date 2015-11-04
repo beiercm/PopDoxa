@@ -36,6 +36,8 @@
 
 		for($i = 0; $i < count($opinions); $i++)
 		{
+			echo json_encode($opinions[$i]['opin_name']);
+
 			$query = 
 			"
 			SELECT pr.poll_id, op.opin_name, count(uo.user_id), pr.vote
