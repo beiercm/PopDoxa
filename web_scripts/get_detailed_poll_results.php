@@ -56,6 +56,7 @@
 		// unset($results[3]);
 
 
+		print_r($results);
 		echo json_encode($results);
 
 
