@@ -20,8 +20,6 @@
 		$query->execute();
 		$opinions = $query->fetchall();
 
-		$results = [];
-
 		for($i = 1; $i <= count($opinions); $i++)
 		{
 			$query = "
