@@ -36,7 +36,7 @@
 
 		for($i = 0; $i < count($opinions); $i++)
 		{
-			echo $opinions[0][$i];
+			echo $opinions[0];
 
 			// $query = 
 			// "
