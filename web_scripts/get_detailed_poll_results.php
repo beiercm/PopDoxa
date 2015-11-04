@@ -50,7 +50,7 @@
 		$query->execute();
 
 		$results = $query->fetchAll();
-		unset($results['opin_name']);
+		unset($results[0][0]);
 		// unset($results[1]);
 		// unset($results[2]);
 		// unset($results[3]);
