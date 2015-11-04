@@ -1,9 +1,9 @@
 import random
 
 def gen_user_opins():
-	for i in range(1000):
+	for i in range(1, 1001):
 
-		for j in range(8):
+		for j in range(1, 9):
 			output = str(i) + ',' + str(j) + ','
 
 			c = random.randint(0, 3)
