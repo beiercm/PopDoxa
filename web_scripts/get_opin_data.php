@@ -20,7 +20,7 @@
 		$query->execute();
 		$opinions = $query->fetchall();
 
-		for($i = 1; $i <= count($opinions); $i++)
+		for($i = 1; $i <= 3; $i++)// count($opinions); $i++)
 		{
 			$query = "
 			SELECT op.opin_descrip, uo.opinion, count(uo.user_id)
