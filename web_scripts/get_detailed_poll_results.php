@@ -51,9 +51,9 @@
 
 		$results = $query->fetchAll();
 		unset($results[0]);
-		unset($results[1]);
-		unset($results[2]);
-		unset($results[3]);
+		// unset($results[1]);
+		// unset($results[2]);
+		// unset($results[3]);
 
 
 		echo json_encode($results);
