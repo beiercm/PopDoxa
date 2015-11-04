@@ -17,7 +17,7 @@
 			// $vote = $_GET['vote'];
 		}
 
-		get_poll_results($conn, $poll_id);//, $opin_id, $stance, $vote);
+		get_poll_results($conn, $poll_id)//, $opin_id, $stance, $vote);
 	}
 	catch (PDOException $e)
 	{
@@ -36,19 +36,40 @@
 
 		for($i = 0; $i < count($opinions); $i++)
 		{
-			echo json_encode($opinions[$i]['opin_name']);
-
 			$query = 
 			"
-			SELECT pr.poll_id, op.opin_name, count(uo.user_id), pr.vote
+			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
 			join opinions as op
-			on op.id = uo.opin_id
-			where op.id = " . $i . "
+			on uo.opin_id = op.id
+			where uo.opin_id = " . $i . "
+			and uo.opinion = 'f'
 			and pr.poll_id = :poll_id
 			and pr.vote = 'y'
+			UNION
+			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			from user_opin as uo
+			join poll_results as pr
+			on uo.user_id = pr.user_id
+			join opinions as op
+			on uo.opin_id = op.id
+			where uo.opin_id = " . $i . "
+			and uo.opinion = 'a'
+			and pr.poll_id = :poll_id
+			and pr.vote = 'y'
+			UNION
+			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			from user_opin as uo
+			join poll_results as pr
+			on uo.user_id = pr.user_id
+			join opinions as op
+			on uo.opin_id = op.id
+			where uo.opin_id = " . $i . "
+			and uo.opinion = 'n'
+			and pr.poll_id = :poll_id
+			and pr.vote = 'y';
 			";	
 
 			$query = $conn->prepare($query);
@@ -59,7 +80,7 @@
 
 			echo json_encode($results);
 
-
+			break;
 		}
 
 		// $query = 
