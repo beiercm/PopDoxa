@@ -126,6 +126,7 @@
 			$query->bindparam(':poll_id', $poll_id);
 			$query->execute();
 			$no_results = $query->fetchall();
+
 			$query = "
 			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
@@ -175,6 +176,8 @@
 			$results['yes'] = $yes_results;
 			$results['no'] = $no_results;
 			$results['undecided'] = $undecided_results;
+
+			print_r($results);
 
 			echo json_encode($results);
 
