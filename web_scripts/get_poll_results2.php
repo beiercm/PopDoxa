@@ -74,8 +74,15 @@
 			where uo.opin_id = " . $i . "
 			and uo.opinion = 'n'
 			and pr.poll_id = :poll_id
-			and pr.vote = 'y'
-			UNION
+			and pr.vote = 'y';
+			";
+
+			$query = $conn->prepare($query);
+			$query->bindparam(':poll_id', $poll_id);
+			$query->execute();
+			$yes_results = $query->fetchall();
+
+			$query = "
 			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
@@ -113,8 +120,13 @@
 			where uo.opin_id = " . $i . "
 			and uo.opinion = 'n'
 			and pr.poll_id = :poll_id
-			and pr.vote = 'n'
-			UNION
+			and pr.vote = 'n';
+			"
+			$query = $conn->prepare($query);
+			$query->bindparam(':poll_id', $poll_id);
+			$query->execute();
+			$no_results = $query->fetchall();
+			$query = "
 			SELECT op.opin_descrip, count(uo.user_id), uo.opinion, pr.vote
 			from user_opin as uo
 			join poll_results as pr
@@ -158,7 +170,11 @@
 			$query = $conn->prepare($query);
 			$query->bindparam(':poll_id', $poll_id);
 			$query->execute();
-			$results = $query->fetchall();
+			$undecided_results = $query->fetchall();
+
+			$results['yes'] = $yes_results;
+			$results['no'] = $no_results;
+			$results['undecided'] = $undecided_results;
 
 			echo json_encode($results);
 
