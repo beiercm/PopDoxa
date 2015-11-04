@@ -121,7 +121,7 @@
 			and uo.opinion = 'n'
 			and pr.poll_id = :poll_id
 			and pr.vote = 'n';
-			"
+			";
 			$query = $conn->prepare($query);
 			$query->bindparam(':poll_id', $poll_id);
 			$query->execute();
