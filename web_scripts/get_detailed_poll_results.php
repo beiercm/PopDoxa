@@ -50,10 +50,11 @@
 		$query->execute();
 
 		$results = $query->fetchAll();
-		unset($results[0][0]);
-		// unset($results[1]);
-		// unset($results[2]);
-		// unset($results[3]);
+		
+		for($i = 0; $i < count($results); $i++)
+		{
+			unset($results[0][$i]);
+		}
 
 
 		print_r($results);
