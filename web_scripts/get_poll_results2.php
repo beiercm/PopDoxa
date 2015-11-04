@@ -314,7 +314,6 @@
 			// break;
 		}
 
-		print_r($results);
 
 		echo json_encode($results);
 
