@@ -56,6 +56,8 @@
 			$results[$i]['Undecided'] = $these_results[2][2];
 		}
 
+		print_r($results);
+
 		unset($results);
 
 		$results[0]['category2'] = "NRA";
