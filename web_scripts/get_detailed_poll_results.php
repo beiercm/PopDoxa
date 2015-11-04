@@ -56,6 +56,9 @@
 			unset($results[0][$i]);
 		}
 
+		$results[0]['name'] = $results[0]['opin_name'];
+		unset($results[0]['opin_name']);
+
 
 		print_r($results);
 		echo json_encode($results);
