@@ -29,29 +29,53 @@
 
 	function get_poll_results($conn, $poll_id, $opin_id, $stance, $vote)
 	{
-		$query = 
-		"
-		SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
-		from user_opin as uo
-		join poll_results as pr
-		on uo.user_id = pr.user_id
-		join opinions as op
-		on uo.opin_id = op.id
-		where uo.opin_id = :opin_id
-		and uo.opinion = :stance
-		and pr.poll_id = :poll_id
-		and pr.vote = :vote;
-		";
+		$query = "SELECT opin_name from opinions";
 		$query = $conn->prepare($query);
-		$query->bindparam(':opin_id', $opin_id);
-		$query->bindparam(':poll_id', $poll_id);
-		$query->bindparam(':stance', $stance);
-		$query->bindparam(':vote', $vote);
 		$query->execute();
+		$opinions = $query->fetchall();
 
-		$results = $query->fetchAll();
+		for($i = 0; i < count($opinions); $i++)
+		{
+			echo $opinions[0][$i];
 
-		echo json_encode($results);
+			// $query = 
+			// "
+			// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			// from user_opin as uo
+			// join poll_results as pr
+			// on uo.user_id = pr.user_id
+			// join opinions as op
+			// on uo.opin_id = op.id
+			// where uo.opin_name = " . $opinions[0][$i] . "
+			// and uo.opinion = :stance
+			// and pr.poll_id = :poll_id
+			// and pr.vote = :vote;
+			// ";	
+		}
+
+		// $query = 
+		// "
+		// SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+		// from user_opin as uo
+		// join poll_results as pr
+		// on uo.user_id = pr.user_id
+		// join opinions as op
+		// on uo.opin_id = op.id
+		// where uo.opin_id = :opin_id
+		// and uo.opinion = :stance
+		// and pr.poll_id = :poll_id
+		// and pr.vote = :vote;
+		// ";
+		// $query = $conn->prepare($query);
+		// $query->bindparam(':opin_id', $opin_id);
+		// $query->bindparam(':poll_id', $poll_id);
+		// $query->bindparam(':stance', $stance);
+		// $query->bindparam(':vote', $vote);
+		// $query->execute();
+
+		// $results = $query->fetchAll();
+
+		// echo json_encode($results);
 
 
 		/*

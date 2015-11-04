@@ -48,7 +48,7 @@
 
 			echo $state;
 		}
-
+		
 		else if(!strcmp($county_id, "-1"))
 		{
 			$query = $conn->prepare("
@@ -66,5 +66,4 @@
 			echo $county;
 		}
 	}
-
 ?>
