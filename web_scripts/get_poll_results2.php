@@ -17,7 +17,7 @@
 			// $vote = $_GET['vote'];
 		}
 
-		get_poll_results($conn, $poll_id)//, $opin_id, $stance, $vote);
+		get_poll_results($conn, $poll_id);//, $opin_id, $stance, $vote);
 	}
 	catch (PDOException $e)
 	{
