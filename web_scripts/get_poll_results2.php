@@ -38,13 +38,12 @@
 		{
 			$query = 
 			"
-			SELECT op.opin_name, count(uo.user_id), uo.opinion, pr.vote
+			SELECT pr.poll_id, op.opin_name, count(uo.user_id), pr.vote
 			from user_opin as uo
 			join poll_results as pr
 			on uo.user_id = pr.user_id
 			join opinions as op
-			on uo.opin_id = op.id
-			where op.opin_name = " . $opinions[$i]['opin_name'] . "
+			on op.opin_name = . " $opinions[$i]['opin_name'] . "
 			and pr.poll_id = :poll_id
 			and pr.vote = 'y'
 			";	
