@@ -77,7 +77,8 @@ tables = {
 					create table if not exists opinions (
 					id INT(3) AUTO_INCREMENT PRIMARY KEY,
 					opin_name VARCHAR (30) NOT NULL,
-					opin_descrip VARCHAR (200) NOT NULL
+					opin_descrip VARCHAR (200) NOT NULL,
+					abbbr VARCHAR (4) NOT NULL
 					)
 					""",
 		'user_opin': 	"""
