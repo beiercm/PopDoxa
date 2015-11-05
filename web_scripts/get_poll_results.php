@@ -41,9 +41,14 @@
 		$stmt->execute();
 		$undecided_results = $stmt->fetchall();
 
-		$results['yes'] = $yes_results[0][0];
-		$results['no'] = $no_results[0][0];
-		$results['undecided'] = $undecided_results[0][0];
+		$results[0]['vote'] = 'Yes';
+		$results[0]['votes'] =  $yes_results[0][0];
+
+		$results[1]['vote'] = 'No';
+		$results[1]['votes'] =  $no_results[0][0];
+
+		$results[2]['vote'] = 'Undecided';
+		$results[2]['votes'] =  $undecided_results[0][0];
 
 		echo json_encode($results);
 
