@@ -54,7 +54,7 @@
 			$results[$index]['category2'] = $these_results[0][0];
 			$results[$index]['For'] = $these_results[0][2];
 			$results[$index]['Against'] = $these_results[1][2];
-			$results[$index]['Undecided'] = $these_results[2][2];
+			$results[$index]['Neutral'] = $these_results[2][2];
 		}
 		//unset($results);
 
