@@ -96,9 +96,7 @@
 		// from user_opin as u
 		// join opinions as op
 		// on uo.opin_id = op.i
-
-join poll_results as pr
-			on pr.user_id = uo.id					// and pr.poll_id = :poll
+	// and pr.poll_id = :poll
 		// and pr.vote = :vote;
 		// ";
 		// $query = $conn->prepare($query);
