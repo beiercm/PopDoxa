@@ -99,7 +99,7 @@ def help_screen():
 
 def main(*args):	
 	login_info = get_login_info()
-	os.chdir("/home/christopher/popdoxa/data")
+	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	#os.chdir("../data")
 	
 	if len(args) >= 1:
