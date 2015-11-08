@@ -42,9 +42,9 @@ def gen_poll_results(users, polls):
 					if vote == 1:
 						output += 'y'
 					elif vote == 2:
-						output += 'n'
-					else:
 						output += 'u'
+					else:
+						output += 'n'
 
 					print output
 					
