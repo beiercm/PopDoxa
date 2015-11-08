@@ -32,32 +32,35 @@
 		for($i = 1; $i <= count($opinions); $i++)
 		{
 			$query = "
-			SELECT op.opin_descrip, uo.opinion, count(uo.user_id)
-			from user_opin as uo
+			SELECT op.opin_descrip, count(pr.vote)
+			from poll_results as pr 
+			join user_opin as uo
+			on uo.user_id = pr.user_id
 			join opinions as op
-			on uo.opin_id = op.id
-			join poll_results as pr
-			on pr.user_id = uo.id	
-			where uo.opin_id = ". $i ."
+			where op.id = uo.opin_id
+			and pr.poll_id = :poll_id
 			and uo.opinion = 'f'
-			UNION
-			SELECT op.opin_descrip, uo.opinion, count(uo.user_id)
-			from user_opin as uo
+			and uo.opin_id = " . $i . "
+			union
+			SELECT op.opin_descrip, count(pr.vote)
+			from poll_results as pr 
+			join user_opin as uo
+			on uo.user_id = pr.user_id
 			join opinions as op
-			on uo.opin_id = op.id
-			join poll_results as pr
-			on pr.user_id = uo.id
-			where uo.opin_id = ". $i ."
+			where op.id = uo.opin_id
+			and pr.poll_id = :poll_id
 			and uo.opinion = 'a'
-			UNION
-			SELECT op.opin_descrip, uo.opinion, count(uo.user_id)
-			from user_opin as uo
+			and uo.opin_id = " . $i . "
+			union
+			SELECT op.opin_descrip, count(pr.vote)
+			from poll_results as pr 
+			join user_opin as uo
+			on uo.user_id = pr.user_id
 			join opinions as op
-			on uo.opin_id = op.id
-			join poll_results as pr
-			on pr.user_id = uo.id
-			where uo.opin_id = ". $i ."
-			and uo.opinion = 'n';
+			where op.id = uo.opin_id
+			and pr.poll_id = :poll_id
+			and uo.opinion = 'n'
+			and uo.opin_id = " . $i . ";
 			";
 
 			$query = $conn->prepare($query);
