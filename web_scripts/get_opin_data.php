@@ -64,6 +64,7 @@
 			";
 
 			$query = $conn->prepare($query);
+			$query->bindparam(':poll_id', $poll_id);
 			$query->execute();
 			$these_results = $query->fetchall();
 
