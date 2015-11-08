@@ -68,7 +68,6 @@
 			$query->execute();
 			$these_results = $query->fetchall();
 
-			print_r($these_results);
 
 			$index = $i - 1;
 			//array_push($results, $these_results);
