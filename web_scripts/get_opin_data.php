@@ -37,7 +37,7 @@
 			join opinions as op
 			on uo.opin_id = op.id
 			join poll_results as pr
-			on pr.user_id = uo.id
+			on pr.user_id = uo.id	
 			where uo.opin_id = ". $i ."
 			and uo.opinion = 'f'
 			UNION
@@ -96,7 +96,7 @@
 		// from user_opin as u
 		// join opinions as op
 		// on uo.opin_id = op.i
-	// and pr.poll_id = :poll
+		// and pr.poll_id = :poll_id
 		// and pr.vote = :vote;
 		// ";
 		// $query = $conn->prepare($query);
@@ -126,8 +126,6 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
-			join poll_results as pr
-			on pr.user_id = uo.id
 			and pr.poll_id = :poll_id;
 			";
 			$query = $conn->prepare($query);
@@ -142,8 +140,6 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
-			join poll_results as pr
-			on pr.user_id = uo.id
 			and pr.poll_id = :poll_id;
 			";
 			$query = $conn->prepare($query);
@@ -158,8 +154,6 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
-			join poll_results as pr
-			on pr.user_id = uo.id
 			and pr.poll_id = :poll_id;
 			";
 			$query = $conn->prepare($query);
