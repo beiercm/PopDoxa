@@ -12,7 +12,7 @@ def get_names(files):
 
 def gen_locations():
 
-	login_info = [e.strip() for e in list(open("login.txt"))]
+	login_info = [e.strip() for e in list(open("/home/christopher/login.txt"))]
 	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database = login_info[3])
 	cursor = cnx.cursor()
 
@@ -33,6 +33,8 @@ def gen_locations():
 
 	cursor.execute(query)
 	locations = cursor.fetchall()
+
+	print locations
 
 	return locations
 
@@ -72,7 +74,7 @@ def output(users):
 	print(users)
 
 def main():
-	os.chdir("../data")
+	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	names = get_names(['last.txt', 'male_first.txt', 'female_first.txt'])
 	locations = gen_locations()
 

@@ -54,7 +54,6 @@ def read_polls(cursor):
 
 	for poll in polls:
 		poll = poll.strip().split(',')
-		
 
 		query =		"""
 					INSERT INTO polls

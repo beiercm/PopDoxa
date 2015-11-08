@@ -143,7 +143,6 @@ tables = {
 					"""
 }
 
-
 def build_tables(table_list, cursor):
 	for table in table_list:
 		if table != 'build':
@@ -153,7 +152,6 @@ def build_tables(table_list, cursor):
 
 def build_all(cursor):
 	#for tables that either can't be built or need a specific order
-	print tables.keys()
 	do_not_build = ['poll_replies', 'counties', 'cities', 'build', 'replies']
 	for table in tables:
 		print("Building " + table + " table...")
