@@ -3,7 +3,16 @@
 
 	try {
 		
-		get_opin_data($conn);
+		if(PHP_SAPI === 'cli')
+		{
+			$poll_id = $argv[1];
+		}
+		else
+		{
+			$poll_id = $_GET['poll_id'];
+		}
+
+		get_opin_data($conn, $poll_id);
 	}
 	catch (PDOException $e)
 	{
@@ -13,7 +22,7 @@
 
 	$conn = null;
 
-	function get_opin_data($conn)
+	function get_opin_data($conn, $poll_id)
 	{
 		$query = "SELECT id from opinions";
 		$query = $conn->prepare($query);
@@ -27,6 +36,8 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
+			join poll_results as pr
+			on pr.user_id = uo.id
 			where uo.opin_id = ". $i ."
 			and uo.opinion = 'f'
 			UNION
@@ -34,6 +45,8 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
+			join poll_results as pr
+			on pr.user_id = uo.id
 			where uo.opin_id = ". $i ."
 			and uo.opinion = 'a'
 			UNION
@@ -41,6 +54,8 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
+			join poll_results as pr
+			on pr.user_id = uo.id
 			where uo.opin_id = ". $i ."
 			and uo.opinion = 'n';
 			";
@@ -81,7 +96,9 @@
 		// from user_opin as u
 		// join opinions as op
 		// on uo.opin_id = op.i
-		// and pr.poll_id = :poll_id
+
+join poll_results as pr
+			on pr.user_id = uo.id					// and pr.poll_id = :poll
 		// and pr.vote = :vote;
 		// ";
 		// $query = $conn->prepare($query);
@@ -111,6 +128,8 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
+			join poll_results as pr
+			on pr.user_id = uo.id
 			and pr.poll_id = :poll_id;
 			";
 			$query = $conn->prepare($query);
@@ -125,6 +144,8 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
+			join poll_results as pr
+			on pr.user_id = uo.id
 			and pr.poll_id = :poll_id;
 			";
 			$query = $conn->prepare($query);
@@ -139,6 +160,8 @@
 			from user_opin as uo
 			join opinions as op
 			on uo.opin_id = op.id
+			join poll_results as pr
+			on pr.user_id = uo.id
 			and pr.poll_id = :poll_id;
 			";
 			$query = $conn->prepare($query);
