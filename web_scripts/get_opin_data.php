@@ -32,7 +32,7 @@
 		for($i = 1; $i <= count($opinions); $i++)
 		{
 			$query = "
-			SELECT op.opin_descrip, count(pr.vote)
+			SELECT op.opin_descrip, uo.opinion, count(pr.vote)
 			from poll_results as pr 
 			join user_opin as uo
 			on uo.user_id = pr.user_id
@@ -42,7 +42,7 @@
 			and uo.opinion = 'f'
 			and uo.opin_id = " . $i . "
 			union
-			SELECT op.opin_descrip, count(pr.vote)
+			SELECT op.opin_descrip, uo.opinion, count(pr.vote)
 			from poll_results as pr 
 			join user_opin as uo
 			on uo.user_id = pr.user_id
@@ -52,7 +52,7 @@
 			and uo.opinion = 'a'
 			and uo.opin_id = " . $i . "
 			union
-			SELECT op.opin_descrip, count(pr.vote)
+			SELECT op.opin_descrip, uo.opinion, count(pr.vote)
 			from poll_results as pr 
 			join user_opin as uo
 			on uo.user_id = pr.user_id
