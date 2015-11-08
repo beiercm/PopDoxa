@@ -11,7 +11,7 @@ def normalize_unicode(lists):
 	return new_list
 
 def gen_locations(level, state):
-	login_info = [e.strip() for e in list(open("login.txt"))]
+	login_info = [e.strip() for e in list(open("/home/christopher/login.txt"))]
 	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database = login_info[3])
 	cursor = cnx.cursor()
 
