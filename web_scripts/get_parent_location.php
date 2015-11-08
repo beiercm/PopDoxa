@@ -43,10 +43,6 @@
 			$query->bindparam(':county_id', $county_id);
 			$query->execute();
 			$results = $query->fetchAll();
-
-			$state = ucwords($results[0]['name']);
-
-			echo $state;
 		}
 		
 		else if(!strcmp($county_id, "-1"))
@@ -60,10 +56,8 @@
 			$query->bindparam(':city_id', $city_id);
 			$query->execute();
 			$results = $query->fetchAll();
-
-			$county = ucwords($results[0]['name']);
-
-			echo $county;
 		}
+
+		echo json_encode($results);
 	}
 ?>
