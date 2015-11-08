@@ -70,6 +70,7 @@ def read_poll_results(cursor):
 	for line in pr_file:
 		line = line.strip().split(',')
 		line[len(line) - 1] = line[len(line) - 1].strip()
+		print line
 
 		query = """
 				INSERT INTO poll_results
