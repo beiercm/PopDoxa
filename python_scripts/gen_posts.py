@@ -11,7 +11,7 @@ def normalize_unicode(lists):
 	return new_list
 
 def gen_locations(level, state):
-	login_info [e.strip() for e in list(open("login.txt"))]
+	login_info = [e.strip() for e in list(open("login.txt"))]
 	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database = login_info[3])
 	cursor = cnx.cursor()
 
@@ -69,18 +69,19 @@ def gen_post():
 		if CITY:
 			loc = gen_locations("CITY", state)
 			loc = loc[random.randint(0, len(loc)-1)]
-			state = loc[0]
-			county = loc[1]
+			state = -1
+			county = -1
 			city = loc[2]
 
 		elif COUNTY:
 			loc = gen_locations("COUNTY", state)
 			loc = loc[random.randint(0, len(loc) - 1)]
-			state = loc[0]
+			state = -1
 			county = loc[1]
 			city = -1
 
 		else:
+			state = 9
 			county = -1
 			city = -1
 
