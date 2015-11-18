@@ -40,7 +40,7 @@
 			where posts.state = users.state
 			or posts.county = users.county
 			or posts.city = users.city
-			and users.id = 1;
+			and users.id = :user_id;
 			";
 
 		$query = $conn->prepare($query);
