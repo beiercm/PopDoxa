@@ -8,7 +8,7 @@
 	{
 		$stmt = "SELECT name,id FROM states";
 
-		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+		$sth = $conn->prepare($stmt);
 		$sth->execute();
 		$result = $sth->fetchAll();
 
