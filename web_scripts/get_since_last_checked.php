@@ -52,7 +52,7 @@
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_id', $user_id);
 		$query->execute();
-		$posts_results = $query->fetchall();
+		$post_results = $query->fetchall();
 
 		$results['polls'] = $poll_results;
 		$results['posts'] = $post_results;
