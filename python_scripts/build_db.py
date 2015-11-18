@@ -31,8 +31,6 @@ def get_connec(tables, login_info):
 	except mysql.connector.Error as err:
 		print(err)
 
-
-
 def kill_database(confirm, login_info):
 	if confirm != "Yes":
 		confirm = raw_input("This will drop the entire database, 'Yes' to continue\n")
@@ -51,10 +49,6 @@ def kill_table(table, cursor):
 
 def parse_args(tables, login_info):
 	valid_tables = bt.tables.keys()
-
-	if "help" in tables or len(tables) < 1:
-		help_screen()
-		return
 
 	if "backup" in tables:
 		cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database=login_info[3])
@@ -88,15 +82,6 @@ def parse_args(tables, login_info):
 	print("Successfully parsed input tables\n")
 	return True
 	
-
-def help_screen():
-	print(	"""
-			'drop all' to wipe database
-			'build all' to build entire database, requires there to be no tables
-			'build <valid table>'' to build a table (users, votes, etc)
-			"""
-		)
-
 def main(*args):	
 	login_info = get_login_info()
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
@@ -107,7 +92,5 @@ def main(*args):
 			return
 		else:
 			get_connec(args[0][1::], login_info)
-	else:
-		print("Please add arguments or add 'help'")
 
 main(sys.argv)
