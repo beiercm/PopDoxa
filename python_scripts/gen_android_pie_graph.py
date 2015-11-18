@@ -1,4 +1,4 @@
-from pylab import *
+#from pylab import *
 import get_connection as gc
 
 conn = gc.connection()
