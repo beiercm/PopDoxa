@@ -1,0 +1,16 @@
+SELECT states.name, states.id, counties.name, counties.id
+FROM states
+JOIN counties
+ON counties.state_id = states.id
+FROM counties
+JOIN cities
+ON cities.county_id = counties.id
+WHERE cities.id = 1;
+
+SELECT counties.name, counties.id
+FROM counties
+JOIN cities
+ON cities.county_id = counties.id
+FOM states
+JOIN counties
+WHERE cities.id = 1;
