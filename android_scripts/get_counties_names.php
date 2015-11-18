@@ -13,7 +13,7 @@
 	get_counties_name($conn, $state_id);
 	$conn = null;
 	
-	function get_counties_name($conn, $stat_id)
+	function get_counties_name($conn, $state_id)
 	{
 		$stmt = "SELECT name,id FROM counties";
 
