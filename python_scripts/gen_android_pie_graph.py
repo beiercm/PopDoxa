@@ -1,8 +1,18 @@
-#from pylab import *
+from pylab import *
 import get_connection as gc
 
 conn = gc.connection()
 cursor = conn.cursor()
+
+def gen_pie_graph(results):
+	figure(1, figsize=(6, 6))
+
+	ax = axes([0.1, 0.1, 0.8, 0.8])
+
+# The slices will be ordered and plotted counter-clockwise.
+	labels = 'yes', 'no', 'undecided'
+	fracs = (results[0][1], results[1][1], results[2][1])
+
 
 # make a square figure and axes
 def get_results(poll_id):
@@ -25,14 +35,13 @@ def get_results(poll_id):
 
 	cursor.execute(query)
 
-	yes_results = cursor.fetchall()
+	results = cursor.fetchall()
 
-	print yes_results
+	return results
 	
 
 def main():
-	
-
-	get_results(1)
+	results = get_results(1)
+	gen_pie_graph(results)
 
 main()	
