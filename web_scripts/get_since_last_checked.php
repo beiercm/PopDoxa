@@ -24,7 +24,7 @@
 	function get_since_last_checked($conn, $user_id)
 	{
 		$query = "
-			SELECT polls.question, polls.id
+			SELECT DISTINCT polls.question, polls.id
 			from polls
 			join users
 			on polls.ts > users.last_checked
@@ -39,7 +39,7 @@
 		$poll_results = $query->fetchall();
 
 		$query = "
-			SELECT posts.title, posts.id
+			SELECT DISTINCT posts.title, posts.id
 			from posts
 			join users
 			on posts.ts > users.last_checked
