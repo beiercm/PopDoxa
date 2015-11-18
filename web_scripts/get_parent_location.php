@@ -48,10 +48,13 @@
 		else if(!strcmp($county_id, "-1"))
 		{
 			$query = $conn->prepare("
-				SELECT counties.name, counties.id 
+				SELECT states.name, states.id, counties.name, counties.id 
 				FROM cities 
 				JOIN counties
 				ON cities.county_id = counties.id
+				FROM states
+				JOIN counties
+				ON counties.state_id = states.id
 				WHERE cities.id = :city_id");
 			$query->bindparam(':city_id', $city_id);
 			$query->execute();
