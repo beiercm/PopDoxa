@@ -31,7 +31,7 @@
 			where polls.state = users.state
 			or polls.county = users.county
 			or polls.city = users.city
-			and users.id = 1
+			and users.id = :user_id
 			UNION
 			SELECT posts.title, posts.id
 			from posts
