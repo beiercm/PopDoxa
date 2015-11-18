@@ -31,8 +31,14 @@
 			where polls.state = users.state
 			or polls.county = users.county
 			or polls.city = users.city
-			and users.id = :user_id
-			UNION
+			and users.id = :user_id;
+			";
+		$query = $conn->prepare($query);
+		$query->bindparam(':user_id', $user_id);
+		$query->execute();
+		$poll_results = $query->fetchall();
+
+		$query = "
 			SELECT posts.title, posts.id
 			from posts
 			join users
@@ -46,7 +52,10 @@
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_id', $user_id);
 		$query->execute();
-		$results = $query->fetchall();
+		$posts_results = $query->fetchall();
+
+		$results['polls'] = $poll_results;
+		$results['posts'] = $post_results;
 
 		echo json_encode($results);
 	}
