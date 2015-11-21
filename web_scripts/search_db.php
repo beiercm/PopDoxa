@@ -33,7 +33,7 @@
 
 		for($i = 0; $i < count($results); $i++)	
 			if(strpos(strtolower($results[$i]['title']), strtolower($keyword)) !== false)
-				$post_results[$results[$i]['id']] = $results[$i]['title'];
+				array_push($post_results, $results[$i]);
 
 		$stmt = "SELECT id, question from polls;";
 
@@ -45,7 +45,7 @@
 
 		for($i = 0; $i < count($results); $i++)	
 			if(strpos(strtolower($results[$i]['question']), strtolower($keyword)) !== false)
-				$poll_results[$results[$i]['id']] = $results[$i]['question'];
+				array_push($poll_results, $results[$i]);
 
 		$to_return['posts'] = $post_results;
 		$to_return['polls'] = $poll_results;
