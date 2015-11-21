@@ -58,6 +58,12 @@
 			$query->bindparam(':city_id', $city_id);
 			$query->execute();
 			$results = $query->fetchAll();
+
+			$to_return['state'] = $results[0][0];
+			$to_return['state_id'] = $results[0][1];
+			$to_return['county'] = $results[0][2];
+			$to_return['county_id'] = $results[0][3];
+			$results = $to_return;
 		}
 
 		echo json_encode($results);

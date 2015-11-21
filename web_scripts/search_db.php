@@ -4,14 +4,14 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$county = $argv[1];
+			$keyword = $argv[1];
 		}
 		else
 		{
-			$county = $_GET['county'];
+			$keyword = $_GET['keyword'];
 		}
 
-		get_urls($conn, $county);
+		search_posts($conn, $keyword);
 	}
 	catch (PDOException $e)
 	{
@@ -21,30 +21,18 @@
 
 	$conn = null;
 
-	function get_urls($conn, $county)
+	function search_posts($conn, $keyword)
 	{
+		$stmt = "SELECT id, title from posts;";
 
-		$stmt = "SELECT name, id FROM cities where county_id = :county";
+		$stmt = $conn->prepare($stmt);
+		$stmt->execute();
+		$results = $stmt->fetchall();
 
-		$sth = $conn->prepare($stmt);
-		$sth->bindparam(':county', $county);
-		$sth->execute();
-		$result = $sth->fetchAll();
+		for($i = 0; $i < count($results); $i++)	
+			if(strpos($results[$i]['title'], $keyword) !== false)
+				$to_return[$results[$i]['id']] = $results[$i]['title'];
 
-		$length = count($result);
-
-		for($i = 0; $i < $length; $i++)
-		{
-			$city = $result[$i][0];
-
-			$url = "http://10.171.204.135/city.html?topic=" . $result[$i]['id'];
-			$city = str_replace("_", " ", $result[$i]['name']);
-
-			$city = ucwords($city);
-			//echo $city ."\n". $url . $city . "\n";
-			echo 		"<a href = " . $url . " class='list-group-item'>"
-				 		. $city .
-				 		"</a>";
-		}		
+		echo json_encode($to_return);
 	}
 ?>
