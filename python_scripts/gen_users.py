@@ -34,8 +34,6 @@ def gen_locations():
 	cursor.execute(query)
 	locations = cursor.fetchall()
 
-	print locations
-
 	return locations
 
 def gen_user(names, locations, n):
@@ -69,9 +67,8 @@ def gen_user(names, locations, n):
 		print(user)
 		users.append(user)
 
-
-def output(users):
-	print(users)
+	for user in users:
+		print user
 
 def main():
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
