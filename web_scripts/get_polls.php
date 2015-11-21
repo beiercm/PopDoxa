@@ -172,12 +172,16 @@
 				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
 				from polls 
 				join users 
-				on polls.author = users.id 
-				where polls.city = :city_id 
+				on polls.author = users.id
+				join poll_results as pr
+				on polls.id = pr.poll_id
+				where pr.user_id = :user_id
+				AND polls.city = :city_id 
 				ORDER BY ". $order_by
 				);
 
 			$query->bindparam(':city_id', $city_id);
+			$query->bindparam(':user_id', $user_id);
 
 		}
 
@@ -188,13 +192,17 @@
 				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
 				from polls 
 				join users 
-				on polls.author = users.id 
-				where polls.state = :state_id 
+				on polls.author = users.id
+				join poll_results as pr
+				on polls.id = pr.poll_id
+				where pr.user_id = :user_id
+				and polls.state = :state_id 
 				AND polls.county = -1
 				ORDER BY ". $order_by
 				);
 
 			$query->bindparam(':state_id', $state_id);
+			$query->bindparam(':user_id', $user_id);
 		}
 
 		$query->execute();
@@ -233,16 +241,21 @@
 		{
 			$query= $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
-				from polls 
-				join users 
-				on polls.author = users.id 
-				where polls.county = :county_id 
+				SELECT users.username, polls.question,polls.id,polls.votes,polls.ts, pr.vote
+				from polls
+				join users
+				on users.id = polls.author
+				left join poll_results as pr
+				on pr.user_id = :user_id
+				and pr.poll_id = polls.id
+				where pr.vote IS NULL
+				AND polls.county = :county_id 
 				AND polls.city = -1
 				ORDER BY ". $order_by
 				);
 
 			$query->bindparam(':county_id', $county_id);
+			$query->bindparam(':user_id', $user_id);
 			
 		}
 
@@ -250,15 +263,20 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
-				from polls 
-				join users 
-				on polls.author = users.id 
-				where polls.city = :city_id 
+				SELECT users.username, polls.question,polls.id,polls.votes,polls.ts, pr.vote
+				from polls
+				join users
+				on users.id = polls.author
+				left join poll_results as pr
+				on pr.user_id = :user_id
+				and pr.poll_id = polls.id
+				where pr.vote IS NULL
+				AND polls.city = :city_id 
 				ORDER BY ". $order_by
 				);
 
 			$query->bindparam(':city_id', $city_id);
+			$query->bindparam(':user_id', $user_id);
 
 		}
 
@@ -266,16 +284,21 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
-				from polls 
-				join users 
-				on polls.author = users.id 
-				where polls.state = :state_id 
+				SELECT users.username, polls.question,polls.id,polls.votes,polls.ts, pr.vote
+				from polls
+				join users
+				on users.id = polls.author
+				left join poll_results as pr
+				on pr.user_id = :user_id
+				and pr.poll_id = polls.id
+				where pr.vote IS NULL
+				and polls.state = :state_id 
 				AND polls.county = -1
 				ORDER BY ". $order_by
 				);
 
 			$query->bindparam(':state_id', $state_id);
+			$query->bindparam(':user_id', $user_id);
 		}
 
 		$query->execute();
