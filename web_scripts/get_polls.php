@@ -29,9 +29,15 @@
 				$sort_by = $_GET['sort_by'];
 			else
 				$sort_by = 'default';
-		}
 
-		get_polls($conn, $state, $county, $city, $sort_by);
+			if(isset($_GET['voted']))
+				get_voted_polls($conn, $state, $county, $city, $sort_by, $_GET['user_id']);
+
+			else if(isset($_GET['not_voted']))
+				get_not_voted_polls($conn, $state, $county, $city, $sort_by, $_GET['user_id']);
+			else
+				get_all_polls($conn, $state, $county, $city, $sort_by);
+		}
 	}
 	catch (PDOException $e)
 	{
@@ -40,8 +46,173 @@
 	}
 
 	$conn = null;
+	function get_all_polls($conn, $state_id, $county_id, $city_id, $sort_by)
+	{
+		switch($sort_by) {
+			case "title":
+				$order_by = "polls.title ASC";
+				break;
 
-	function get_polls($conn, $state_id, $county_id, $city_id, $sort_by)
+			case "votes":
+				$order_by = "polls.votes DESC";
+				break;
+
+			default:
+				$order_by = "polls.ts DESC";
+				break;
+		}
+
+
+		if($county_id != -1)
+		{
+			$query= $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				from polls 
+				join users 
+				on polls.author = users.id 
+				where polls.county = :county_id 
+				AND polls.city = -1
+				ORDER BY ". $order_by
+				);
+
+			$query->bindparam(':county_id', $county_id);
+			
+		}
+
+		if($city_id != -1)
+		{
+			$query = $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				from polls 
+				join users 
+				on polls.author = users.id 
+				where polls.city = :city_id 
+				ORDER BY ". $order_by
+				);
+
+			$query->bindparam(':city_id', $city_id);
+
+		}
+
+		if($county_id == -1 && $city_id == -1)
+		{
+			$query = $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				from polls 
+				join users 
+				on polls.author = users.id 
+				where polls.state = :state_id 
+				AND polls.county = -1
+				ORDER BY ". $order_by
+				);
+
+			$query->bindparam(':state_id', $state_id);
+		}
+
+		$query->execute();
+
+		$result = $query->fetchAll();
+
+		for($i = 0; $i < count($result); $i++)
+		{
+			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $result[$i]['id'];
+
+				echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
+						<br>" . $result[$i]['username'] . "</td>
+					<td>". $result[$i]['votes'] . "</td>
+					<td>" . $result[$i]['ts'] . "</td></tr>";
+		}
+	}
+
+	function get_voted_polls($conn, $state_id, $county_id, $city_id, $sort_by)
+	{
+		switch($sort_by) {
+			case "title":
+				$order_by = "polls.title ASC";
+				break;
+
+			case "votes":
+				$order_by = "polls.votes DESC";
+				break;
+
+			default:
+				$order_by = "polls.ts DESC";
+				break;
+		}
+
+
+		if($county_id != -1)
+		{
+			$query= $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				from polls 
+				join users 
+				on polls.author = users.id
+				join poll_results as pr
+				on polls.id = pr.poll_id
+				where pr.user_id = :user_id
+				AND polls.county = :county_id 
+				AND polls.city = -1
+				ORDER BY ". $order_by
+				);
+
+			$query->bindparam(':county_id', $county_id);
+			$query->bindparam(':user_id', $user_id);
+			
+		}
+
+		if($city_id != -1)
+		{
+			$query = $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				from polls 
+				join users 
+				on polls.author = users.id 
+				where polls.city = :city_id 
+				ORDER BY ". $order_by
+				);
+
+			$query->bindparam(':city_id', $city_id);
+
+		}
+
+		if($county_id == -1 && $city_id == -1)
+		{
+			$query = $conn->prepare(
+				"
+				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				from polls 
+				join users 
+				on polls.author = users.id 
+				where polls.state = :state_id 
+				AND polls.county = -1
+				ORDER BY ". $order_by
+				);
+
+			$query->bindparam(':state_id', $state_id);
+		}
+
+		$query->execute();
+
+		$result = $query->fetchAll();
+
+		for($i = 0; $i < count($result); $i++)
+		{
+			$url = "http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" . $result[$i]['id'];
+
+				echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
+						<br>" . $result[$i]['username'] . "</td>
+					<td>". $result[$i]['votes'] . "</td>
+					<td>" . $result[$i]['ts'] . "</td></tr>";
+		}
+	}
+
+	function get_not_voted_polls($conn, $state_id, $county_id, $city_id, $sort_by)
 	{
 		switch($sort_by) {
 			case "title":
@@ -123,3 +294,4 @@
 	}
 
 ?>
+
