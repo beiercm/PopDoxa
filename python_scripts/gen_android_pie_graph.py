@@ -4,10 +4,6 @@ import get_connection as gc
 conn = gc.connection()
 cursor = conn.cursor()
 
-class Poll(object):
-
-	def __init__
-
 def gen_pie_graph(results):
 	figure(1, figsize=(6, 6))
 
@@ -52,6 +48,8 @@ def get_results(poll_id):
 	cursor.execute(query)
 
 	results = cursor.fetchall()
+
+	print results
 
 	return results
 	

@@ -1,7 +1,7 @@
 import random, os
 
 def read_data(file_name):
-	os.chdir("../data")
+	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	input_file = open(file_name)
 
 	lang_dict = {}
