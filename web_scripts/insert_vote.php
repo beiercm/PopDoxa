@@ -19,7 +19,7 @@
 
 	function insert_vote($conn, $user_id, $poll_id, $vote)
 	{
-		$stmt = $conn->prepare("INSERT INTO poll_results (user_id, poll_id, vote) VALUES (:user_id,:poll_id,:vote;");
+		$stmt = $conn->prepare("INSERT INTO poll_results (user_id, poll_id, vote) VALUES (:user_id,:poll_id,:vote);");
 		$stmt->bindparam(':user_id', $user_id);
 		$stmt->bindparam(':poll_id', $poll_id);
 		$stmt->bindparam(':vote', $vote);
