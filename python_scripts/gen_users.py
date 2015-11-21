@@ -64,11 +64,8 @@ def gen_user(names, locations, n):
 		city = location[2]
 
 		user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
-		print(user)
-		users.append(user)
-
-	for user in users:
 		print user
+		users.append(user)
 
 def main():
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
