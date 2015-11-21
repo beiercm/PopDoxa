@@ -127,7 +127,7 @@
 		}
 	}
 
-	function get_voted_polls($conn, $state_id, $county_id, $city_id, $sort_by)
+	function get_voted_polls($conn, $state_id, $county_id, $city_id, $sort_by, $user_id)
 	{
 		switch($sort_by) {
 			case "title":
@@ -220,7 +220,7 @@
 		}
 	}
 
-	function get_not_voted_polls($conn, $state_id, $county_id, $city_id, $sort_by)
+	function get_not_voted_polls($conn, $state_id, $county_id, $city_id, $sort_by, $user_id)
 	{
 		switch($sort_by) {
 			case "title":
