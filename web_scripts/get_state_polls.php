@@ -15,7 +15,7 @@
 
 	function get_states($conn)
 	{
-		$stmt = "SELECT name FROM states";
+		$stmt = "SELECT name, id FROM states";
 
 		$sth = $conn->prepare($stmt, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 		$sth->execute();
@@ -25,9 +25,10 @@
 
 		for($i = 0; $i < $length; $i++)
 		{
-			$state = $result[$i][0];
+			$state = $result[$i]['name'];
+			$id = $result[$i]['id'];
 
-			$url = "http://10.171.204.135/state-polls.html?topic=" . $state;
+			$url = "http://10.171.204.135/state-polls.html?topic=" . $id;
 			//echo $county ."\n". $url . $county . "\n";
 
 			$state = str_replace("_", " ", $state);

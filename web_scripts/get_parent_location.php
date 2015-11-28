@@ -54,7 +54,7 @@
 				ON counties.state_id = states.id
 				JOIN cities
 				ON cities.county_id = counties.id
-				WHERE cities.id = 1;");
+				WHERE cities.id = :city_id;");
 			$query->bindparam(':city_id', $city_id);
 			$query->execute();
 			$results = $query->fetchAll();
