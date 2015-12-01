@@ -28,7 +28,7 @@
 
 	function insert_poll_reply($conn, $author, $content, $poll)
 	{
-		$stmt = $conn->prepare("INSERT INTO replies (author, content, poll_id) VALUES (:author, :content,:poll);");
+		$stmt = $conn->prepare("INSERT INTO poll_replies (author, content, poll_id) VALUES (:author, :content,:poll);");
 		$stmt->bindparam(':author', $author);
 		$stmt->bindparam(':content', $content);
 		$stmt->bindparam(':poll', $poll);
