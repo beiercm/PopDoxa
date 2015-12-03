@@ -1,5 +1,7 @@
 from pylab import *
 import get_connection as gc
+import sys
+import random
 
 conn = gc.connection()
 cursor = conn.cursor()
@@ -22,9 +24,16 @@ def gen_pie_graph(results):
 
 	title('Poll 1', bbox={'facecolor':'0.8', 'pad':5})
 
+	name = str(random.randint(1000, 1000000))
+	name += '.png'
+	path = '/var/www/html/graphs/poll_2.png'
 
 	#show()
-	savefig('poll_2.png')
+	savefig(path + name)
+
+	result = {'name' : name}
+
+	print json.dumps(result)
 
 # make a square figure and axes
 def get_results(poll_id):
@@ -55,7 +64,7 @@ def get_results(poll_id):
 	
 
 def main():
-	results = get_results(1)
+	results = get_results(sys.argv[1])
 	gen_pie_graph(results)
 
 main()	
