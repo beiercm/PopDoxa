@@ -6,18 +6,9 @@
 		$author = $_GET['author'];
 		$question = $_GET['question'];
 
-		if(isset($_GET['state']))
-				$state = $_GET['state'];
-			else $state = -1;
-			
-			if(isset($_GET['county']))
-				$county = $_GET['county'];	
-			else
-				$county = -1;
-			
-			if(isset($_GET['city']))
-				$city = $_GET['city'];
-			else $city = -1;
+		$state = isset($_GET['state'])) ? $_GET['state'] : -1;
+		$county = isset($_GET['county'])) ? $_GET['county'] : -1;
+		$city = isset($_GET['city'])) ? $_GET['city'] : -1;
 
 		insert_poll($conn, $author, $question, $state, $county, $city);
 	}
