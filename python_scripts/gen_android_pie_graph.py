@@ -4,6 +4,7 @@ from pylab import *
 import get_connection as gc
 import sys
 import random
+import json
 
 conn = gc.connection()
 cursor = conn.cursor()
