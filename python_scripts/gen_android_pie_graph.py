@@ -25,7 +25,7 @@ def gen_pie_graph(results):
 
 	title('Poll 1', bbox={'facecolor':'0.8', 'pad':5})
 
-	name = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
+	name = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(10))
 	name += '.png'
 	path = '/var/www/html/graphs/'
 
