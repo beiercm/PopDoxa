@@ -19,7 +19,7 @@
 				$city = $_GET['city'];
 			else $city = -1;
 
-		insert_post($conn, $author, $question, $state, $county, $city);
+		insert_poll($conn, $author, $question, $state, $county, $city);
 	}
 	catch (PDOException $e)
 	{
@@ -29,11 +29,11 @@
 
 	$conn = null;
 
-	function insert_post($conn, $author, $question, $content, $state, $county, $city)
+	function insert_poll($conn, $author, $question, $content, $state, $county, $city)
 	{
-		echo $state;
-
-		$stmt = $conn->prepare("INSERT INTO polls (author, question, state, county, city) VALUES (:author,:question,:state,:county,:city);");
+		$query = "INSERT INTO polls (author, question, state, county, city) VALUES (:author,:question,:state,:county,:city);";
+		echo $query;
+		$stmt = $conn->prepare($query);
 		$stmt->bindparam(':author', $author);
 		$stmt->bindparam(':question', $question);
 		$stmt->bindparam(':state', $state);
