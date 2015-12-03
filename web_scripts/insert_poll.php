@@ -31,8 +31,9 @@
 
 	function insert_poll($conn, $author, $question, $content, $state, $county, $city)
 	{
+		echo $city;
 		$query = "INSERT INTO polls (author, question, state, county, city) VALUES (:author,:question,:state,:county,:city);";
-		echo $query;
+		
 		$stmt = $conn->prepare($query);
 		$stmt->bindparam(':author', $author);
 		$stmt->bindparam(':question', $question);
