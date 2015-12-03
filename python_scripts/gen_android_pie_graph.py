@@ -1,3 +1,5 @@
+import matplotlib as mpl
+mpl.use('Agg')
 from pylab import *
 import get_connection as gc
 import sys
