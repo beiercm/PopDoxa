@@ -26,6 +26,6 @@
 		$result = shell_exec('sudo python /home/christopher/popdoxa/PopDoxa/python_scripts/gen_android_pie_graph.py ' . escapeshellarg(json_encode($poll_id)));
 		$resultData = json_decode($result, true);
 
-		echo $resultData;
+		echo $resultData['name'];
 	}	
 ?>
