@@ -1,5 +1,5 @@
 <?php
-	$con=mysqli_connect("localhost", "my_user", "my_password", "my_db");
+	include 'get_connection.php';
 	
 	$first = $_POST["first"];
 	$last = $_POST["last"];
