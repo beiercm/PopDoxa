@@ -1,5 +1,5 @@
 <?php
-	$con=mysqli_connect("localhost", "my_user", "my_password", "my_db");
+	include 'get_connection.php';
 	
 	$username = $_POST["username"]; 
 	$password = $_POST["password"];
