@@ -35,9 +35,6 @@ def gen_pie_graph(results):
 	savefig(path + name)
 
 	result = {'name' : name}
-	print name
-	print path
-
 	print json.dumps(result)
 
 # make a square figure and axes
@@ -62,9 +59,6 @@ def get_results(poll_id):
 	cursor.execute(query)
 
 	results = cursor.fetchall()
-
-	print results
-
 	return results
 	
 
