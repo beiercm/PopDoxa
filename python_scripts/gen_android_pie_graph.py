@@ -35,6 +35,8 @@ def gen_pie_graph(results):
 	savefig(path + name)
 
 	result = {'name' : name}
+	print name
+	print path
 
 	print json.dumps(result)
 
