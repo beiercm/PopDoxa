@@ -23,7 +23,7 @@
 
 	function get_poll_id($conn, $poll_id)
 	{
-		$result = shell_exec('python /home/christopher/popdoxa/PopDoxa/python_scripts/gen_android_pie_graph.py ', . $poll_id);
+		$result = shell_exec('python /home/christopher/popdoxa/PopDoxa/python_scripts/gen_android_pie_graph.py ' . $poll_id);
 		$result = json_decode($result, true);
 
 		var_dump($result);
