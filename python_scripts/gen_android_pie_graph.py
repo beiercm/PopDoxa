@@ -28,7 +28,7 @@ def gen_pie_graph(results):
 
 	name = str(random.randint(1000, 1000000))
 	name += '.png'
-	path = '/var/www/html/graphs/poll_2.png'
+	path = '/var/www/html/graphs/'
 
 	#show()
 	savefig(path + name)
