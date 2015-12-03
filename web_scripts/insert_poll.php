@@ -10,6 +10,8 @@
 		$county = isset($_GET['county']) ? $_GET['county'] : -1;
 		$city = isset($_GET['city']) ? $_GET['city'] : -1;
 
+		echo $city;
+
 		insert_poll($conn, $author, $question, $state, $county, $city);
 	}
 	catch (PDOException $e)
