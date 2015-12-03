@@ -69,7 +69,7 @@ def get_results(poll_id):
 	
 
 def main():
-	results = get_results(sys.argv[1])
+	results = get_results(json.loads(sys.argv[1]))
 	gen_pie_graph(results)
 
 main()	
