@@ -13,14 +13,13 @@ def kill_database(cursor):
 		print("Database successfully dropped\n")
 
 def rebuild(cursor):
-	if "rebuild" in tables:
-		try:
-			kill_database("Yes", login_info)
-		except Exception as e:
-			print e
+	try:
+		kill_database(cursor)
+	except Exception as e:
+		print e
 
-		create_db(login_info)
-		bt.build_all(cursor)
+	create_db(cursor)
+	bt.build_all(cursor)
 
 def main(*args):	
 	conn = gc.connection()
