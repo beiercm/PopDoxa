@@ -16,6 +16,8 @@ def gen_pie_graph(title, results):
 	labels = 'yes', 'no', 'undecided'
 	fracs = (results[0][1], results[1][1], results[2][1])
 
+	print title
+
 	pie(fracs, explode=None, labels=labels,
                 autopct='%1.1f%%', shadow=True, startangle=90)
                 # The default startangle is 0, which would start
