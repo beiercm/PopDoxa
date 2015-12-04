@@ -62,11 +62,13 @@ def get_results(poll_id):
 	cursor.execute(query)
 
 	results = cursor.fetchall()
+	print query
+	print results
 	return results
 	
 
 def main():
 	results = get_results(json.loads(sys.argv[1]))
-	gen_pie_graph(results)
+	#gen_pie_graph(results)
 
 main()	
