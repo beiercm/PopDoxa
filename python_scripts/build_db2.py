@@ -17,7 +17,8 @@ def rebuild(cursor):
 		kill_database(cursor)
 	except Exception as e:
 		print e
-
+	query = "use cbpopdoxa;"
+	cursor.execute(query)
 	create_db(cursor)
 	bt.build_all(cursor)
 
