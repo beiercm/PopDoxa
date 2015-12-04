@@ -25,7 +25,7 @@ def main(*args):
 	conn = gc.connection()
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	
-	rebuild(conn.cursor)
+	rebuild(conn.cursor())
 
 	conn.commit()
 
