@@ -24,7 +24,7 @@ def gen_pie_graph(title, results):
                 # everything is rotated counter-clockwise by 90 degrees,
                 # so the plotting starts on the positive y-axis.
 
-	title(title[0][1], bbox={'facecolor':'0.8', 'pad':5})
+	title(title[0][0], bbox={'facecolor':'0.8', 'pad':5})
 
 	name = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(10))
 	name += '.png'
