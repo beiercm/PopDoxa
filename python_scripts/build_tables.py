@@ -143,13 +143,6 @@ tables = {
 					"""
 }
 
-def build_tables(table_list, cursor):
-	for table in table_list:
-		if table != 'build':
-			print("Building " + table + " table...")
-			cursor.execute(tables[table])
-			method = getattr(rf, 'read_' + table)(cursor)
-
 def build_all(cursor):
 	#for tables that either can't be built or need a specific order
 	do_not_build = ['poll_replies', 'counties', 'cities', 'build', 'replies']

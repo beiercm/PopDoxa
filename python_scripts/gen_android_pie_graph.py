@@ -14,7 +14,7 @@ def gen_pie_graph(results):
 
 # The slices will be ordered and plotted counter-clockwise.
 	labels = 'yes', 'no', 'undecided'
-	fracs = (results[0][1], results[1][1], results[2][1])
+	fracs = (results[1][1], results[2][1], results[3][1])
 
 	pie(fracs, explode=None, labels=labels,
                 autopct='%1.1f%%', shadow=True, startangle=90)
@@ -23,7 +23,7 @@ def gen_pie_graph(results):
                 # everything is rotated counter-clockwise by 90 degrees,
                 # so the plotting starts on the positive y-axis.
 
-	title('Poll 1', bbox={'facecolor':'0.8', 'pad':5})
+	title(results[0][0], bbox={'facecolor':'0.8', 'pad':5})
 
 	name = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(10))
 	name += '.png'
@@ -38,6 +38,10 @@ def gen_pie_graph(results):
 # make a square figure and axes
 def get_results(poll_id):
 	query = """
+	SELECT id, question
+	FROM polls
+	WHERE id = """ + str(poll_id) + """
+	UNION
 	SELECT vote, count(vote) 
 	FROM poll_results 
 	WHERE vote = 'y' 
