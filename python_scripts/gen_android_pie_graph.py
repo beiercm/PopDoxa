@@ -11,7 +11,7 @@ def gen_pie_graph(results):
 	figure(1, figsize=(6, 6))
 
 	ax = axes([0.1, 0.1, 0.8, 0.8])
-	print results
+	print "%%%%%%%%%%%%%%%%%%%%%%", results
 
 # The slices will be ordered and plotted counter-clockwise.
 	labels = 'yes', 'no', 'undecided'
