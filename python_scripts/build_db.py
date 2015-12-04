@@ -6,6 +6,7 @@ import get_connection as gc
 def create_db(cursor):
 	query = "create database if not exists cbpopdoxa;"
 	cursor.execute(query)
+	print("Database successfully created\n")
 
 def kill_database(cursor):
 		query = "drop database cbpopdoxa;"
