@@ -34,7 +34,8 @@ def gen_pie_graph(graph_title, results):
 	
 	result = {'name' : name}
 	#print ";p;p;p", json.dumps(result)
-	print json.encode(result)
+	print name
+	print json.dumps(result)
 
 
 # make a square figure and axes
