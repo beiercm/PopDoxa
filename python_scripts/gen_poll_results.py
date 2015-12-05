@@ -46,7 +46,7 @@ def start(conn):
 
 						
 						vote = random.randint(0, total_vote)
-						print yes_vote, no_vote, u_vote, total_vote, vote
+						#print yes_vote, no_vote, u_vote, total_vote, vote
 						
 						if vote >= 0 and vote < yes_vote:
 							output += 'y'							

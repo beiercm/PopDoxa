@@ -1,3 +1,5 @@
+343,Do you want money?,9,-1,-1
+2,Do you like money?, 9,-1,-1
 509,Do you like Florida?,9,-1,-1
 994,Are you pro-NRA?,-1,-1,387
 517,Do you like Obama?,-1,1908,-1
