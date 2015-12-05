@@ -30,9 +30,6 @@
 
 		$results = $query->fetchall();
 
-		if(count($results) > 0)
-			echo "True"
-		else
-			echo "False"
+		echo (count($results)) ? "True" : "False";
 	}
 ?>
