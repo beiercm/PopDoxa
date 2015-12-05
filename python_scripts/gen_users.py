@@ -9,8 +9,7 @@ def get_names(files):
 
 	return names
 
-def gen_locations():
-	cursor = conn.cursor()
+def gen_locations(cursor):
 
 	# query = "select states.name from states;"
 
