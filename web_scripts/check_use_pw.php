@@ -34,13 +34,13 @@
 		$query->execute();
 		$password_from_db = $query->fetchall();
 
-		echo $password_from_db[0]['password'];
+		echo $password_from_db[0]['password'] . "\n";
 
 		$password_from_db = password_hash($password_from_db[0]['password'], PASSWORD_DEFAULT);
 
-		echo $password_from_db;
+		echo $password_from_db . "\n";
 
-		echo $password;
+		echo $password . "\n";
 
 		$verified = password_verify($password, $password_from_db);
 
