@@ -24,7 +24,7 @@ def rebuild(cursor):
 	
 	bt.build_all(cursor)
 
-def main(*args):	
+def main():	
 	conn = gc.connection()
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	

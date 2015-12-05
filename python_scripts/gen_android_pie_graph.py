@@ -2,7 +2,7 @@ import matplotlib as mpl
 mpl.use('Agg')
 from pylab import *
 import get_connection as gc
-import sys, random, json , string
+import sys, random, json , string, os
 
 conn = gc.connection()
 cursor = conn.cursor()
@@ -29,9 +29,9 @@ def gen_pie_graph(graph_title, results):
 	name += '.png'
 	path = '/var/www/html/graphs/'
 
-	#show()
-	savefig(path + name)
 
+	savefig(path + name)
+	
 	result = {'name' : name}
 	print json.dumps(result)
 
