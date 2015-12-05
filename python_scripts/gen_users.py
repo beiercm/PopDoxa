@@ -69,12 +69,9 @@ def gen_user(names, locations, n):
 			f_out.write(user)
 			users.append(user)
 
-def main():
+def gen_users(n):
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	names = get_names(['last.txt', 'male_first.txt', 'female_first.txt'])
 	locations = gen_locations()
 
-	gen_user(names, locations, 1000)
-
-
-main()
+	gen_user(names, locations, n)
