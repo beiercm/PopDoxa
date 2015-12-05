@@ -34,7 +34,7 @@ def read_opinions(cursor):
 
 def read_user_opin(cursor):
 	print("Reading in user opinions.txt") 
-	uo_file = list(open("user_opin.txt"))
+	uo_file = list(open("user_opins.txt"))
 
 	for line in uo_file:
 		line = line.strip().split(',')
