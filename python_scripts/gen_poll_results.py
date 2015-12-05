@@ -36,10 +36,10 @@ def start(conn):
 			
 			for user in users:			
 				yes_vote = random.randint(0, n)
-				no_vote = random.randint(n, n * 2)
-				u_vote = random.randint(n * 2, n * 3)
+				no_vote = random.randint(n, n + no_vote)
+				u_vote = random.randint(no_vote, n + no_vote)
 				total_vote = yes_vote + no_vote + u_vote
-				
+
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 					output = str(user[0]) + ',' + str(poll[0]) + ','
 					
