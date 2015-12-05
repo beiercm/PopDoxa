@@ -1,5 +1,5 @@
 import os, random
-from get_connection import data_path, connection
+from get_connection import data_path
 
 def get_users(cursor):
 	query = """
