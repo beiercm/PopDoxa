@@ -1,6 +1,9 @@
 import random, os
 
-def read_data(file_name):
+lang_tuple = read_data
+
+def read_data():
+	file_name = "BushKerryDebate.txt"
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	input_file = open(file_name)
 
@@ -41,7 +44,6 @@ def read_data(file_name):
 	return (lang_dict, start_words)
 
 def generate_sentence(n):
-	lang_tuple = read_data("BushKerryDebate.txt")
 	lang_dict = lang_tuple[0]
 	start_list = lang_tuple[1]
 	final_sentence = ""
@@ -62,3 +64,4 @@ def generate_sentence(n):
 		final_sentence += sentence
 
 	return final_sentence
+
