@@ -1,3 +1,4 @@
+import sys
 import gen_users as gu
 import gen_posts as gp
 import gen_replies as gr
@@ -5,8 +6,7 @@ import gen_user_opins as guo
 import gen_poll_results as gpr
 import gen_poll_replies as gpr2
 
-def main():
-	users = 10000 
+def main(users):
 	print "Creating users..."
 	gu.start(users)
 
@@ -20,9 +20,9 @@ def main():
 	guo.start(users)
 
 	print "Creating poll replies..."
-	gpr2.start(users * 1.5)
+	gpr2.start(users * .5)
 
 	print "Creating poll results..."
 	gpr.start()
 
-main()
+main(sys.argv[1])
