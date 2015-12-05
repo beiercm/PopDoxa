@@ -53,9 +53,9 @@
 
 		//$password_from_db = password_hash($password_from_db[0]['password'], PASSWORD_DEFAULT);
 
-		echo $password_from_db . "\n";
+		echo strlen($password_from_db) . "\n";
 
-		echo $password . "\n";
+		echo strlen($password) . "\n";
 
 		if(password_verify($password, $password_from_db))
 			echo "Success\n";
