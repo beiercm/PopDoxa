@@ -5,15 +5,7 @@ import markov as mk
 conn = gc.connection()
 cursor = conn.cursor()
 
-def normalize_unicode(lists):
-	new_list = []
-	for some_list in lists:
-		some_list = [s.encode('ascii', 'ignore') for s in some_list]
-		new_list.append(some_list)
-
-	return new_list
-
-def gen_post(n):
+def start(n):
 	#email = emails[random.randint(0, len(emails) - 1)]
 
 	mg = mk.MarkovGenerator()
