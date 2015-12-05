@@ -46,7 +46,7 @@
 
 		echo $password . "\n";
 
-		if($assword_verify($password, $password_from_db))
+		if(password_verify($password, $password_from_db))
 			echo "Success\n";
 		else
 			echo "Failure\n";
