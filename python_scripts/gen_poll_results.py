@@ -36,7 +36,7 @@ def start(conn):
 			
 			for user in users:			
 				yes_vote = random.randint(0, n)
-				no_vote = random.randint(n, n + no_vote)
+				no_vote = random.randint(n, n + yes_vote)
 				u_vote = random.randint(no_vote, n + no_vote)
 				total_vote = yes_vote + no_vote + u_vote
 
