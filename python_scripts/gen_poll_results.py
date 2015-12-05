@@ -43,14 +43,14 @@ def start(conn):
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 					output = str(user[0]) + ',' + str(poll[0]) + ','
 					
-					vote = random.randint(0, total_vote)
+					vote = random.randint(0, u_vote)
 					print yes_vote, no_vote, u_vote, total_vote, vote
 					
-					if vote >= 0 and vote < yes_vote:
+					if vote < yes_vote:
 						output += 'y'							
 					elif vote >= yes_vote and vote < yes_vote + no_vote:
 						output += 'n'
-					elif vote >= yes_vote + no_vote and vote < total_vote:
+					elif vote >= yes_vote + no_vote and vote < u_vote:
 						output += 'u'							
 
 					f_out.write(output + "\n")
