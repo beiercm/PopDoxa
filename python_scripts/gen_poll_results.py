@@ -50,7 +50,7 @@ def start(conn):
 							output += 'y'							
 						elif vote >= yes_vote and vote < no_vote:
 							output += 'n'
-						else vote >= no_vote and vote < total_vote:
+						elif vote >= no_vote and vote < total_vote:
 							output += 'u'							
 
 						f_out.write(output + "\n")
