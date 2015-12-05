@@ -23,10 +23,8 @@ def rebuild(cursor, size):
 	query = "use cbpopdoxa;"
 	cursor.execute(query)
 	
-	if size == 'full':
-		bt.build_all(cursor)
-	else
-		bt.build_bare(cursor)
+	
+	bt.build_all(cursor)
 
 def main(size):	
 	conn = gc.connection()
