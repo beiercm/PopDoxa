@@ -7,7 +7,7 @@ tables = {
 					first VARCHAR (30) NOT NULL,
 					last VARCHAR (30) NOT NULL,
 					username VARCHAR (30) NOT NULL,
-					password VARCHAR (20) NOT NULL,
+					password VARCHAR (100) NOT NULL,
 					age INT (3) NOT NULL,
 					email VARCHAR (30) NOT NULL,
 					gender CHAR (1) NOT NULL,
