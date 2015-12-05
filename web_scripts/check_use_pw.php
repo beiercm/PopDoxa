@@ -34,7 +34,7 @@
 		$query->execute();
 		$password_from_db = $query->fetchall();
 
-		echo $password_from_db;
+		print_r($password_from_db);
 
 		$password_from_db = password_hash($password_from_db['password'], PASSWORD_DEFAULT);
 
