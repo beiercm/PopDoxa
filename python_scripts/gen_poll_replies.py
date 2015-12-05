@@ -1,27 +1,38 @@
-import os, random, mysql.connector
-from mysql.connector import errorcode
+import os, random
+from get_connection import data_path, connection
 import markov as mk
 
+conn = connection()
+cursor = conn.cursor()
 
-
-def gen_post():
+def start(n):
+	mg = mk.MarkovGenerator()
 	#email = emails[random.randint(0, len(emails) - 1)]
-	with open("poll_replies.txt", 'w+') as f_out:
-		n = 2500
+	with open(data_path + "replies.txt", 'w+') as f_out:
+		total_replies = 0
 
-		for i in range(n):
-			poll_id = random.randint(0, 4)
+		query = "SELECT id, state, county, city from users"
+		cursor.execute(query)
+		users = cursor.fetchall()
 
-			user_id = random.randint(0, 1000)
+		query = "SELECT id, state, county, city from polls"
+		cursor.execute(query)
+		polls = cursor.fetchall()
 
-			content = mk.generate_sentence(random.randint(2, 5))
+		while total_replies < n:
+			poll = polls[random.randint(0, len(polls) - 1)]
+			reply_count = 0
+			for user in users:
+				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 
-			f_out.write(user_id)
-			f_out.write(poll_id)
-			f_out.write(content)
+					if random.randint(0, 2) == 1:
 
-def gen_poll_replies():
-	#gen_post(get_emails())
-	gen_post()
+						content = mg.generate_sentence(random.randint(2, 5))
+						f_out.write(str(user[0]) + "\n")
+						f_out.write(str(poll[0]) + "\n")
+						f_out.write(content + "\n")
+						total_replies += 1
+						reply_count += 1
 
-
+						if reply_count == 10:
+							break

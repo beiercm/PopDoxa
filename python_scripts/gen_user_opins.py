@@ -1,23 +1,21 @@
 import random
+from get_connection import data_path
 
-def gen_user_opins():
-	for i in range(1, 1001):
+def start(n):
+	with open(data_path + "user_opins.txt", 'w+') as f_out:
+		for i in range(1, n + 1):
 
-		for j in range(1, 9):
-			output = str(i) + ',' + str(j) + ','
+			for j in range(1, 9):
+				output = str(i) + ',' + str(j) + ','
 
-			c = random.randint(0, 3)
+				c = random.randint(0, 3)
 
-			if c == 1:
-				output += 'f'
-			elif c == 2:
-				output += 'n'
-			else:
-				output += 'a'
+				if c == 1:
+					output += 'f'
+				elif c == 2:
+					output += 'n'
+				else:
+					output += 'a'
 
-			print(output)
+				print(output)
 
-def main():
-	gen_user_opins()
-
-main()

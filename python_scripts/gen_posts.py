@@ -41,5 +41,3 @@ def start(n):
 			f_out.write(str(state) + "\n")
 			f_out.write(str(county) + "\n")
 			f_out.write(str(city) + "\n")
-
-start(1000)

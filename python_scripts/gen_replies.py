@@ -1,14 +1,14 @@
 import os, random
-import get_connection as gc
+from get_connection import data_path, connection
 import markov as mk
 
-conn = gc.connection()
+conn = connection()
 cursor = conn.cursor()
 
 def start(n):
 	mg = mk.MarkovGenerator()
 	#email = emails[random.randint(0, len(emails) - 1)]
-	with open(gc.data_path + "replies.txt", 'w+') as f_out:
+	with open(data_path + "replies.txt", 'w+') as f_out:
 		total_replies = 0
 
 		query = "SELECT id, state, county, city from users"
