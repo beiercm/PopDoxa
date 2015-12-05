@@ -32,7 +32,7 @@
 		$query = $conn->prepare($query);
 		$query->bindparam(':username', $username);
 		$query->execute();
-		$password_from_db = $query->results();
+		$password_from_db = $query->fetchall();
 
 		$password_from_db = password_hash($password_from_db, PASSWORD_DEFAULT);
 
