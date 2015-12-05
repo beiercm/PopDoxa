@@ -152,6 +152,8 @@ def build_all(cursor):
 		if table not in do_not_build:
 			method = getattr(rf, 'read_' + table)(cursor)
 
+		print ""
+
 	rf.read_poll_replies(cursor)
 	rf.read_replies(cursor)
 	rf.read_counties(cursor)
