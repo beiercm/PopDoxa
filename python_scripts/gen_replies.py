@@ -25,8 +25,8 @@ def start(n):
 				if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
 
 					content = mk.generate_sentence(random.randint(2, 5))
-					f_out.write(user_id)
-					f_out.write(post_id)
+					f_out.write(user[0])
+					f_out.write(post_id[0])
 					f_out.write(content)
 
 start(100)
