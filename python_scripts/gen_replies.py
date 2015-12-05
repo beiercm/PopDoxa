@@ -8,7 +8,7 @@ cursor = conn.cursor()
 def start(n):
 	#email = emails[random.randint(0, len(emails) - 1)]
 	with open(gc.data_path + "replies.txt", 'w+') as f_out:
-		reply_count = 0
+		total_replies = 0
 
 		query = "SELECT id, state, county, city from users"
 		cursor.execute(query)
@@ -18,9 +18,9 @@ def start(n):
 		cursor.execute(query)
 		posts = cursor.fetchall()
 
-		while reply_count < n:
+		while total_replies < n:
 			post = posts[random.randint(0, len(posts) - 1)]
-
+			reply_count = 0
 			for user in users:
 				if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
 
@@ -28,6 +28,10 @@ def start(n):
 					f_out.write(str(user[0]) + "\n")
 					f_out.write(str(post[0]) + "\n")
 					f_out.write(content + "\n")
+					total_replies += 1
 					reply_count += 1
 
-start(100)
+					if reply_count == 10:
+						break
+
+start(1000)
