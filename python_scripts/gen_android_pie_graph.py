@@ -13,7 +13,7 @@ def gen_pie_graph(graph_title, results):
 	ax = axes([0.1, 0.1, 0.8, 0.8])
 
 # The slices will be ordered and plotted counter-clockwise.
-	labels = 'yes', 'no', 'undecided'
+	labels = 'yes\n' + str(results[0][1]), 'no\n' + str(results[1][1]), 'undecided\n' + str(results[2][1])
 	fracs = (results[0][1], results[1][1], results[2][1])
 
 	pie(fracs, explode=None, labels=labels,
