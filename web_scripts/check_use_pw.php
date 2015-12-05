@@ -5,6 +5,7 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$username = $argv[1];
+			get_user_id_w_username($conn, $username);
 
 		}
 		else
