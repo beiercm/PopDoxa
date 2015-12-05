@@ -41,6 +41,8 @@
 		and poll_replies.poll_id = :poll_id;
 		";
 
+		echo "DELETE POLL";
+
 		$query = $conn->prepare($query);
 		$query->bindparam(':poll_id', $poll_id);
 		$query->execute();
