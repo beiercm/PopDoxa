@@ -10,10 +10,10 @@
 		$state_id = $_GET['state_id'];
 	}
 
-	get_counties_name($conn, $state_name);
+	get_counties_name($conn, $state_id);
 	$conn = null;
 	
-	function get_counties_name($conn, $state_name)
+	function get_counties_name($conn, $state_id)
 	{
 		$stmt = "SELECT name,id FROM counties where state_id = :state_id";
 
