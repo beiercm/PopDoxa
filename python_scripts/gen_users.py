@@ -68,7 +68,7 @@ def gen_user(names, locations, n):
 			city = location[2]
 
 			user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
-			f_out.write(user)
+			f_out.write(user + "\n")
 			users.append(user)
 
 def start(n):
