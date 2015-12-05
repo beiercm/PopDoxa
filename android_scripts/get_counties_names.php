@@ -3,11 +3,11 @@
 
 	if(PHP_SAPI === 'cli')
 	{
-		$state_name = $argv[1];
+		$state_id = $argv[1];
 	}
 	else
 	{
-		$state_name = $_GET['state_name'];
+		$state_id = $_GET['state_name'];
 	}
 
 	get_counties_name($conn, $state_name);
@@ -15,7 +15,7 @@
 	
 	function get_counties_name($conn, $state_name)
 	{
-		$stmt = "SELECT name FROM counties where state_name = :state_name";
+		$stmt = "SELECT name,id FROM counties where state_id = :state_id";
 
 		$stmt = $conn->prepare($stmt);
 		$stmt->bindparam(':state_name', $state_name);
