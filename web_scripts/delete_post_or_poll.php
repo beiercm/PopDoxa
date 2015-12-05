@@ -32,12 +32,12 @@
 	function delete_poll($conn, $poll_id)
 	{
 		$query = "
-		DELETE posts, replies
-		FROM posts
-		inner join replies
-		on replies.post_id = posts.id
-		where posts.id = 2
-		and replies.post_id = 2;
+		DELETE polls, poll_replies
+		FROM polls
+		inner join poll_replies
+		on poll_replies.poll_id = polls.id
+		where polls.id = 3
+		and poll_replies.poll_id = 3;
 		";
 
 		$query = $conn->prepare($query);
@@ -48,9 +48,12 @@
 	function delete_post($conn, $post_id)
 	{
 		$query = "
-		DELETE
+		DELETE posts, replies
 		FROM posts
-		where id = :post_id;
+		inner join replies
+		on replies.post_id = posts.id
+		where posts.id = 2
+		and replies.post_id = 2;
 		";
 
 		$query = $conn->prepare($query);
