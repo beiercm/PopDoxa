@@ -1,4 +1,4 @@
-import os, random, 
+import os, random
 import get_connection as gc
 import markov as mk
 
