@@ -34,25 +34,24 @@ def start(conn):
 
 					to_vote = random.randint(0, 2)
 
-					if to_vote == 1:
-						output = str(user[0]) + ',' + str(poll[0]) + ','
-						
-						yes_vote = random.randint(0, 1100)
-						no_vote = random.randint(0, 1300)
-						u_vote = random.randint(0, 1000)
+					output = str(user[0]) + ',' + str(poll[0]) + ','
+					
+					yes_vote = random.randint(0, 1100)
+					no_vote = random.randint(0, 1300)
+					u_vote = random.randint(0, 1000)
 
 
-						total_vote = yes_vote + no_vote + u_vote
+					total_vote = yes_vote + no_vote + u_vote
 
-						
-						vote = random.randint(0, total_vote)
-						#print yes_vote, no_vote, u_vote, total_vote, vote
-						
-						if vote >= 0 and vote < yes_vote:
-							output += 'y'							
-						elif vote >= yes_vote and vote < no_vote:
-							output += 'n'
-						elif vote >= no_vote and vote < total_vote:
-							output += 'u'							
+					
+					vote = random.randint(0, total_vote)
+					#print yes_vote, no_vote, u_vote, total_vote, vote
+					
+					if vote >= 0 and vote < yes_vote:
+						output += 'y'							
+					elif vote >= yes_vote and vote < no_vote:
+						output += 'n'
+					elif vote >= no_vote and vote < total_vote:
+						output += 'u'							
 
-						f_out.write(output + "\n")
+					f_out.write(output + "\n")
