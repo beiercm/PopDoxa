@@ -29,7 +29,7 @@
 		//echo password_hash($username, PASSWORD_DEFAULT);
 
 		echo password_verify($username, password_hash($username, PASSWORD_DEFAULT));
-		$username = $username . "c";
-		echo password_verify($username, password_hash($username, PASSWORD_DEFAULT));
+		$username2 = $username . "c";
+		echo password_verify($username2, password_hash($username, PASSWORD_DEFAULT));
 	}
 ?>
