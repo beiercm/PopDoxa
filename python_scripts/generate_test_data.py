@@ -27,7 +27,7 @@ def main(users):
 
 		print "Creating poll results..."
 		gpr.start(conn)
-	except Exeception as e:
+	except Exception as e:
 		print e
 
 	conn.commit()
