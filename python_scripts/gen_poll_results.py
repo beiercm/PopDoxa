@@ -35,7 +35,7 @@ def start(conn):
 
 					if to_vote > 0:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
-						vote = random.randint(0, 2)
+						vote = (random.randint(0, 2) + user[0]) % 3
 
 						if vote == 1:
 							output += 'y'
