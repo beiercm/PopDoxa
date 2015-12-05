@@ -25,4 +25,4 @@ def main(users):
 	print "Creating poll results..."
 	gpr.start()
 
-main(sys.argv[1])
+main(int(sys.argv[1]))
