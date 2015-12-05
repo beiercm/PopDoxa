@@ -53,8 +53,8 @@
 				$order_by = "polls.title ASC";
 				break;
 
-			case "votes":
-				$order_by = "polls.votes DESC";
+			case "views":
+				$order_by = "polls.views DESC";
 				break;
 
 			default:
@@ -67,7 +67,7 @@
 		{
 			$query= $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				SELECT users.username,polls.question,polls.id,polls.views,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id 
@@ -84,7 +84,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				SELECT users.username,polls.question,polls.id,polls.views,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id 
@@ -100,7 +100,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				SELECT users.username,polls.question,polls.id,polls.views,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id 
@@ -122,7 +122,7 @@
 
 				echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
 						<br>" . $result[$i]['username'] . "</td>
-					<td>". $result[$i]['votes'] . "</td>
+					<td>". $result[$i]['views'] . "</td>
 					<td>" . $result[$i]['ts'] . "</td></tr>";
 		}
 	}
@@ -134,8 +134,8 @@
 				$order_by = "polls.title ASC";
 				break;
 
-			case "votes":
-				$order_by = "polls.votes DESC";
+			case "views":
+				$order_by = "polls.views DESC";
 				break;
 
 			default:
@@ -148,7 +148,7 @@
 		{
 			$query= $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				SELECT users.username,polls.question,polls.id,polls.views,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id
@@ -169,7 +169,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				SELECT users.username,polls.question,polls.id,polls.views,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id
@@ -189,7 +189,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username,polls.question,polls.id,polls.votes,polls.ts 
+				SELECT users.username,polls.question,polls.id,polls.views,polls.ts 
 				from polls 
 				join users 
 				on polls.author = users.id
@@ -215,7 +215,7 @@
 
 				echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
 						<br>" . $result[$i]['username'] . "</td>
-					<td>". $result[$i]['votes'] . "</td>
+					<td>". $result[$i]['views'] . "</td>
 					<td>" . $result[$i]['ts'] . "</td></tr>";
 		}
 	}
@@ -227,8 +227,8 @@
 				$order_by = "polls.title ASC";
 				break;
 
-			case "votes":
-				$order_by = "polls.votes DESC";
+			case "views":
+				$order_by = "polls.views DESC";
 				break;
 
 			default:
@@ -241,7 +241,7 @@
 		{
 			$query= $conn->prepare(
 				"
-				SELECT users.username, polls.question,polls.id,polls.votes,polls.ts, pr.vote
+				SELECT users.username, polls.question,polls.id,polls.views,polls.ts, pr.vote
 				from polls
 				join users
 				on users.id = polls.author
@@ -263,7 +263,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username, polls.question,polls.id,polls.votes,polls.ts, pr.vote
+				SELECT users.username, polls.question,polls.id,polls.views,polls.ts, pr.vote
 				from polls
 				join users
 				on users.id = polls.author
@@ -284,7 +284,7 @@
 		{
 			$query = $conn->prepare(
 				"
-				SELECT users.username, polls.question,polls.id,polls.votes,polls.ts, pr.vote
+				SELECT users.username, polls.question,polls.id,polls.views,polls.ts, pr.vote
 				from polls
 				join users
 				on users.id = polls.author
@@ -311,7 +311,7 @@
 
 				echo "	<tr><td><a href ='" . $url . "'>" . $result[$i]['question'] . "</a>
 						<br>" . $result[$i]['username'] . "</td>
-					<td>". $result[$i]['votes'] . "</td>
+					<td>". $result[$i]['views'] . "</td>
 					<td>" . $result[$i]['ts'] . "</td></tr>";
 		}
 	}
