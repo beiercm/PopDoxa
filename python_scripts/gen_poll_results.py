@@ -37,8 +37,8 @@ def start(conn):
 					if to_vote == 1:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
 						
-						yes_vote = random.randint(0, 1000)
-						no_vote = random.randint(0, 1000)
+						yes_vote = random.randint(0, 1100)
+						no_vote = random.randint(0, 1300)
 						u_vote = random.randint(0, 1000)
 
 
