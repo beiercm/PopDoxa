@@ -33,15 +33,20 @@
 	function delete_poll($conn, $poll_id)
 	{
 		$query = "
-		DELETE polls, poll_replies
+		DELETE polls
 		FROM polls
-		inner join poll_replies
-		on poll_replies.poll_id = polls.id
-		where polls.id = :poll_id
-		and poll_replies.poll_id = :poll_id;
+		where id = poll_id;
 		";
 
-		echo "DELETE POLL";
+		$query = $conn->prepare($query);
+		$query->bindparam(':poll_id', $poll_id);
+		$query->execute();
+
+		$query = "
+		DELETE poll_replies
+		FROM poll_replies
+		where poll_id = :poll_id;
+		";
 
 		$query = $conn->prepare($query);
 		$query->bindparam(':poll_id', $poll_id);
@@ -51,12 +56,19 @@
 	function delete_post($conn, $post_id)
 	{
 		$query = "
-		DELETE posts, replies
+		DELETE posts
 		FROM posts
-		inner join replies
-		on replies.post_id = posts.id
-		where posts.id = :post_id
-		and replies.post_id = :post_id;
+		where id = post_id;
+		";
+
+		$query = $conn->prepare($query);
+		$query->bindparam(':post_id', $post_id);
+		$query->execute();
+
+		$query = "
+		DELETE replies
+		FROM replies
+		where post_id = :post_id;
 		";
 
 		$query = $conn->prepare($query);
