@@ -28,15 +28,15 @@
 	function get_user_id_w_username($conn, $username, $password)
 	{
 		
-		// $query = "select password from users where username = :username";
-		// $query = $conn->prepare($query);
-		// $query->bindparam(':username', $username);
-		// $query->execute();
-		// $password_from_db = $query->fetchall();
+		$query = "select password from users where username = :username";
+		$query = $conn->prepare($query);
+		$query->bindparam(':username', $username);
+		$query->execute();
+		$password_from_db = $query->fetchall();
 
-		// $password_from_db = $password_from_db[0]['password'];
+		$password_from_db = $password_from_db[0]['password'];
 
-		$password_from_db = password_hash($password, PASSWORD_DEFAULT);
+		//$password_from_db = password_hash($password, PASSWORD_DEFAULT);
 
 		echo $password_from_db . "\n";
 
