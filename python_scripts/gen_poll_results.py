@@ -26,7 +26,6 @@ def start(conn):
 	cursor = conn.cursor()
 	users = get_users(cursor)
 	polls = get_polls(cursor)
-	counter = 0
 
 	with open(data_path + "poll_results.txt", 'w+') as f_out:
 		for user in users:
@@ -37,15 +36,19 @@ def start(conn):
 
 					if to_vote > 4:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
-						vote = (random.randint(0, 3) + user[0]) % 3
+						
 
-						if vote == 0:
-							output += 'y'
-						elif vote == 1:
-							output += 'u'
-						elif vote == 2:
-							output += 'n'
+						while True:
+							vote = random.randint(0, 6)
+							
+							if vote == 0:
+								output += 'y'
+								break
+							elif vote == 1:
+								output += 'u'
+								break
+							elif vote == 2:
+								output += 'n'
+								break
 
 						f_out.write(output + "\n")
-						counter += 1
-				print counter
