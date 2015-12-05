@@ -20,8 +20,13 @@ def start(n):
 
 	print posts
 
-	for i in range(n):
-		post_id = random.randint(0, 1000)
+	while reply_count < n:
+		post = posts[random.randint(0, len(posts) - 1)]
+
+		for user in users:
+			if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
+				print user, post
+				break
 
 	# 	query = "SELECT state, county, city from posts where id = " + str(post_id)
 	# 	cursor.execute(query)
