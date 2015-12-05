@@ -35,11 +35,11 @@ def start(n):
 				city = user[3]
 
 
-			f_out.write(user[0] + "\n")
+			f_out.write(str(user[0]) + "\n")
 			f_out.write(title + "\n")
 			f_out.write(content + "\n")
-			f_out.write(state + "\n")
-			f_out.write(county + "\n")
-			f_out.write(city + "\n")
+			f_out.write(str(state) + "\n")
+			f_out.write(str(county) + "\n")
+			f_out.write(str(city) + "\n")
 
 start(1000)
