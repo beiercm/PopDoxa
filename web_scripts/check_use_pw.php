@@ -36,7 +36,7 @@
 
 		$password_from_db = $password_from_db[0]['password'];
 
-		echo $password_from_db[0]['password'] . "\n";
+		echo $password_from_db . "\n";
 
 		//$password_from_db = password_hash($password_from_db[0]['password'], PASSWORD_DEFAULT);
 
