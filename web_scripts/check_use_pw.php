@@ -29,6 +29,8 @@
 	{
 		
 		$query = "select password from users where username = :username";
+		$query = $conn->prepare($query);
+		$query->bindparam(':username', $username);
 		$query->execute();
 		$password_from_db = $query->results();
 
