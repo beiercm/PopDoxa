@@ -17,5 +17,5 @@ def start(n):
 				else:
 					output += 'a'
 
-				f_out.write(output)
+				f_out.write(output + "\n")
 

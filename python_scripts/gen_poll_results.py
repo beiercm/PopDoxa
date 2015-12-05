@@ -46,4 +46,4 @@ def start():
 						else:
 							output += 'n'
 
-						f_out.write(output)
+						f_out.write(output + "\n")
