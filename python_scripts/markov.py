@@ -45,9 +45,9 @@ class MarkovGenerator(object):
 			else:
 				lang_dict[word].append("*")
 
-		return (lang_dict, start_words)
+		self.lang_tuple = (lang_dict, start_words)
 
-	self.lang_tuple = read_data()
+
 
 	def generate_sentence(self, n):
 		lang_dict = self.lang_tuple[0]
