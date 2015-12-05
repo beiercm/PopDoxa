@@ -7,7 +7,7 @@ cursor = conn.cursor()
 
 def start(n):
 	#email = emails[random.randint(0, len(emails) - 1)]
-	with open("replies.txt", 'w+') as f_out:
+	with open("/home/christophe/popdoxa/PopDoxa/data/replies.txt", 'w+') as f_out:
 		reply_count = 0
 
 		query = "SELECT id, state, county, city from users"
@@ -25,8 +25,9 @@ def start(n):
 				if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
 
 					content = mk.generate_sentence(random.randint(2, 5))
-					f_out.write(str(user[0]))
-					f_out.write(str(post[0]))
-					f_out.write(content)
+					f_out.write(str(user[0]) + "\n")
+					f_out.write(str(post[0]) + "\n")
+					f_out.write(content + "\n")
 					reply_count += 1
+
 start(100)
