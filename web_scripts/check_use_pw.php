@@ -27,7 +27,7 @@
 	
 	function get_user_id_w_username($conn, $username, $password)
 	{	
-		$password = password_hash($password, PASSWORD_DEFAULT);
+		$new_password = password_hash($password, PASSWORD_DEFAULT);
 
 		$query = "INSERT INTO users 
 					(first, last, username, password, gender, age, email, state, county, city)
@@ -35,7 +35,7 @@
 					(:username,:username,:username,:password,'m',27,:username,:username,:username,:username);";
 		$query = $conn->prepare($query);
 		$query->bindparam(':username', $username);
-		$query->bindparam(':password', $password);
+		$query->bindparam(':password', $new_password);
 		$query->execute();
 
 		
