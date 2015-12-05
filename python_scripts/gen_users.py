@@ -1,5 +1,6 @@
 import os, random, mysql.connector
 from mysql.connector import errorcode
+import get_connection as gc
 
 def get_names(files):
 	names = []
@@ -38,34 +39,35 @@ def gen_locations():
 
 def gen_user(names, locations, n):
 	users = []
-	for i in range(n):
-		user = ""
-		if random.randint(0,1):
-			gender = 'm'
-			index = random.randint(0,len(names[1]) - 1)
-			first = names[1][index].lower()
-		else:
-			gender = 'f'
-			index = random.randint(0,len(names[2]) - 1)
-			first = names[2][index].lower()
+	with open("users.txt", 'w+') as f_out:
+		for i in range(n):
+			user = ""
+			if random.randint(0,1):
+				gender = 'm'
+				index = random.randint(0,len(names[1]) - 1)
+				first = names[1][index].lower()
+			else:
+				gender = 'f'
+				index = random.randint(0,len(names[2]) - 1)
+				first = names[2][index].lower()
 
-		index = random.randint(0,len(names[0]) - 1)
-		last = names[0][index].lower()
+			index = random.randint(0,len(names[0]) - 1)
+			last = names[0][index].lower()
 
-		age = random.randint(18, 100)
+			age = random.randint(18, 100)
 
-		email = first + last + "@botmail.com"
-		state = "florida"
+			email = first + last + "@botmail.com"
+			state = "florida"
 
-		location = locations[random.randint(0, len(locations) - 1)]
+			location = locations[random.randint(0, len(locations) - 1)]
 
-		state = location[0]
-		county = location[1]
-		city = location[2]
+			state = location[0]
+			county = location[1]
+			city = location[2]
 
-		user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
-		print user
-		users.append(user)
+			user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
+			f_out.write(user)
+			users.append(user)
 
 def main():
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
