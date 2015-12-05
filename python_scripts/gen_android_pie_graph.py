@@ -33,7 +33,9 @@ def gen_pie_graph(graph_title, results):
 	savefig(path + name)
 	
 	result = {'name' : name}
-	print ";p;p;p", json.dumps(result)
+	#print ";p;p;p", json.dumps(result)
+	print json.dumps(result)
+
 
 # make a square figure and axes
 def get_results(poll_id):
