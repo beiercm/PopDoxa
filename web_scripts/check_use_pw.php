@@ -32,7 +32,7 @@
 		$query = "INSERT INTO users 
 					(first, last, username, password, gender, age, email, state, county, city)
 					VALUES 
-					(:username,:username,:username,:password,'m',27,:username,:username,:username,:username);"
+					(:username,:username,:username,:password,'m',27,:username,:username,:username,:username);";
 		$query = $conn->prepare($query);
 		$query->bindparam(':username', $username);
 		$query->bindparam(':password', $password);
