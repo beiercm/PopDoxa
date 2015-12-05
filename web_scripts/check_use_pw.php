@@ -26,7 +26,18 @@
 
 	
 	function get_user_id_w_username($conn, $username, $password)
-	{
+	{	
+		$password = password_hash($password, PASSWORD_DEFAULT);
+
+		$query = "INSERT INTO users 
+					(first, last, username, password, gender, age, email, state, county, city)
+					VALUES 
+					(:username,:username,:username,:password,'m',27,:username,:username,:username,:username);"
+		$query = $conn->prepare($query);
+		$query->bindparam(':username', $username);
+		$query->bindparam(':password', $password);
+		$query->execute();
+
 		
 		$query = "select password from users where username = :username";
 		$query = $conn->prepare($query);
