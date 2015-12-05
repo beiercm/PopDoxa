@@ -26,11 +26,13 @@ def start(conn):
 	cursor = conn.cursor()
 	users = get_users(cursor)
 	polls = get_polls(cursor)
+	counter = 0
 
 	with open(data_path + "poll_results.txt", 'w+') as f_out:
 		for user in users:
 			for poll in polls:
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
+
 					to_vote = random.randint(0, 3)
 
 					if to_vote > 0:
@@ -45,3 +47,5 @@ def start(conn):
 							output += 'n'
 
 						f_out.write(output + "\n")
+				counter += 1
+				print counter
