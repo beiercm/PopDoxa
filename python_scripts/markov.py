@@ -1,67 +1,73 @@
 import random, os
 
-lang_tuple = read_data()
+class MarkovGenerator(object):
 
-def read_data():
-	file_name = "BushKerryDebate.txt"
-	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
-	input_file = open(file_name)
+	def __init__(self):
+		self.file_name = "BushKerryDebate.txt"
+		self.read_data()
 
-	lang_dict = {}
-	start_words = []
 
-	for line in input_file:
-		line = line.strip().split(' ')
-		if line[0] not in start_words:
-			start_words.append(line[0])
+	def read_data(self):
+		os.chdir("/home/christopher/popdoxa/PopDoxa/data")
+		input_file = open(file_name)
 
-		for i in range(len(line) - 1):
-			word = line[i]
+		lang_dict = {}
+		start_words = []
 
-			if '.' in word or '!' in word or '?' in word:
-				if word not in lang_dict:
-					lang_dict[word] = ["*"]
+		for line in input_file:
+			line = line.strip().split(' ')
+			if line[0] not in start_words:
+				start_words.append(line[0])
+
+			for i in range(len(line) - 1):
+				word = line[i]
+
+				if '.' in word or '!' in word or '?' in word:
+					if word not in lang_dict:
+						lang_dict[word] = ["*"]
+					else:
+						lang_dict[word].append("*")
+
+					if i < len(line) - 2:
+						start_words.append(line[i + 1])
+						continue
+
+				if line[i] not in lang_dict:
+					lang_dict[line[i]] = [line[i+1]]
 				else:
-					lang_dict[word].append("*")
+					lang_dict[line[i]].append(line[i+1])
 
-				if i < len(line) - 2:
-					start_words.append(line[i + 1])
-					continue
 
-			if line[i] not in lang_dict:
-				lang_dict[line[i]] = [line[i+1]]
+			word = line[len(line) - 1]
+
+			if word not in lang_dict:
+				lang_dict[word] = ["*"]
 			else:
-				lang_dict[line[i]].append(line[i+1])
+				lang_dict[word].append("*")
 
+		return (lang_dict, start_words)
 
-		word = line[len(line) - 1]
+	self.lang_tuple = read_data()
 
-		if word not in lang_dict:
-			lang_dict[word] = ["*"]
-		else:
-			lang_dict[word].append("*")
+	def generate_sentence(self, n):
+		lang_dict = self.lang_tuple[0]
+		start_list = self.lang_tuple[1]
+		final_sentence = ""
 
-	return (lang_dict, start_words)
+		for i in range(n):
 
-def generate_sentence(n):
-	lang_dict = lang_tuple[0]
-	start_list = lang_tuple[1]
-	final_sentence = ""
+			cur_word = start_list[random.randint(0, len(start_list) - 1)]
+			sentence = ""
 
-	for i in range(n):
+			while cur_word != '*':
+				sentence += cur_word
+				sentence += ' '
 
-		cur_word = start_list[random.randint(0, len(start_list) - 1)]
-		sentence = ""
+				word_list = lang_dict[cur_word]
 
-		while cur_word != '*':
-			sentence += cur_word
-			sentence += ' '
+				cur_word = word_list[random.randint(0, len(word_list) - 1)]
 
-			word_list = lang_dict[cur_word]
+			final_sentence += sentence
 
-			cur_word = word_list[random.randint(0, len(word_list) - 1)]
-
-		final_sentence += sentence
-
-	return final_sentence
+		return final_sentence
 

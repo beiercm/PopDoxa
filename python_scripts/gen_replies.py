@@ -1,11 +1,12 @@
 import os, random
 import get_connection as gc
-import markov as mk
+from markov import MarkovGenerator as MG
 
 conn = gc.connection()
 cursor = conn.cursor()
 
 def start(n):
+	mg = MG()
 	#email = emails[random.randint(0, len(emails) - 1)]
 	with open(gc.data_path + "replies.txt", 'w+') as f_out:
 		total_replies = 0
@@ -24,14 +25,16 @@ def start(n):
 			for user in users:
 				if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
 
-					content = mk.generate_sentence(random.randint(2, 5))
-					f_out.write(str(user[0]) + "\n")
-					f_out.write(str(post[0]) + "\n")
-					f_out.write(content + "\n")
-					total_replies += 1
-					reply_count += 1
+					if random.randint(0, 2) == 1:
 
-					if reply_count == 10:
-						break
+						content = mg.generate_sentence(random.randint(2, 5))
+						f_out.write(str(user[0]) + "\n")
+						f_out.write(str(post[0]) + "\n")
+						f_out.write(content + "\n")
+						total_replies += 1
+						reply_count += 1
+
+						if reply_count == 10:
+							break
 
 start(1000)
