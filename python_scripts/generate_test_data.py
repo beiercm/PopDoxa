@@ -1,5 +1,5 @@
 import sys
-import gc_connection as gc
+import get_connection as gc
 import gen_users as gu
 import gen_posts as gp
 import gen_replies as gr
