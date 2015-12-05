@@ -10,11 +10,11 @@ def start(n):
 
 				c = random.randint(0, 3)
 
-				if c == 1:
+				if c == 0:
 					output += 'f'
-				elif c == 2:
+				elif c == 1:
 					output += 'n'
-				else:
+				elif c == 2:
 					output += 'a'
 
 				f_out.write(output + "\n")

@@ -37,15 +37,15 @@ def start(conn):
 
 					if to_vote > 4:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
-						vote = (random.randint(0, 2) + user[0]) % 3
+						vote = (random.randint(0, 3) + user[0]) % 3
 
-						if vote == 1:
+						if vote == 0:
 							output += 'y'
-						elif vote == 2:
+						elif vote == 1:
 							output += 'u'
-						else:
+						elif vote == 2:
 							output += 'n'
 
 						f_out.write(output + "\n")
-				counter += 1
+						counter += 1
 				print counter
