@@ -68,7 +68,6 @@ def gen_user(names, locations, n):
 			city = location[2]
 
 			user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
-			print "here"
 			f_out.write(user)
 			users.append(user)
 
@@ -76,5 +75,5 @@ def start(n):
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	names = get_names(['last.txt', 'male_first.txt', 'female_first.txt'])
 	locations = gen_locations()
-	print "Here"
+
 	gen_user(names, locations, n)

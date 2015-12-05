@@ -7,3 +7,5 @@ import gen_users as gu
 
 def main():
 	gu.start(10000)
+
+main()
