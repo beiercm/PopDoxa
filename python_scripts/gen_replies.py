@@ -8,6 +8,8 @@ cursor = conn.cursor()
 def start(n):
 	#email = emails[random.randint(0, len(emails) - 1)]
 
+	reply_count = 0
+
 	query = "SELECT id, state, county, city from users"
 	cursor.execute(query)
 	users = cursor.fetchall()
