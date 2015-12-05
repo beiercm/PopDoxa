@@ -128,7 +128,7 @@ tables = {
 					)
 					""",
 		'admins':	"""
-					create table if not exists user_roles (
+					create table if not exists admins (
 						id INT (6) AUTO_INCREMENT PRIMARY KEY,
 						user_id INT (6) NOT NULL
 						)
