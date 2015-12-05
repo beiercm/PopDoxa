@@ -34,9 +34,13 @@
 		$query->execute();
 		$password_from_db = $query->fetchall();
 
-		print_r($password_from_db);
+		echo $password_from_db[0]['password'];
 
 		$password_from_db = password_hash($password_from_db[0]['password'], PASSWORD_DEFAULT);
+
+		echo $password_from_db;
+
+		echo $password;
 
 		$verified = password_verify($password, $password_from_db);
 
