@@ -33,20 +33,21 @@ def read_opinions(cursor):
 		cursor.execute(query, opinion)
 
 def read_user_opin(cursor):
-	print("Reading in user opinions.txt") 
-	uo_file = list(open("user_opins.txt"))
+	# print("Reading in user opinions.txt") 
+	# uo_file = list(open("user_opins.txt"))
 
-	for line in uo_file:
-		line = line.strip().split(',')
-		line[len(line) - 1] = line[len(line) - 1].strip()
+	# for line in uo_file:
+	# 	line = line.strip().split(',')
+	# 	line[len(line) - 1] = line[len(line) - 1].strip()
 
-		query = """
-				INSERT INTO user_opin
-				(user_id, opin_id, opinion)
-				VALUES
-				(%s,%s,%s);
-				"""
-		cursor.execute(query, line)
+	# 	query = """
+	# 			INSERT INTO user_opin
+	# 			(user_id, opin_id, opinion)
+	# 			VALUES
+	# 			(%s,%s,%s);
+	# 			"""
+	# 	cursor.execute(query, line)
+	pass
 
 def read_polls(cursor):
 	print("Reading in polls.txt")
@@ -64,20 +65,22 @@ def read_polls(cursor):
 		cursor.execute(query,poll)
 
 def read_poll_results(cursor):
-	print("Reading in user poll_results.txt") 
-	pr_file = list(open("poll_results.txt"))
+	# print("Reading in user poll_results.txt") 
+	# pr_file = list(open("poll_results.txt"))
 
-	for line in pr_file:
-		line = line.strip().split(',')
-		line[len(line) - 1] = line[len(line) - 1].strip()
+	# for line in pr_file:
+	# 	line = line.strip().split(',')
+	# 	line[len(line) - 1] = line[len(line) - 1].strip()
 
-		query = """
-				INSERT INTO poll_results
-				(user_id, poll_id, vote)
-				VALUES
-				(%s,%s,%s);
-				"""
-		cursor.execute(query, line)
+	# 	query = """
+	# 			INSERT INTO poll_results
+	# 			(user_id, poll_id, vote)
+	# 			VALUES
+	# 			(%s,%s,%s);
+	# 			"""
+	# 	cursor.execute(query, line)
+
+	pass
 
 def read_poll_replies(cursor):
 	print("Reading in poll_replies.txt")
