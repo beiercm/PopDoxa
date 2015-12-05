@@ -31,7 +31,8 @@ tables = {
 					city INT (6) NOT NULL DEFAULT -1,
 					ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 					last_poll TIMESTAMP,
-					post INT(6) NOT NULL
+					post INT(6) NOT NULL,
+					approved INT(1) DEFAULT 0
 					)
 					""",
 		'poll_results': """
