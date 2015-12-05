@@ -9,7 +9,7 @@ class MarkovGenerator(object):
 
 	def read_data(self):
 		os.chdir("/home/christopher/popdoxa/PopDoxa/data")
-		input_file = open(file_name)
+		input_file = open(self.file_name)
 
 		lang_dict = {}
 		start_words = []
