@@ -1,6 +1,9 @@
-import os, random, mysql.connector
-from mysql.connector import errorcode
+import os, random
+import get_connection as gc
 import markov as mk
+
+conn = gc.connection()
+cursor = conn.cursor()
 
 def normalize_unicode(lists):
 	new_list = []
@@ -10,82 +13,34 @@ def normalize_unicode(lists):
 
 	return new_list
 
-def gen_locations(level, state):
-	login_info = [e.strip() for e in list(open("/home/christopher/login.txt"))]
-	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database = login_info[3])
-	cursor = cnx.cursor()
-
-	# query = "select states.name from states;"
-
-	# cursor.execute(query)
-	# states = normalize_unicode(cursor.fetchall())
-	# print(states)
-	if level == "COUNTY":
-		query = """
-				select states.id,counties.id
-				from states
-				join counties
-				on states.id = counties.state_id
-				where states.id = %s;
-				"""
-		cursor.execute(query, (state,))
-
-	elif level == "CITY":
-		query = """
-				select states.id,counties.id,cities.id
-				from states
-				join counties
-				on states.id = counties.state_id
-				join cities
-				on counties.id = cities.county_id
-				where states.name = 'florida';
-				"""
-		cursor.execute(query)	
-
-	locations = cursor.fetchall()
-
-	return locations
-
-def gen_post():
+def gen_post(n):
 	#email = emails[random.randint(0, len(emails) - 1)]
-	n = 1000
-	COUNTY = False
-	CITY = False
+
+	mg = mk.MarkovGenerator()
+
+	query = "SELECT id, state, county, city from users"
+	cursor.execute(query)
+	users = cursor.fetchall()
 
 	for i in range(n):
-		if i > (n/3): 
-			COUNTY = True
-		if i > (2* n / 3):
-			CITY = True
+		state = -1
+		county = -1
+		city = -1
 
-		user_id = random.randint(0, 1000)
+		user = users[random.randint(0, len(users) - 1)]
 
-		title = mk.generate_sentence(1)
+		title = mg.generate_sentence(1)
 
-		content = mk.generate_sentence(random.randint(2, 5))
+		content = mg.generate_sentence(random.randint(2, 5))
 
-		state = random.randint(1, 51)
+		location = random.randint(1, 4)
 
-		if CITY:
-			loc = gen_locations("CITY", state)
-			loc = loc[random.randint(0, len(loc)-1)]
-			state = -1
-			county = -1
-			city = loc[2]
-
-		elif COUNTY:
-			loc = gen_locations("COUNTY", state)
-			loc = loc[random.randint(0, len(loc) - 1)]
-			state = -1
-			county = loc[1]
-			city = -1
-
-		else:
-			state = 9
-			county = -1
-			city = -1
-
-
+		if location == 1:
+			state = user[1]
+		if location == 2:
+			county = user[2]
+		if location == 3:
+			city = user[3]
 
 
 		print(user_id)
@@ -95,8 +50,4 @@ def gen_post():
 		print(county)
 		print(city)
 
-def main():
-	#gen_post(get_emails())
-	gen_post()
-	
-main()
+start(1000)

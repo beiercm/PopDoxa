@@ -1,12 +1,12 @@
 import os, random
 import get_connection as gc
-from markov import MarkovGenerator as MG
+import markov as mk
 
 conn = gc.connection()
 cursor = conn.cursor()
 
 def start(n):
-	mg = MG()
+	mg = mk.MarkovGenerator()
 	#email = emails[random.randint(0, len(emails) - 1)]
 	with open(gc.data_path + "replies.txt", 'w+') as f_out:
 		total_replies = 0
@@ -36,5 +36,3 @@ def start(n):
 
 						if reply_count == 10:
 							break
-
-start(1000)
