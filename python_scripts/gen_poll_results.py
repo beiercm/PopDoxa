@@ -39,15 +39,15 @@ def start(conn):
 						
 
 						while True:
-							vote = random.randint(0, 6)
+							vote = random.randint(0, 1000)
 							
-							if vote == 0:
+							if vote >= 0 and vote <= 432:
 								output += 'y'
 								break
-							elif vote == 1:
+							elif vote >= 433 and vote <= 698:
 								output += 'u'
 								break
-							elif vote == 2:
+							elif vote >= 699 and vote <= 912:
 								output += 'n'
 								break
 
