@@ -5,7 +5,8 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$username = $argv[1];
-			get_user_id_w_username($conn, $username);
+			$password = $argv[2];
+			get_user_id_w_username($conn, $username, $password);
 
 		}
 		else
@@ -24,12 +25,20 @@
 	$conn = null;
 
 	
-	function get_user_id_w_username($conn, $username)
+	function get_user_id_w_username($conn, $username, $password)
 	{
-		//echo password_hash($username, PASSWORD_DEFAULT);
+		
+		$query = "select password from users where username = :username";
+		$query->execute();
+		$password_from_db = $query->results();
 
-		echo password_verify($username, password_hash($username, PASSWORD_DEFAULT));
-		$username2 = $username . "c";
-		echo password_verify($username2, password_hash($username, PASSWORD_DEFAULT));
+		$password_from_db = password_hash($password_from_db, PASSWORD_DEFAULT);
+
+		$verified = password_verify($password, $password_from_db);
+
+		if($verified)
+			echo "Success\n";
+		else
+			echo "Failure\n";
 	}
 ?>
