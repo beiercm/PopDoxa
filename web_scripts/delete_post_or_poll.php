@@ -32,16 +32,19 @@
 	function delete_poll($conn, $poll_id)
 	{
 		$query = "
-		DELETE
-		FROM polls
-		where id = :poll_id;
+		DELETE posts, replies
+		FROM posts
+		inner join replies
+		on replies.post_id = posts.id
+		where posts.id = 2
+		and replies.post_id = 2;
 		";
 
 		$query = $conn->prepare($query);
 		$query->bindparam(':poll_id', $poll_id);
 		$query->execute();
 	}
-	
+
 	function delete_post($conn, $post_id)
 	{
 		$query = "
