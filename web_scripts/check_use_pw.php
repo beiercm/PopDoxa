@@ -26,6 +26,6 @@
 	
 	function get_user_id_w_username($conn, $username)
 	{
-		echo crypt($username);
+		echo password_hash($username, PASSWORD_DEFAULT);
 	}
 ?>
