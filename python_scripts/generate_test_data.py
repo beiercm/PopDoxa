@@ -6,4 +6,4 @@ import gen_users as gu
 # import gen_poll_replies as gpr2
 
 def main():
-	gu.gen_users(10000)
+	gu.start(10000)
