@@ -37,7 +37,7 @@
 		inner join poll_replies
 		on poll_replies.poll_id = polls.id
 		where polls.id = :poll_id
-		and poll_replies.poll_id = poll_id;
+		and poll_replies.poll_id = :poll_id;
 		";
 
 		$query = $conn->prepare($query);
@@ -52,8 +52,8 @@
 		FROM posts
 		inner join replies
 		on replies.post_id = posts.id
-		where posts.id = post_id
-		and replies.post_id = post_id;
+		where posts.id = :post_id
+		and replies.post_id = :post_id;
 		";
 
 		$query = $conn->prepare($query);
