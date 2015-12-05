@@ -35,7 +35,7 @@
 		$query = "
 		DELETE polls
 		FROM polls
-		where id = poll_id;
+		where id = :poll_id;
 		";
 
 		$query = $conn->prepare($query);
@@ -58,7 +58,7 @@
 		$query = "
 		DELETE posts
 		FROM posts
-		where id = post_id;
+		where id = :post_id;
 		";
 
 		$query = $conn->prepare($query);
