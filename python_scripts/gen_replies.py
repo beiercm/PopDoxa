@@ -14,8 +14,14 @@ def start(n):
 
 	print users
 
-	# for i in range(n):
-	# 	post_id = random.randint(0, 1000)
+	query = "SELECT id, state, county, city from posts"
+	cursor.execute(query)
+	posts = cursor.fetchall()
+
+	print posts
+
+	for i in range(n):
+		post_id = random.randint(0, 1000)
 
 	# 	query = "SELECT state, county, city from posts where id = " + str(post_id)
 	# 	cursor.execute(query)
