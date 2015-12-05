@@ -2,6 +2,8 @@ import os, random, mysql.connector
 from mysql.connector import errorcode
 import get_connection as gc
 
+conn = gc.connection()
+
 def get_names(files):
 	names = []
 	for fin in files:
@@ -66,6 +68,7 @@ def gen_user(names, locations, n):
 			city = location[2]
 
 			user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
+			print "here"
 			f_out.write(user)
 			users.append(user)
 
