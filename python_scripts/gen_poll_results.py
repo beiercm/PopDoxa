@@ -32,9 +32,9 @@ def start(conn):
 			for poll in polls:
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 
-					to_vote = random.randint(0, 10)
+					to_vote = random.randint(0, 2)
 
-					if to_vote > 4:
+					if to_vote == 1:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
 						
 						yes_vote = random.randint(0, 1000)
@@ -50,7 +50,7 @@ def start(conn):
 							output += 'y'							
 						elif vote >= yes_vote and vote < no_vote:
 							output += 'n'
-						else:
+						else vote >= no_vote and vote < total_vote:
 							output += 'u'							
 
 						f_out.write(output + "\n")
