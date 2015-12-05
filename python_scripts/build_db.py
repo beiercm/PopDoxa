@@ -13,7 +13,7 @@ def kill_database(cursor):
 		cursor.execute(query)
 		print("Database successfully dropped\n")
 
-def rebuild(cursor):
+def rebuild(cursor, size):
 	try:
 		print "Trying to drop database"
 		kill_database(cursor)
@@ -23,15 +23,18 @@ def rebuild(cursor):
 	query = "use cbpopdoxa;"
 	cursor.execute(query)
 	
-	bt.build_all(cursor)
+	if size == 'full':
+		bt.build_all(cursor)
+	else
+		bt.build_bare(cursor)
 
-def main():	
+def main(size):	
 	conn = gc.connection()
 	cursor = conn.cursor()
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	
-	rebuild(cursor)
+	rebuild(cursor, size)
 
 	conn.commit()
 
-main()
+main(sys.argv[1])
