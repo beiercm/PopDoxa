@@ -36,7 +36,7 @@
 
 		print_r($password_from_db);
 
-		$password_from_db = password_hash($password_from_db['password'], PASSWORD_DEFAULT);
+		$password_from_db = password_hash($password_from_db[0]['password'], PASSWORD_DEFAULT);
 
 		$verified = password_verify($password, $password_from_db);
 
