@@ -34,7 +34,5 @@ def start(n):
 						total_replies += 1
 						reply_count += 1
 
-						print content
-
 						if reply_count == 10:
 							break
