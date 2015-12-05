@@ -28,8 +28,8 @@ def start(conn):
 	polls = get_polls(cursor)
 
 	with open(data_path + "poll_results.txt", 'w+') as f_out:
-		for user in users:
-			for poll in polls:
+		for poll in polls:
+			for user in users:			
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 
 					to_vote = random.randint(0, 2)
