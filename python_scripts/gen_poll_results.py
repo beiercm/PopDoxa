@@ -27,19 +27,18 @@ def start(conn):
 	users = get_users(cursor)
 	polls = get_polls(cursor)
 
+	n = 100
+
 	with open(data_path + "poll_results.txt", 'w+') as f_out:
 		for poll in polls:
-			yes_vote = random.randint(0, 100)
-			no_vote = random.randint(0, 100)
-			u_vote = random.randint(0, 100)
+			yes_vote = random.randint(0, n)
+			no_vote = random.randint(n, n * 2)
+			u_vote = random.randint(n * 2, n * 3)
 
 
 			total_vote = yes_vote + no_vote + u_vote
 			for user in users:			
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
-
-					to_vote = random.randint(0, 2)
-
 					output = str(user[0]) + ',' + str(poll[0]) + ','
 					
 					vote = random.randint(0, total_vote)
