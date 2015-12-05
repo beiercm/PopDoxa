@@ -75,6 +75,4 @@
 		$query->bindparam(':post_id', $post_id);
 		$query->execute();
 	}
-
-
 ?>
