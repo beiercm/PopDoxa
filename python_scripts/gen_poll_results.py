@@ -42,7 +42,7 @@ def start(conn):
 					output = str(user[0]) + ',' + str(poll[0]) + ','
 					
 					vote = random.randint(0, total_vote)
-					#print yes_vote, no_vote, u_vote, total_vote, vote
+					print yes_vote, no_vote, u_vote, total_vote, vote
 					
 					if vote >= 0 and vote < yes_vote:
 						output += 'y'							
