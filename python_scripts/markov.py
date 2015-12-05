@@ -1,6 +1,6 @@
 import random, os
 
-lang_tuple = read_data
+lang_tuple = read_data()
 
 def read_data():
 	file_name = "BushKerryDebate.txt"
