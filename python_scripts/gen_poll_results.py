@@ -33,9 +33,9 @@ def start(conn):
 			for poll in polls:
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 
-					to_vote = random.randint(0, 3)
+					to_vote = random.randint(0, 10)
 
-					if to_vote > 0:
+					if to_vote > 4:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
 						vote = (random.randint(0, 2) + user[0]) % 3
 
