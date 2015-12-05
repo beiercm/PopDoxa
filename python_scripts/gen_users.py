@@ -62,6 +62,9 @@ def gen_user(names, locations, n):
 			user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
 			f_out.write(user + "\n")
 			users.append(user)
+	f_out.write("Stacy, Gramajo,F,20,sg@gmail.com,9,1923,350")
+	f_out.write("James, Morris,M,21,jm@gmail.com,9,1927,100")
+	f_out.write("Phillip, Rajala,M,20,pr@gmail.com,9,1931,274")
 
 def start(conn, n):
 	cursor = conn.cursor()
