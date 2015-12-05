@@ -26,7 +26,7 @@ def start(n):
 
 					content = mk.generate_sentence(random.randint(2, 5))
 					f_out.write(str(user[0]))
-					f_out.write(str(post_id[0]))
+					f_out.write(str(post[0]))
 					f_out.write(content)
 
 start(100)
