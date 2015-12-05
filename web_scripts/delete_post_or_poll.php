@@ -5,7 +5,7 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$poll_id = $argv[1];
-			
+			delete_poll($conn, $poll_id);
 		}
 		else
 		{
