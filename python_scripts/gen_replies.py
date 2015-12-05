@@ -34,3 +34,4 @@ def start(n):
 		# print(post_id)
 		# print(content)
 
+start(100)
