@@ -8,7 +8,7 @@ cursor = conn.cursor()
 def start(n):
 	mg = mk.MarkovGenerator()
 	#email = emails[random.randint(0, len(emails) - 1)]
-	with open(data_path + "replies.txt", 'w+') as f_out:
+	with open(data_path + "poll_replies.txt", 'w+') as f_out:
 		total_replies = 0
 
 		query = "SELECT id, state, county, city from users"
@@ -33,6 +33,8 @@ def start(n):
 						f_out.write(content + "\n")
 						total_replies += 1
 						reply_count += 1
+
+						print content
 
 						if reply_count == 10:
 							break
