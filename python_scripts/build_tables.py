@@ -127,11 +127,10 @@ tables = {
 					opinion char(1) NOT NULL DEFAULT 'u'
 					)
 					""",
-		'user_roles':	"""
+		'admins':	"""
 					create table if not exists user_roles (
 						id INT (6) AUTO_INCREMENT PRIMARY KEY,
-						user_id INT (6) NOT NULL,
-						access_level VARCHAR (20) NOT NULL
+						user_id INT (6) NOT NULL
 						)
 					""",
 		'feedback': """

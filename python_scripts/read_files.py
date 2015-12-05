@@ -200,7 +200,7 @@ def read_replies(cursor):
 def read_news(cursor):
 	pass
 
-def read_user_roles(cursor):
+def read_admins(cursor):
 	pass
 
 def read_feedback(cursor):
