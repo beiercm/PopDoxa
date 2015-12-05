@@ -48,9 +48,9 @@ def start(conn):
 					
 					if vote < yes_vote:
 						output += 'y'							
-					elif vote >= yes_vote and vote < yes_vote + no_vote:
+					elif vote >= yes_vote and vote < no_vote:
 						output += 'n'
-					elif vote >= yes_vote + no_vote and vote < u_vote:
+					elif vote >= no_vote and vote < u_vote:
 						output += 'u'							
 
 					f_out.write(output + "\n")
