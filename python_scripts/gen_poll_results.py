@@ -37,18 +37,20 @@ def start(conn):
 					if to_vote > 4:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
 						
+						yes_vote = random.randint(0, 1000)
+						no_vote = random.randint(0, 1000)
+						u_vote = random.randint(0, 1000)
 
-						while True:
-							vote = random.randint(0, 1000)
-							
-							if vote >= 0 and vote <= 367:
-								output += 'y'
-								break
-							elif vote >= 433 and vote <= 675:
-								output += 'u'
-								break
-							elif vote >= 699 and vote <= 912:
-								output += 'n'
-								break
+						total_vote = yes_vote + no_vote + u_vote
+
+						
+						vote = random.randint(0, total_vote)
+						
+						if vote >= 0 and vote < yes_vote:
+							output += 'y'							
+						elif vote >= yes_vote and vote < no_vote:
+							output += 'n'
+						else:
+							output += 'u'							
 
 						f_out.write(output + "\n")
