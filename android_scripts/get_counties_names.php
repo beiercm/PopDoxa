@@ -7,7 +7,7 @@
 	}
 	else
 	{
-		$state_id = $_GET['state_name'];
+		$state_id = $_GET['state_id'];
 	}
 
 	get_counties_name($conn, $state_name);
@@ -18,7 +18,7 @@
 		$stmt = "SELECT name,id FROM counties where state_id = :state_id";
 
 		$stmt = $conn->prepare($stmt);
-		$stmt->bindparam(':state_name', $state_name);
+		$stmt->bindparam(':state_id', $state_id);
 		$stmt->execute();
 		$result = $stmt->fetchAll();
 
