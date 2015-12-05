@@ -1,6 +1,8 @@
 import mysql.connector
 from mysql.connector import errorcode
 
+data_path = "/home/christopher/popdoxa/PopDoxa/data/"
+
 def connection():
 	try:
 		login_info = list(open("/home/christopher/login.txt"))

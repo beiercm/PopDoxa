@@ -7,7 +7,7 @@ cursor = conn.cursor()
 
 def start(n):
 	#email = emails[random.randint(0, len(emails) - 1)]
-	with open("/home/christophe/popdoxa/PopDoxa/data/replies.txt", 'w+') as f_out:
+	with open(gc.data_path + "replies.txt", 'w+') as f_out:
 		reply_count = 0
 
 		query = "SELECT id, state, county, city from users"
