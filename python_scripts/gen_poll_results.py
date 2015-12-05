@@ -1,10 +1,7 @@
 import os, random
 from get_connection import data_path, connection
 
-conn = connection()
-cursor = conn.cursor()
-
-def get_users():
+def get_users(cursor):
 	query = """
 	SELECT id, state, county, city from users;
 	"""
@@ -14,7 +11,7 @@ def get_users():
 
 	return users
 
-def get_polls():
+def get_polls(cursor):
 	query = """
 	SELECT id, state, county, city from polls;
 	"""
@@ -24,10 +21,11 @@ def get_polls():
 
 	return polls
 
-def start():
+def start(conn):
 
-	users = get_users()
-	polls = get_polls()
+	cursor = conn.cursor()
+	users = get_users(cursor)
+	polls = get_polls(cursor)
 
 	with open(data_path + "poll_results.txt", 'w+') as f_out:
 		for user in users:

@@ -15,6 +15,7 @@ def kill_database(cursor):
 
 def rebuild(cursor):
 	try:
+		print "Trying to drop database"
 		kill_database(cursor)
 	except Exception as e:
 		print e
@@ -26,9 +27,10 @@ def rebuild(cursor):
 
 def main():	
 	conn = gc.connection()
+	cursor = conn.cursor()
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	
-	rebuild(conn.cursor())
+	rebuild(cursor)
 
 	conn.commit()
 

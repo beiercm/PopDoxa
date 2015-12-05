@@ -1,7 +1,4 @@
 import os, random
-import get_connection as gc
-
-conn = gc.connection()
 
 def get_names(files):
 	names = []
@@ -67,9 +64,10 @@ def gen_user(names, locations, n):
 			f_out.write(user + "\n")
 			users.append(user)
 
-def start(n):
+def start(conn, n):
+	cursor = conn.cursor()
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	names = get_names(['last.txt', 'male_first.txt', 'female_first.txt'])
-	locations = gen_locations()
+	locations = gen_locations(cursor)
 
 	gen_user(names, locations, n)
