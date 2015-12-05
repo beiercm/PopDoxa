@@ -31,13 +31,15 @@ def start(conn):
 
 	with open(data_path + "poll_results.txt", 'w+') as f_out:
 		for poll in polls:
-			yes_vote = random.randint(0, n)
-			no_vote = random.randint(n, n * 2)
-			u_vote = random.randint(n * 2, n * 3)
 
 
-			total_vote = yes_vote + no_vote + u_vote
+			
 			for user in users:			
+				yes_vote = random.randint(0, n)
+				no_vote = random.randint(n, n * 2)
+				u_vote = random.randint(n * 2, n * 3)
+				total_vote = yes_vote + no_vote + u_vote
+				
 				if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 					output = str(user[0]) + ',' + str(poll[0]) + ','
 					
