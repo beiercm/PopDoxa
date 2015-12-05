@@ -5,6 +5,7 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$poll_id = $argv[1];
+			
 		}
 		else
 		{
@@ -17,7 +18,7 @@
 			if(isset($_GET['post_id']))
 			{
 				$post_id = $_GET['post_id'];
-				delete_poll($post_id);
+				delete_post($post_id);
 			}
 		}
 	}
