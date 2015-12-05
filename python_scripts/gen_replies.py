@@ -26,7 +26,8 @@ def start(n):
 		post = posts[random.randint(0, len(posts) - 1)]
 
 		for user in users:
-			if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
+			#if user[1] == post[1] or user[2] == post[2] or user[3] == post[3]:
+			if user[2] == post[2]:
 				print user, post
 				break
 
