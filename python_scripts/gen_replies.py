@@ -28,5 +28,5 @@ def start(n):
 					f_out.write(str(user[0]))
 					f_out.write(str(post[0]))
 					f_out.write(content)
-
+					reply_count += 1
 start(100)
