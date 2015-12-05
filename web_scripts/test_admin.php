@@ -30,6 +30,6 @@
 
 		$results = $query->fetchall();
 
-		echo (count($results)) ? "True" : "False";
+		echo (count($results) > 0) ? "True" : "False";
 	}
 ?>
