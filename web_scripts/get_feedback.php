@@ -12,7 +12,7 @@
 		$query = $conn->prepare($query);
 		$query->execute();
 
-		$results = $query->fetchall()
+		$results = $query->fetchall();
 
 		for($i = 0; $i < count($results); $i++)
 			echo $results[$i]['user_id'] . "\n" . $results[$i]['content'] . "\n" . $results[$i]['ts'] . "\n";
