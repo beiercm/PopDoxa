@@ -1,5 +1,4 @@
-import os, random, mysql.connector
-from mysql.connector import errorcode
+import os, random
 import get_connection as gc
 
 conn = gc.connection()
@@ -14,10 +13,7 @@ def get_names(files):
 	return names
 
 def gen_locations():
-
-	login_info = [e.strip() for e in list(open("/home/christopher/login.txt"))]
-	cnx = mysql.connector.connect(user=login_info[1], password=login_info[2], database = login_info[3])
-	cursor = cnx.cursor()
+	cursor = conn.cursor()
 
 	# query = "select states.name from states;"
 
