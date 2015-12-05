@@ -1,12 +1,12 @@
 import os, random
-from get_connection import data_path, connection
+from get_connection import data_path
 import markov as mk
 
 
 def start(conn, n):
 	#email = emails[random.randint(0, len(emails) - 1)]
 	cursor = conn.cursor()
-	
+
 	mg = mk.MarkovGenerator()
 	with open(data_path + "posts.txt", 'w+') as f_out:
 		query = "SELECT id, state, county, city from users"

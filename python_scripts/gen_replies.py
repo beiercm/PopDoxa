@@ -1,11 +1,9 @@
 import os, random
-from get_connection import data_path, connection
+from get_connection import data_path
 import markov as mk
 
-conn = connection()
-cursor = conn.cursor()
-
-def start(n):
+def start(conn, n):
+	cursor = conn.cursor()
 	mg = mk.MarkovGenerator()
 	#email = emails[random.randint(0, len(emails) - 1)]
 	with open(data_path + "replies.txt", 'w+') as f_out:
