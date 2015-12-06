@@ -22,7 +22,7 @@
 
 	$conn = null;
 
-	function get_urls($conn, $short_name, $full_name)
+	function create_group($conn, $short_name, $full_name)
 	{
 
 		$query = "INSERT INTO opinions (short_name, full_name) values (:short_name, :full_name); ";
