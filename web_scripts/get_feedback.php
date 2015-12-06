@@ -8,7 +8,11 @@
 
 	function get_feedback($conn)
 	{
-		$query = "SELECT user_id, content, ts FROM feedback";
+		$query = "
+			SELECT users.username, fb.content, fb.ts 
+			FROM feedback fb
+			join users
+			on users.id = fb.user_id;";
 		$query = $conn->prepare($query);
 		$query->execute();
 
