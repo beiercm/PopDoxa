@@ -12,13 +12,13 @@
 			if(isset($_GET['poll_id']))
 			{
 				$poll_id = $_GET['poll_id'];
-				delete_poll($poll_id);
+				delete_poll($conn, $poll_id);
 			}
 
 			if(isset($_GET['post_id']))
 			{
 				$post_id = $_GET['post_id'];
-				delete_post($post_id);
+				delete_GET($conn, $post_id);
 			}
 		}
 	}
@@ -53,7 +53,7 @@
 		$query->execute();
 	}
 
-	function delete_post($conn, $post_id)
+	function delete_GET($conn, $post_id)
 	{
 		$query = "
 		DELETE posts
