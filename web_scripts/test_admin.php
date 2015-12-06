@@ -24,7 +24,7 @@
 
 	function test_admin($conn, $user_id)
 	{
-		$query = "SELECT count(id) from admins where user_id = :user_id";
+		$query = "SELECT id from admins where user_id = :user_id";
 
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_id', $user_id);
