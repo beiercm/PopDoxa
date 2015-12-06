@@ -4,15 +4,15 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$group = $argv[1];
+			$short_name = $argv[1];
 		}
 		else
 		{
-			$group = $_GET['group'];
-			$abbrev = $_GET['abbrev'];
+			$short_name = $_GET['short_name'];
+			$full_name = $_GET['full_name'];
 		}
 
-		create_group($conn, $group, $abbrev);
+		create_group($conn, $short_name, $full_name);
 	}
 	catch (PDOException $e)
 	{
@@ -22,30 +22,14 @@
 
 	$conn = null;
 
-	function get_urls($conn, $group)
+	function get_urls($conn, $short_name, $full_name)
 	{
 
-		$stmt = "SELECT name, id FROM cities where group_id = :group";
+		$query = "INSERT INTO opinions (short_name, full_name) values (:short_name, :full_name); ";
 
-		$sth = $conn->prepare($stmt);
-		$sth->bindparam(':group', $group);
-		$sth->execute();
-		$result = $sth->fetchAll();
-
-		$length = count($result);
-
-		for($i = 0; $i < $length; $i++)
-		{
-			$city = $result[$i][0];
-
-			$url = "http://10.171.204.135/city.html?topic=" . $result[$i]['id'];
-			$city = str_replace("_", " ", $result[$i]['name']);
-
-			$city = ucwords($city);
-			//echo $city ."\n". $url . $city . "\n";
-			echo 		"<a href = " . $url . " class='list-group-item'>"
-				 		. $city .
-				 		"</a>";
-		}		
+		$query = $conn->prepare($query);
+		$query->bindparam(':short_name', $short_name);
+		$query->bindparam(':full_name', $full_name);
+		$query->execute();
 	}
 ?>

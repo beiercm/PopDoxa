@@ -26,7 +26,7 @@ def read_opinions(cursor):
 
 		query = 	"""
 					INSERT INTO opinions
-					(opin_name,opin_descrip) 
+					(short_name,full_name) 
 					values (%s,%s);
 					"""
 
