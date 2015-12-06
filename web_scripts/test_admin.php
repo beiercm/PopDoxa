@@ -11,7 +11,7 @@
 		{
 			
 			if(isset($_GET['user_id']))
-				set_admin($conn, $_GET['user_id']);			
+				test_admin($conn, $_GET['user_id']);			
 		}
 	}
 	catch (PDOException $e)
@@ -22,7 +22,7 @@
 
 	$conn = null;
 
-	function set_admin($conn, $user_id)
+	function test_admin($conn, $user_id)
 	{
 		$query = $conn->prepare("SELECT count(id) from admins where user_id = :user_id");
 		$query->bindparam(':user_id', $user_id);
