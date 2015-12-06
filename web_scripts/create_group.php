@@ -4,15 +4,15 @@
 	try {
 		if(PHP_SAPI === 'cli')
 		{
-			$short_name = $argv[1];
+			$opin_name = $argv[1];
 		}
 		else
 		{
-			$short_name = $_GET['short_name'];
-			$full_name = $_GET['full_name'];
+			$opin_name = $_GET['opin_name'];
+			$opin_descrip = $_GET['opin_descrip'];
 		}
 
-		create_group($conn, $short_name, $full_name);
+		create_group($conn, $opin_name, $opin_descrip);
 	}
 	catch (PDOException $e)
 	{
@@ -22,14 +22,14 @@
 
 	$conn = null;
 
-	function create_group($conn, $short_name, $full_name)
+	function create_group($conn, $opin_name, $opin_descrip)
 	{
 
-		$query = "INSERT INTO opinions (short_name, full_name) values (:short_name, :full_name); ";
+		$query = "INSERT INTO opinions (opin_name, opin_descrip) values (:opin_name, :opin_descrip); ";
 
 		$query = $conn->prepare($query);
-		$query->bindparam(':short_name', $short_name);
-		$query->bindparam(':full_name', $full_name);
+		$query->bindparam(':opin_name', $opin_name);
+		$query->bindparam(':opin_descrip', $opin_descrip);
 		$query->execute();
 	}
 ?>
