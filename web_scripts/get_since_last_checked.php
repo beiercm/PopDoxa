@@ -26,24 +26,24 @@
 		$query = "
 			SELECT users.username, polls.question, polls.id
 			from polls
-			on polls.author = users.id
 			right join users
+			on polls.author = users.id
 			where polls.state = users.state
-			and users.id = :user_id
+			limit 20
 			UNION
 			SELECT users.username, polls.question, polls.id
 			from polls
-			on polls.author = users.id
 			right join users
+			on polls.author = users.id
 			where polls.county = users.county
-			and users.id = :user_id
+			limit 20
 			UNION
 			SELECT users.username, polls.question, polls.id
 			from polls
-			on polls.author = users.id
 			right join users
+			on polls.author = users.id
 			where polls.city = users.city
-			and users.id = :user_id;
+			limit 20;
 			";
 		$query = $conn->prepare($query);
 		$query->bindparam(':user_id', $user_id);
@@ -56,21 +56,21 @@
 			right join users
 			on posts.author = users.id
 			where posts.state = users.state
-			and users.id = :user_id
+			limit 20
 			UNION
 			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
 			on posts.author = users.id
 			where posts.county = users.county
-			and users.id = :user_id
+			limit 20
 			UNION
 			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
 			on posts.author = users.id
 			where posts.city = users.city
-			and users.id = :user_id;
+			limit 20;
 			";
 
 		$query = $conn->prepare($query);
