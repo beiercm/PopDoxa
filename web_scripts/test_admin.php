@@ -5,7 +5,7 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$user_id = $argv[1];
-			test_admin($user_id);
+			test_admin($conn, $user_id);
 		}
 		else
 		{
@@ -24,7 +24,9 @@
 
 	function test_admin($conn, $user_id)
 	{
-		$query = $conn->prepare("SELECT count(id) from admins where user_id = :user_id");
+		$query = "SELECT count(id) from admins where user_id = :user_id";
+
+		$query = $conn->prepare($query);
 		$query->bindparam(':user_id', $user_id);
 		$query->execute();
 
