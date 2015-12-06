@@ -6,7 +6,7 @@
 	
 	function get_state_names($conn)
 	{
-		$stmt = "SELECT name FROM states";
+		$stmt = "SELECT name,id FROM states";
 
 		$sth = $conn->prepare($stmt);
 		$sth->execute();
