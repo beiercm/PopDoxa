@@ -34,6 +34,6 @@
 
 		print_r($results);
 
-		echo (count($results['count(id)']) > 0) ? "True" : "False";
+		echo (count($results) > 0) ? "True" : "False";
 	}
 ?>
