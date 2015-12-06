@@ -5,7 +5,7 @@
 		if(PHP_SAPI === 'cli')
 		{
 			$user_id = $argv[1];
-
+			test_admin($user_id);
 		}
 		else
 		{
