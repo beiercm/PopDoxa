@@ -19,7 +19,7 @@
 		$results = $query->fetchall();
 
 		for($i = 0; $i < count($results); $i++)
-			echo "<tr><td>".$results[$i]['user_id'] . "</td><td>" . $results[$i]['content'] . "</td><td>" . $results[$i]['ts'] . "</td></tr>";
+			echo "<tr><td>".$results[$i]['username'] . "</td><td>" . $results[$i]['content'] . "</td><td>" . $results[$i]['ts'] . "</td></tr>";
 
 	}
 
