@@ -26,18 +26,21 @@
 		$query = "
 			SELECT users.username, polls.question, polls.id
 			from polls
+			on polls.author = users.id
 			right join users
 			where polls.state = users.state
 			and users.id = :user_id
 			UNION
 			SELECT users.username, polls.question, polls.id
 			from polls
+			on polls.author = users.id
 			right join users
 			where polls.county = users.county
 			and users.id = :user_id
 			UNION
 			SELECT users.username, polls.question, polls.id
 			from polls
+			on polls.author = users.id
 			right join users
 			where polls.city = users.city
 			and users.id = :user_id;
@@ -51,18 +54,21 @@
 			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
+			on posts.author = users.id
 			where posts.state = users.state
 			and users.id = :user_id
 			UNION
 			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
+			on posts.author = users.id
 			where posts.county = users.county
 			and users.id = :user_id
 			UNION
 			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
+			on posts.author = users.id
 			where posts.city = users.city
 			and users.id = :user_id;
 			";
