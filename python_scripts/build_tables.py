@@ -15,7 +15,8 @@ tables = {
 					county INT (5) NOT NULL,
 					city INT (6) NOT NULL,
 					last_checked TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-					image VARCHAR (200)
+					image VARCHAR (200),
+					points INT (6) DEFAULT 0
 					)
 					""",
 		'polls' :	"""

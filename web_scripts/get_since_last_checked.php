@@ -24,21 +24,21 @@
 	function get_since_last_checked($conn, $user_id)
 	{
 		$query = "
-			SELECT polls.question, polls.id
+			SELECT users.username, polls.question, polls.id
 			from polls
 			right join users
 			on polls.ts > users.last_checked
 			where polls.state = users.state
 			and users.id = :user_id
 			UNION
-			SELECT polls.question, polls.id
+			SELECT users.username, polls.question, polls.id
 			from polls
 			right join users
 			on polls.ts > users.last_checked
 			where polls.county = users.county
 			and users.id = :user_id
 			UNION
-			SELECT polls.question, polls.id
+			SELECT users.username, polls.question, polls.id
 			from polls
 			right join users
 			on polls.ts > users.last_checked
@@ -51,21 +51,21 @@
 		$poll_results = $query->fetchall();
 
 		$query = "
-			SELECT posts.title, posts.id
+			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
 			on posts.ts > users.last_checked
 			where posts.state = users.state
 			and users.id = :user_id
 			UNION
-			SELECT posts.title, posts.id
+			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
 			on posts.ts > users.last_checked
 			where posts.county = users.county
 			and users.id = :user_id
 			UNION
-			SELECT posts.title, posts.id
+			SELECT users.username, posts.title, posts.id
 			from posts
 			right join users
 			on posts.ts > users.last_checked
