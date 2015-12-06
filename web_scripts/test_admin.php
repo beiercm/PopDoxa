@@ -30,7 +30,7 @@
 
 		$results = $query->fetchall();
 
-		print_r($results['count(id)']);
+		print_r($results);
 
 		echo (count($results['count(id)']) > 0) ? "True" : "False";
 	}
