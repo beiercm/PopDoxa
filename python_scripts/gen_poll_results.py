@@ -39,21 +39,20 @@ def start(conn):
 
 				if to_vote == 1:		
 					yes_vote = random.randint(0, n)
-					no_vote = random.randint(yes_vote, n + yes_vote)
-					u_vote = random.randint(no_vote, n + no_vote)
-					total_vote = yes_vote + no_vote + u_vote
+					no_vote = random.randint(0, n)
+					u_vote = random.randint(0, n)
 
 					if user[1] == poll[1] or user[2] == poll[2] or user[3] == poll[3]:
 						output = str(user[0]) + ',' + str(poll[0]) + ','
 						
-						vote = random.randint(0, u_vote)
-						print yes_vote, no_vote, u_vote, total_vote, vote
+						vote = random.randint(0, yes_vote + no_vote + u_vote)
+						#print yes_vote, no_vote, u_vote, total_vote, vote
 						
 						if vote < yes_vote:
 							output += 'y'							
-						elif vote >= yes_vote and vote < no_vote:
+						elif vote >= yes_vote and vote < no_vote + yes_vote:
 							output += 'n'
-						elif vote >= no_vote and vote < u_vote:
+						elif vote >= no_vote + yes_vote and vote < u_vote + yes_vote + no_vote:
 							output += 'u'							
 
 						f_out.write(output + "\n")
