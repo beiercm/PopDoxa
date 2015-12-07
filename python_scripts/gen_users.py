@@ -55,9 +55,9 @@ def gen_user(names, locations, n):
 
 			location = locations[random.randint(0, len(locations) - 1)]
 
-			state = location[0]
-			county = location[1]
-			city = location[2]
+			state = 9
+			county = 1922
+			city = 342
 
 			user = "{},{},{},{},{},{},{},{}".format(first,last,gender,age,email,state,county,city)
 			f_out.write(user + "\n")
