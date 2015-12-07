@@ -1,8 +1,4 @@
 import os, random
-from get_connection import connection
-
-conn = connection()
-cursor = conn.cursor()
 
 def get_names(files):
 	names = []
@@ -26,7 +22,7 @@ def gen_locations(cursor):
 				join counties
 				on states.id = counties.state_id
 				join cities
-				on counties.id = 1922
+				on counties.id = cities.county_id
 				where states.name = 'florida';
 				"""
 
@@ -75,6 +71,5 @@ def start(conn, n):
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	names = get_names(['last.txt', 'male_first.txt', 'female_first.txt'])
 	locations = gen_locations(cursor)
-	print locations
 
-	#gen_user(names, locations, n)
+	gen_user(names, locations, n)
