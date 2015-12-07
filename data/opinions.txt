@@ -1,6 +1,5 @@
 dem,Democrat
 rep,Republican
 nra,Nation Rifle Association
-green_energy,Green and Renewable Energy
-warme,War in the Middle East
+war,War in the Middle East
 aca,Affordable Care Act
