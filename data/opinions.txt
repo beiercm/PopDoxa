@@ -1,8 +1,6 @@
 dem,Democrat
 rep,Republican
-ind,Independent
 nra,Nation Rifle Association
 green_energy,Green and Renewable Energy
-cc,Common Core
 warme,War in the Middle East
 aca,Affordable Care Act
