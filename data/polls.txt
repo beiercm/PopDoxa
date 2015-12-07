@@ -2,7 +2,7 @@
 517,Do you like Obama?,-1,1922,-1
 333,Do you like Sanders?,-1,1922,-1
 1,Is Orlando driving worse than New York?,-1,-1,342
-2,Do you think there's a current thread to Orlando (shooting, terrorist, etc)?,-1,-1,342
+2,Do you think there's a current threat to Orlando?,-1,-1,342
 3,Do you want stricter gun control laws?,-1,1922,-1
 4,Are you in favor of owning guns?,9,-1,-1
 5,Do you like Disney?,-1,1922,-1
