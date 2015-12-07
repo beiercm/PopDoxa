@@ -1,7 +1,8 @@
-343,Do you want money?,9,-1,-1
-2,Do you like money?, 9,-1,-1
 509,Do you like Florida?,9,-1,-1
-994,Are you pro-NRA?,-1,-1,387
-517,Do you like Obama?,-1,1908,-1
-1000,What time is it?,9,-1,-1
-333,Do you like Sanders?,-1,1908,-1
+517,Do you like Obama?,-1,1922,-1
+333,Do you like Sanders?,-1,1922,-1
+1,Is Orlando driving worse than New York?,-1,-1,342
+2,Do you think there's a current thread to Orlando (shooting, terrorist, etc)?,-1,-1,342
+3,Do you want stricter gun control laws,-1,1922,-1
+4,Are you in favor of owning guns?,9,-1,-1
+5,Do you like Disney?,-1,1922,-1

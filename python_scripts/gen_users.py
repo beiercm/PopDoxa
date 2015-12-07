@@ -22,7 +22,7 @@ def gen_locations(cursor):
 				join counties
 				on states.id = counties.state_id
 				join cities
-				on counties.id = cities.county_id
+				on counties.id = 1922
 				where states.name = 'florida';
 				"""
 
