@@ -1,4 +1,8 @@
 import os, random
+from get_connection import connection
+
+conn = connection()
+cursor = conn.cursor()
 
 def get_names(files):
 	names = []
