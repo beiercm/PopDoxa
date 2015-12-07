@@ -3,3 +3,4 @@ rep,Republican
 nra,Nation Rifle Association
 war,War in the Middle East
 aca,Affordable Care Act
+ge,Green Energy
