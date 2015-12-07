@@ -71,5 +71,6 @@ def start(conn, n):
 	os.chdir("/home/christopher/popdoxa/PopDoxa/data")
 	names = get_names(['last.txt', 'male_first.txt', 'female_first.txt'])
 	locations = gen_locations(cursor)
+	print locations
 
-	gen_user(names, locations, n)
+	#gen_user(names, locations, n)
