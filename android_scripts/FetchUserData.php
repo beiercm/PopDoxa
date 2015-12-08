@@ -9,12 +9,13 @@
 	mysqli_stmt_execute($statement);
 	
 	mysqli_stmt_store_result($statement);
-	mysqli_stmt_bind_result($statement, $userID, $first, $last, $username, $email, $password,
+	mysqli_stmt_bind_result($statement, $user_id, $first, $last, $username, $email, $password,
 	$age, $gender, $state, $county, $city);
 	
 	$user = array();
 	
 	while(mysqli_stmt_fetch($statement)){
+		$user[user_id] = $user_id;
 		$user[first] = $first;
 		$user[last] = $last;
 		$user[username] = $username;
