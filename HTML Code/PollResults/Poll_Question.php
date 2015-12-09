@@ -15,7 +15,7 @@ $result = $query->fetchAll();
 
 $poll_question = $result[0]['question'];
 
-if( empty($_POST) ){
+if( empty($_POST) ){ 
 	?>
 	<html>
 		<head>

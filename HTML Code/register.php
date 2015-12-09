@@ -691,7 +691,8 @@
 		$first = $form[ 'first_name' ];
 		$last = $form[ 'last_name' ];
 		$username = $form[ 'username' ];
-		$password = $form[ 'password' ];
+//		$password = crypt($form[ 'password' ]);
+		$password = password_hash($form[ 'password' ], PASSWORD_DEFAULT);
 		$email = $form[ 'userEmail' ];
 		$age = $form[ 'age' ];
 		$gender = $form[ 'gender' ];
@@ -755,14 +756,17 @@ echo $city ;
 					</script>";				
 			}
 			else{
+
 				$query = $conn->prepare( "INSERT INTO users ( first, last, username, password, email, state, county, city, age, gender ) VALUES ( :first, :last, :username, :password, :email, :state, :county, :city, :age, :gender  )" );	
 				$result = $query->execute( array( ':first'=>$first, ':last'=>$last, ':username'=>$username, ':password'=>$password, ':email'=>$email, ':state'=>$state, ':county'=>$county, ':city'=>$city, ':age'=>$age, ':gender'=>$gender ) );	
-
+				echo "	<script>
+					window.location.href='login.php';
+					</script>";
 				if ( $result ){
 					header( 'Location: login.php' );
 				}
 				else{
-					header( 'Location: register.php' );
+					header( 'Location: login.php' );
 				}
 			} 
 

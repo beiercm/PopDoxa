@@ -83,11 +83,15 @@
     }
 
     $conn = null;
+
+
+
+
+
+
     function set_opinions($conn, $id)
     {
 	$form = $_POST;
-
-//************* this needs to be finished *****************//
 
         $query = "SELECT opinions.opin_descrip, user_opin.opinion FROM opinions JOIN user_opin ON opinions.id = user_opin.opin_id WHERE user_opin.user_id = :id;";
         $query = $conn->prepare($query);
@@ -97,24 +101,118 @@
 
         $length = count($query_results);
 
-        for($i = 0; $i < $length; $i++)
-        {
-		$choice = "choice" . $i;
-		$choice = $form[ $choice ];
-echo $choice;
+	// new entries
+	if($length==0){
 
-            	if($choice == 0)
-            	{
-echo "For";
-            	}
-            	else if($choice == 1)
-            	{
-echo "Against";
-            	}
-            	else
-            	{         
-echo "Neutral";
-            	}
+		$query = "SELECT id,opin_descrip FROM opinions ORDER BY opin_descrip ASC;";
+		$query = $conn->prepare($query);
+		$query->execute();
+		$query_results = $query->fetchAll();
+	
+	        $length = count($query_results);
+	
+	        for($i = 0; $i < $length; $i++)
+	        {
+			$choice = "choice" . $i;
+			$choice = $form[ $choice ];
+	
+	            	if($choice == 0)
+	            	{
+				$opinions[$i] = 'f';
+	            	}
+	            	else if($choice == 1)
+	            	{
+				$opinions[$i] = 'a';
+	            	}
+	            	else
+	            	{     
+				$opinions[$i] = 'n';   
+	            	}
+		}
+	
+		$query = "SELECT id,opin_descrip FROM opinions ORDER BY opin_descrip ASC;";
+		$query = $conn->prepare($query);
+		$query->execute();
+		$query_results = $query->fetchAll();
+	
+		$length = count($query_results);
+	
+		for($i = 0; $i < $length; $i++)
+		{
+			$opin_id = $query_results[$i][0];
+			
+			$stmt = "
+				INSERT INTO user_opin
+				(user_id, opin_id, opinion) 
+				VALUES (:user_id,:opin_id,:opinion);";
+	
+			$stmt = $conn->prepare($stmt);
+			$stmt->bindparam(':user_id', $id);
+			$stmt->bindparam(':opin_id', $opin_id);
+			$stmt->bindparam(':opinion', $opinions[$i]);		
+			$stmt->execute();
+		 }
+	}
+	// update old entries
+	else{
+
+		$stmt = "
+			DELETE
+			FROM user_opin
+			where user_id = :user_id";
+	
+		$stmt = $conn->prepare($stmt);
+		$stmt->bindparam(':user_id', $id);
+		$stmt->execute();
+
+		$query = "SELECT id,opin_descrip FROM opinions ORDER BY opin_descrip ASC;";
+		$query = $conn->prepare($query);
+		$query->execute();
+		$query_results = $query->fetchAll();
+	
+	        $length = count($query_results);
+	
+	        for($i = 0; $i < $length; $i++)
+	        {
+			$choice = "choice" . $i;
+			$choice = $form[ $choice ];
+	
+	            	if($choice == 0)
+	            	{
+				$opinions[$i] = 'f';
+	            	}
+	            	else if($choice == 1)
+	            	{
+				$opinions[$i] = 'a';
+	            	}
+	            	else
+	            	{     
+				$opinions[$i] = 'n';   
+	            	}
+		}
+	
+		$query = "SELECT id,opin_descrip FROM opinions ORDER BY opin_descrip ASC;";
+		$query = $conn->prepare($query);
+		$query->execute();
+		$query_results = $query->fetchAll();
+	
+		$length = count($query_results);
+	
+		for($i = 0; $i < $length; $i++)
+		{
+			$opin_id = $query_results[$i][0];
+			
+			$stmt = "
+				INSERT INTO user_opin
+				(user_id, opin_id, opinion) 
+				VALUES (:user_id,:opin_id,:opinion);";
+	
+			$stmt = $conn->prepare($stmt);
+			$stmt->bindparam(':user_id', $id);
+			$stmt->bindparam(':opin_id', $opin_id);
+			$stmt->bindparam(':opinion', $opinions[$i]);		
+			$stmt->execute();
+		 }
 	}
     }
 
@@ -125,7 +223,8 @@ echo "Neutral";
 	$firstname = $form["firstname"];
 	$lastname = $form["lastname"];
 	$username = $form["username"];
-	$password = $form["password"];
+//	$password = $form["password"];
+	$password = password_hash($form[ 'password' ], PASSWORD_DEFAULT);
 	$email = $form["email"];
 	$age = $form["age"];
 	$gender = $form["gender"];
@@ -147,7 +246,7 @@ echo "Neutral";
 
 			$city_id = $form["dropdownMenu3"];
 			$lowerCaseCityName = str_replace(" ", "_", strtolower($form["dropdownMenu3"]));
-			echo "..." . $lowerCaseCityName . "...";
+//			echo "..." . $lowerCaseCityName . "...";
 
 			$query = $conn->prepare("
 				SELECT cities.id
@@ -159,12 +258,77 @@ echo "Neutral";
 			$results = $query->fetchAll();
 
 			$city_id = $results[0][0];
+//echo $firstname . $lastname . $username . $password . $age . $email . $gender . $state_id . $county_id . $city_id . $id;
 
+	$stmt = "
+		UPDATE users
+		SET first='" . $firstname . "', 
+		last='" . $lastname . "', 
+		username='" . $username . "', 
+		password='" . $password . "', 
+		age='" . $age . "', 
+		email='" . $email . "', 
+		gender='" . $gender . "', 
+		state='" . $state_id . "', 
+		county='" . $county_id . "', 
+		city='" . $city_id . "' 
+		WHERE id='" . $id . "';";
+//echo $stmt;
+
+	$stmt = $conn->prepare($stmt);
+
+	$stmt->execute();
     }
 
     function get_opinions($conn, $id)
     {
-        $query = "SELECT opinions.opin_descrip, user_opin.opinion FROM opinions JOIN user_opin ON opinions.id = user_opin.opin_id WHERE user_opin.user_id = :id;";
+        $query = "SELECT * FROM posts WHERE author = :id;";
+        $query = $conn->prepare($query);
+        $query->bindparam(':id', $id);
+        $query->execute();
+        $query_results = $query->fetchAll();
+        $postCount = count($query_results);
+
+        $query = "SELECT * FROM replies WHERE author = :id;";
+        $query = $conn->prepare($query);
+        $query->bindparam(':id', $id);
+        $query->execute();
+        $query_results = $query->fetchAll();
+        $repliesCount = count($query_results);
+
+        $query = "SELECT * FROM polls WHERE author = :id;";
+        $query = $conn->prepare($query);
+        $query->bindparam(':id', $id);
+        $query->execute();
+        $query_results = $query->fetchAll();
+        $pollsCount = count($query_results);
+
+        $query = "SELECT * FROM poll_results WHERE user_id = :id;";
+        $query = $conn->prepare($query);
+        $query->bindparam(':id', $id);
+        $query->execute();
+        $query_results = $query->fetchAll();
+        $pollVotes = count($query_results);
+
+
+	$pointsDesc = 	$postCount . " posts created (10 points each) " . "<br>". 
+			$repliesCount . " post replied (5 points each) " .  "<br>". 
+			$pollsCount . " polls created (15 points each) " . "<br>".
+			$pollVotes . " polls voted (10 points each) " .  "<br>";
+
+	$points = (10 * $postCount) + (5 * $repliesCount) + (15 * $pollsCount) + (10 * $pollVotes);
+
+	echo	"<div class='form-group' style='margin:20px'><div class='links-opinions col-xs-7' style='display:inline-block; font-weight:600'>"
+		. $pointsDesc .
+		"</a></div>";
+
+	echo 	"<div style='display:inline-block; font-weight:800'>".
+		"<br>".
+		"<label for='points'> Points: </label>".
+		" ". $points .
+		"</div></div><br>";
+
+        $query = "SELECT opinions.opin_descrip, user_opin.opinion FROM opinions JOIN user_opin ON opinions.id = user_opin.opin_id WHERE user_opin.user_id = :id ORDER BY opin_descrip ASC;";
         $query = $conn->prepare($query);
         $query->bindparam(':id', $id);
         $query->execute();
@@ -172,53 +336,87 @@ echo "Neutral";
 
         $length = count($query_results);
 
-        for($i = 0; $i < $length; $i++)
-        {
-	    $opinion = $query_results[$i][0];
+	if($length==0){
 
-            $opinion = str_replace("_", " ", $opinion);
+	        $query = "SELECT DISTINCT(opin_descrip) FROM opinions ORDER BY opin_descrip ASC;";
+	        $query = $conn->prepare($query);
+	        $query->execute();
+	        $query_results = $query->fetchAll();
 
-            $opinion = ucwords($opinion);
+	        $length = count($query_results);
 
-            echo        "<div class='form-group' style='margin:20px'><div class='links-opinions col-xs-7' style='display:inline-block; font-weight:600'>"
-                        . $opinion .
-                        "</a></div>";
-
-	    $choice = "choice" . $i;
-
-            if($query_results[$i][1] == 'f')
-            {
-	     echo "<div style='display:inline-block;'>".
-                "<label for='choice1'> Opinion: </label>".
-                "<select class='selectpicker' name=$choice>".
-                "   <option selected value='0'>For</option>".
-                "   <option value='1'>Against</option>".
-                "   <option value='2'>Neutral</option>".
-                "</select>".
-                "</div></div>"; 
-            }
-            else if($query_results[$i][1] == 'a')
-            {
-                echo "<div style='display:inline-block;'>".
-                "<label for='choice1'> Opinion: </label>".
-                "<select class='selectpicker' name=$choice>".
-                "   <option value='0'>For</option>".
-                "   <option selected value='1'>Against</option>".
-                "   <option value='2'>Neutral</option>".
-                "</select>".
-                "</div></div>";
-            }
-            else
-            {         
-                echo "<div style='display:inline-block;'>".
-                    "<label for='choice1'> Opinion: </label>".
-                    "<select class='selectpicker' name=$choice>".
-                    "   <option value='0'>For</option>".
-                    "   <option value='1'>Against</option>".
-                    "   <option selected value='2'>Neutral</option>".
-                    "</select></div></div>";
-            }
-        }
+	        for($i = 0; $i < $length; $i++)
+	        {
+		    $opinion = $query_results[$i][0];
+	
+	            $opinion = str_replace("_", " ", $opinion);
+	
+	            $opinion = ucwords($opinion);
+	
+	            echo        "<div class='form-group' style='margin:20px'><div class='links-opinions col-xs-7' style='display:inline-block; font-weight:600'>"
+	                        . $opinion .
+	                        "</a></div>";
+	
+		    $choice = "choice" . $i;
+	    
+	            echo "<div style='display:inline-block;'>".
+	            	"<label for='choice1'> Opinion: </label>".
+	                "<select class='selectpicker' name=$choice>".
+	                "   <option value='0'>For</option>".
+	                "   <option value='1'>Against</option>".
+	                "   <option selected value='2'>Neutral</option>".
+	                "</select></div></div>";
+	        }
+	}
+	else{
+	        for($i = 0; $i < $length; $i++)
+	        {
+		    $opinion = $query_results[$i][0];
+	
+	            $opinion = str_replace("_", " ", $opinion);
+	
+	            $opinion = ucwords($opinion);
+	
+	            echo        "<div class='form-group' style='margin:20px'><div class='links-opinions col-xs-7' style='display:inline-block; font-weight:600'>"
+	                        . $opinion .
+	                        "</a></div>";
+	
+		    $choice = "choice" . $i;
+	
+	            if($query_results[$i][1] == 'f')
+	            {
+		     echo "<div style='display:inline-block;'>".
+	                "<label for='choice1'> Opinion: </label>".
+	                "<select class='selectpicker' name=$choice>".
+	                "   <option selected value='0'>For</option>".
+	                "   <option value='1'>Against</option>".
+	                "   <option value='2'>Neutral</option>".
+	                "</select>".
+	                "</div></div>"; 
+	            }
+        	    else if($query_results[$i][1] == 'a')
+	            {
+	                echo "<div style='display:inline-block;'>".
+	                "<label for='choice1'> Opinion: </label>".
+	                "<select class='selectpicker' name=$choice>".
+	                "   <option value='0'>For</option>".
+	                "   <option selected value='1'>Against</option>".
+	                "   <option value='2'>Neutral</option>".
+	                "</select>".
+	                "</div></div>";
+	            }
+	            else
+	            {         
+	                echo "<div style='display:inline-block;'>".
+	                    "<label for='choice1'> Opinion: </label>".
+	                    "<select class='selectpicker' name=$choice>".
+	                    "   <option value='0'>For</option>".
+	                    "   <option value='1'>Against</option>".
+	                    "   <option selected value='2'>Neutral</option>".
+	                    "</select></div></div>";
+	            }
+	        }
+	}
     }
 
     function get_info($conn, $id)
@@ -242,7 +440,7 @@ echo "Neutral";
 	$firstname = $results[0][3];
 	$lastname = $results[0][4];
 	$username = $results[0][5];
-	$password = $results[0][6];
+	$password = ""; //$results[0][6];
 	$age = $results[0][7];
 	$email = $results[0][8];
 	$gender = $results[0][9];
@@ -260,7 +458,7 @@ echo "Neutral";
                 "</div>";
 
 	     echo "<div class='form-group form-inline'><label for='password'> Password: </label>".
-		" <input id='password' class='form-control' value=$password type='password' name='password' required='required'>".
+		" <input id='password' class='form-control' value='' type='password' name='password' required='required'>".
                 "</div>";
 
 	     echo "<div class='form-group form-inline'><label for='email'> Email: </label>".
