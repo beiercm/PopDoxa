@@ -1,0 +1,151 @@
+/*This contains the CSS for the navbar and footer*/
+#footer
+{
+	font-family:"Source Sans Pro",Arial,Helvetica,sans-serif !important;
+	padding:0;
+	background-color:#252425;
+	color: white;
+	font-size:15px !important;
+	line-height:1em !important;
+	font-weight:400 !important;
+	position:absolute; 
+	padding:30px 0 0 0;
+	height:90px;
+	width: 100%; 
+	bottom: 0; 
+	left:0; 
+	-webkit-box-shadow:inset 0px 4px 8px -2px rgba(0,0,0,.2);
+	-moz-box-shadow:inset 0px 4px 8px -2px rgba(0,0,0,.2);
+   box-shadow:inset 0px 4px 8px -2px rgba(0,0,0,.2);
+}
+.breadcrumb
+{
+  margin-left: 15px; 
+}
+th a
+{
+  color: #45464d; 
+}
+.breadcrumb a
+{
+  color: #7694b8; 
+}
+
+.breadcrumb a:hover
+{
+  color: #7694b8 !important; 
+  text-decoration: underline;
+}
+.row
+{
+  margin-left: 0; 
+  margin-right: 0; 
+  width: 100%;
+}
+#bottom-menu > a
+{
+  color: white; 
+  list-style: none; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+.individual
+{
+  color: gray; 
+  text-decoration: none !important; 
+}
+
+li a:hover
+{
+  color: white !important; 
+}
+
+.dropdown-menu li a:hover
+{
+  color: inherit !important;
+}3r
+
+ul > a
+{
+  color: white !important; 
+}
+
+html 
+{
+    position: relative;
+    min-height: 100%;
+}
+body 
+{
+    margin: 0 0 90px; /* bottom = footer height */
+}
+#bottom-menu ul
+{
+  padding:5px 0 0 0px;
+  text-align:center; 
+}
+
+#bottom-menu ul li
+{
+  float:left; 
+  list-style:none;
+  margin:0 30px 0 0;
+
+}
+
+.navbar
+{
+  margin-bottom: 0;
+  background-color: #252425;  
+}
+.navbar-transparent
+{
+  padding-top: 0; 
+}
+.form-control
+{
+  font-family: flexo, Helvetica, sans-serif; 
+  font-weight: 400; 
+  font-size: 1.25rem; 
+  box-shadow: inset 1px 1px 4px 1px #ddd; 
+  min-height: 1.9em; 
+  font-style: normal; 
+  border: 1px solid #a9a8a9; 
+}
+
+::-webkit-input-placeholder {
+    color:    #a9a8a9 !important;
+}
+:-moz-placeholder {
+    color:    #a9a8a9 !important;
+}
+::-moz-placeholder {
+    color:  #a9a8a9   ;
+}
+:-ms-input-placeholder {
+    color:     #a9a8a9;
+}
+
+.navsearch
+{
+  border-top: none; 
+  border-left: none; 
+  border-right: none; 
+  background-color: transparent;
+  padding-left: 0; 
+  border-radius: initial; 
+  box-shadow: none; 
+  border-bottom: 1px solid gray; 
+}
+
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
+{
+  margin-left: 3px;
+}
+
+#searchfield
+{
+  margin: 10px;
+}

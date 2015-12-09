@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="pic/icon.ico">
+  <title>Forums</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="/applications/js/html5shiv.min.js"></script>
+      <script src="/applications/js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+  <link href="css/ct-navbar.css" rel="stylesheet" />
+  <link href="css/home.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <script src="js/main.js"></script>
+
+  <style>
+  #states
+  {
+   background: url(pic/citylife.jpg); 
+   padding: 30px 0;
+   background-size: 100% 100%;
+  }
+  .level
+  {
+    background:rgba(255,255,255,0.8); 
+    padding: 20px;
+    margin: 10px 0; 
+  }
+
+  .title-bordered
+  {
+    font-size: 17px;
+    font-weight: 700; 
+    line-height: 1; 
+    letter-spacing: .1em; 
+    color: #5f5e5b; 
+    text-transform: uppercase; 
+    text-align: center; 
+    position: relative;
+    padding-bottom: 19px; 
+    margin-bottom: 45px; 
+  }
+
+  .title-bordered:before
+  {
+    margin: auto;
+    content: ""; 
+    width: 20px; 
+    height: 2px; 
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    background: #9EC9CB; 
+  }
+  .listStates > a
+  {
+    color: #5f5e5b; 
+    font-size: 20px; 
+  }
+
+  .listStates
+  {
+    padding: 1em 0;
+    text-align: center; 
+
+  }
+  .listStates > a:hover
+  {
+    color: #9EC9CB; 
+    text-decoration: none; 
+  }
+
+
+  #mapSection
+  {
+    background-color: #68a9bc; 
+    background-image: -webkit-radial-gradient(closest-corner,rgba(16,47,70,0) 40%,rgba(43,104,150,.29)),-webkit-linear-gradient(108deg,#f2f8e8 10%,#64acbe 90%); 
+  }
+  h3
+  {
+    text-align: center;
+    font-size: 24px; 
+    font-weight: 300; 
+    margin-top: 2em; 
+    margin-bottom: 1em; 
+  }
+  .summary
+  {
+    color: #818a92; 
+    font-size: 17px; 
+    text-align: center; 
+    display: block; 
+    margin-bottom: 25px; 
+  }
+  #buttonMap
+  {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center; 
+    color: gray; 
+    margin: 10px auto; 
+    border-color: #9EC9CB; 
+
+  }
+
+  h1
+  {
+    font-size: 34px; 
+    letter-spacing: -1px; 
+    font-weight: 300; 
+    margin-top: 40px; 
+    margin-bottom: 5px; 
+    color: white; 
+  }
+
+  h2
+  {
+    display: block; 
+    font-weight: 100; 
+    font-size: 18px; 
+    margin-bottom: 20px; 
+    color: #A9A9A9; 
+  }
+
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      showstates(); 
+    }); 
+
+    function showstates()
+    { 
+      var xmlhttp; 
+      if(window.XMLHttpRequest)
+      { //code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest(); 
+      }
+      else
+      {//code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+      }
+      xmlhttp.onreadystatechange = function(){ 
+        if(xmlhttp.readyState==4)
+        {
+           if(xmlhttp.status==200)
+           {
+             xmlhttp.responseText;           
+             $("#listOfStates").append(xmlhttp.responseText); 
+           }
+        }
+      }
+      xmlhttp.open("GET", "/scripts/web_scripts/get_states.php", true); 
+      xmlhttp.send(); 
+    }
+  </script>
+</head>
+<body>
+  <!-- First/top Section -->
+  <div class="row" style="background: linear-gradient(315deg, #3e5062 10%, #203040 90%)" id="top">
+    <span id="navbarSection"></span>
+    <div class="container" style="text-align: center; padding-top: 40px; margin-bottom: -86px;">
+      <h1>Be able to view PopDoxa on different screens!</h1>
+      <h2>Visit the site or mobile app to vote and participate in forums.</h2>
+      <img alt="Monitor Picture" src="pic/newmonitor.png" width="700" align="middle" />
+    </div>
+  </div><!-- End of first section -->
+
+  <!-- Map section -->
+  <div class="row visible-lg visible-md" style="padding-top: 130px; padding-bottom: 70px;">
+    <div class="container">
+      <h3 style="font-weight: 600;">PopDoxa Forum Map</h3>
+      <div class="summary">Click on the button below to view all the participating states in PopDoxa or see them listed below.</div>
+      <iframe align="middle" style="margin-left:35px; " src="http://www.makeaclickablemap.com/map.php?0aebd4ce51f4fc057af7d1129f44f5deb031e26d" frameborder="0" scrolling="no" height="720" width="960"></iframe>
+    </div>
+  </div>
+
+
+  <!-- All States Section  -->
+  <div class="row" id="states" style="padding-top: 25px;"> <!-- or dimgray background --> 
+    <div class="container">
+        <h1 class="title-bordered">States</h1>
+        <div id='listOfStates'></div>
+      </div>
+  </div>
+  <span id="footerSection"></span>
+  
+</body>
+</html>

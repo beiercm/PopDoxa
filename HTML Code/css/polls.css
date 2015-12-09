@@ -1,0 +1,119 @@
+h1
+{
+  font-size: 34px; 
+  letter-spacing: -1px; 
+  font-weight: 300; 
+  margin-top: 190px; 
+  margin-bottom: 5px; 
+  color: white; 
+}
+
+h2
+{
+  display: block; 
+  font-weight: 100; 
+  font-size: 18px; 
+  margin-bottom: 20px; 
+  color: #A9A9A9; 
+}
+#firstButton
+{
+  margin-top: 15px; 
+  color: white; 
+  font-size: 18px; 
+  background-color: transparent;
+}
+
+h3
+{
+  text-align: center;
+  font-size: 24px; 
+  font-weight: 300; 
+  margin-top: 2em; 
+  margin-bottom: 1em; 
+}
+.summary
+{
+  color: #818a92; 
+  font-size: 17px; 
+  text-align: center; 
+  display: block; 
+  margin-bottom: 25px; 
+}
+.counties-level
+{
+  background:rgba(255,255,255,0.8); 
+  padding: 20px;
+  clear: both;  
+}
+#buttonMap
+{
+  color: white;
+  background-color: transparent;
+}
+#buttonMap:hover
+{
+  color: #E0FFFF;
+}
+
+ .subcaps
+{
+  text-align: left; 
+  color: #5f5e5b;
+  text-size: 8px !important; 
+}
+
+.title
+{
+  font-size: 17px;
+  font-weight: 700; 
+  line-height: 1; 
+  letter-spacing: .1em; 
+  color: #5f5e5b; 
+  text-transform: uppercase; 
+  text-align: center; 
+  position: relative;
+  text-align: center;
+  margin-top: 10px; 
+}
+
+input::-webkit-input-placeholder 
+{
+  color: #5f5e5b !important;
+}
+ 
+input:-moz-placeholder 
+{ /* Firefox 18- */
+  color: #5f5e5b !important;  
+}
+ 
+input::-moz-placeholder 
+{  /* Firefox 19+ */
+  color: #5f5e5b !important;  
+}
+ 
+input:-ms-input-placeholder 
+{  
+  color: #5f5e5b !important;  
+}
+
+#quicklinks
+{
+  clear: both;
+  text-align: center; 
+}
+.list-group-item
+{
+  border: none;
+}
+#search
+{
+  border-top: none; 
+  border-left: none; 
+  border-right: none; 
+  background-color: transparent;
+  padding-left: 0; 
+  border-radius: initial; 
+  box-shadow: none; 
+}
+

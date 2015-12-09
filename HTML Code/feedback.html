@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="pic/icon.ico">
+  <title>Feedback Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <style>
+  body
+  {
+    background: url(https://images.unsplash.com/38/awhCbhLqRceCdjcPQUnn_IMG_0249.jpg?q=80&fm=jpg&s=293cce57f99e5d60745e1da9da9db675) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  #send
+  {
+    background-color: #5cb85c;
+    color: white; 
+    padding: 8px 15px;
+    margin-top: 10px;  
+    font-size: 15px;
+  }
+  #send:hover
+  {
+    background-color: gray;
+    color: #5cb85c; 
+  }
+  #form
+  {
+    border-radius: 20px;
+    padding: 25px;  
+    color: #248cc8; 
+    margin: 0 auto 15em auto; 
+    background: rgba(255, 255, 255, 0.7); 
+    float: none; 
+  }
+  h3
+  {
+    margin: 0; 
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-12" style="text-align:center;">
+      <h3>Feedback</h3>
+    </div>
+    <div class="col-md-6 col-md-offset-5 center" id="form">
+      <div class="form-group">
+        <label for="Text1">Feedback Description:</label><br />
+        <textarea name="Text1" rows="5" class="col-xs-12" placeholder="Please write any suggestions/opinions for the site."></textarea>
+    </div>
+    <button id="send" type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</body>
+</html>

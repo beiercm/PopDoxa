@@ -1,0 +1,355 @@
+#hottopicheader
+{
+  font-weight: bold; 
+  font-size: 18px;
+  color: #0066a4; 
+  margin:15px 20px 10px 0;
+  float: left; 
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover 
+{ 
+  color: black !important; 
+}
+
+label
+{
+  font-weight: 200; 
+}
+legend
+{
+  color: #0066a4; 
+}
+.error
+{
+  border-color: red !important; 
+}
+
+#scrolling
+{
+  max-height: 720px;
+  overflow-y: auto;
+}
+#topicheader
+{
+  font-size: 28px; 
+  color: #0066a4; 
+  font-weight: bold; 
+  padding-left: 10px;
+  text-align: center;
+}
+@media(max-width: 992px)
+{
+  #topicheader
+  {
+    text-align: center;
+  }
+}
+#dropdownMenu3
+{
+  width:100%;
+  height:50px; 
+  font-size:16px; 
+}
+.open > .dropdown-menu
+{
+  width: 100%;
+}
+.dropdown-menu
+{
+  max-height: 400px;
+  overflow-y:auto;
+}
+
+.subtitle
+{
+  font-size: x-small;
+  color: gray; 
+}
+
+td, th
+{ 
+  padding: 7px !important; 
+}
+
+th
+{ 
+  width: 200px; 
+}
+
+h1
+{
+  font-family: "Gotham SSm A", "Gotham SSm B", sans-serif; 
+  margin: 0; 
+}
+
+#quicklinks
+{
+  clear: both;
+  text-align: center; 
+}
+.list-group-item
+{
+  border: none;
+}
+.title-bordered
+{
+  font-size: 17px;
+  font-weight: 700; 
+  line-height: 1; 
+  letter-spacing: .1em; 
+  color: #5f5e5b; 
+  text-transform: uppercase; 
+  text-align: center; 
+  position: relative;
+  padding-bottom: 19px; 
+  margin-bottom: 45px; 
+}
+
+.level-table
+{
+ padding: 6rem 0; 
+}
+
+#tablesearch
+{
+  height: 100%; 
+  padding: 15px; 
+  position: relative;
+  z-index: 1; 
+  box-shadow: 0 45px 45px rgba(0,0,0,0.02); 
+  background: white; 
+  left: 15px; 
+  right: 15px; 
+  top: 0; 
+  bottom: 0; 
+}
+
+.counties-level
+{
+  background:rgba(255,255,255,0.8); 
+  padding: 20px;
+  clear: both;  
+}
+
+.level-new
+{
+  padding: 10rem 0; 
+}
+
+.subcaps
+{
+  text-align: left; 
+  color: #5f5e5b;
+  text-size: 8px !important; 
+}
+
+.title
+{
+  font-size: 17px;
+  font-weight: 700; 
+  line-height: 1; 
+  letter-spacing: .1em; 
+  color: #5f5e5b; 
+  text-transform: uppercase; 
+  text-align: center; 
+  position: relative;
+  text-align: center;
+  margin-top: 10px; 
+}
+
+.list-item
+{
+  background-color: white; 
+  padding: 10px 2px; 
+  border-radius: 5px; 
+  text-align: center; 
+  -webkit-box-shadow: 0 0 10px gray;
+  box-shadow: 0 0 10px gray;
+  color: #5f5e5b; 
+}
+
+.spacing
+{
+  margin: 10px auto;
+}
+
+#search
+{
+  border-top: none; 
+  border-left: none; 
+  border-right: none; 
+  background-color: transparent;
+  padding-left: 0; 
+  border-radius: initial; 
+  box-shadow: none; 
+}
+
+.level-new
+{
+  background-color: #f1f1f1;
+  background-size: 100% 100%; 
+}
+#submitButton
+{
+  font-size: medium; 
+  background-color: transparent; 
+  color: white; 
+  font-weight: 600; 
+  vertical-align: middle;  
+}
+
+.level-misc
+{
+  background-color: #d0e6d1; 
+  padding: 10rem 0; 
+}
+/* carousel */
+#quote-carousel 
+{
+  margin-top: 30px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 2.3em;
+  text-shadow: none;
+}
+
+blockquote 
+{
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  width: 540px;
+  margin: 0 0 2em 5em;
+  padding: 0.25em 0 0.25em 50px;
+  line-height: 1.45;
+  position: relative;
+  color: #616161;
+  border: 0; 
+}
+
+blockquote:before 
+{
+  display: block;
+  content: "\201C";
+  font-size: 80px;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  color: #7a7a7a;
+}
+
+blockquote:after 
+{
+  display: block;
+  content: "\201D";
+  font-size: 80px;
+  position: absolute;
+  right: 60px;
+  top: 40px;
+  color: #7a7a7a;
+}
+
+
+blockquote cite:after 
+{
+  content: "\2019 \2009";
+}
+
+blockquote cite:before 
+{
+  content: "\2014 \2009";
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+  #quote-carousel 
+  {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+  }
+    
+}
+
+input::-webkit-input-placeholder 
+{
+  color: #5f5e5b !important;
+}
+ 
+input:-moz-placeholder 
+{ /* Firefox 18- */
+  color: #5f5e5b !important;  
+}
+ 
+input::-moz-placeholder 
+{  /* Firefox 19+ */
+  color: #5f5e5b !important;  
+}
+ 
+input:-ms-input-placeholder 
+{  
+  color: #5f5e5b !important;  
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) { 
+  /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+  #quote-carousel .carousel-indicators 
+  {
+      bottom: -20px !important;  
+  }
+  #quote-carousel .carousel-indicators li 
+  {
+      display: inline-block;
+      margin: 0px 5px;
+      width: 15px;
+      height: 15px;
+  }
+  #quote-carousel .carousel-indicators li.active 
+  {
+      margin: 0px 5px;
+      width: 20px;
+      height: 20px;
+  }
+}
+
+.form-control
+{
+  border-color:gray;
+}
+
+/* do not group these rules */
+*::-webkit-input-placeholder 
+{
+    color: red;
+}
+*:-moz-placeholder 
+{
+    /* FF 4-18 */
+    color: red;
+}
+*::-moz-placeholder 
+{
+    /* FF 19+ */
+    color: red;
+}
+*:-ms-input-placeholder 
+{
+    /* IE 10+ */
+    color: red;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder 
+{
+  color: #636363;
+}
+input:-moz-placeholder, textarea:-moz-placeholder 
+{
+  color: #636363;
+}

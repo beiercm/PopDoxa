@@ -1,0 +1,109 @@
+/*
+Styles related DIRECTLY with jQuery-simple-pagination
+*/
+.simple-pagination-page-numbers a
+{
+	display: inline;
+	float: left;
+	text-align: center;
+	position: relative;
+	padding: 6px 12px; 
+	margin-left: -1px; 
+	line-height: 1.42857143;
+	background-color: white; 
+	border: 1px solid #ddd;
+}
+a.simple-pagination-navigation-page:hover 
+{
+	z-index: 3; 
+	color: #23527c;
+	background-color:#eee;
+	border-color:#ddd;
+	text-decoration: none; 
+}
+
+a[class^="simple-pagination-navigation-"] + a[class^="simple-pagination-navigation-"]
+{
+	margin-right: 0;
+}
+a[class*="simple-pagination-navigation-disabled"]
+{
+	color: black;
+	cursor: default;
+}
+a.simple-pagination-navigation-page.simple-pagination-navigation-disabled
+{
+	z-index: 2; 
+	color: #fff; 
+	cursor: default;
+	background-color: #337ab7; 
+	border-color: #337ab7;
+}
+
+/*
+Styles used to page things look nice :)
+*/
+.simple-pagination-navigation-first
+{
+	margin-left: 0; 
+	border-top-left-radius:4px;
+	border-bottom-left-radius:4px;
+	background-color: #fff;
+	border-color: #ddd; 
+	position: relative; 
+	float: left; 
+	padding: 6px 12px;
+	line-height: 1.42857143; 
+	text-decoration: none; 
+	border: 1px solid #ddd;
+}
+
+.simple-pagination-navigation-last
+{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	position: relative; 
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px; 
+	line-height: #337ab7; 
+	text-decoration: none; 
+	background-color: #fff; 
+	border: 1px solid #ddd;
+}
+#header
+{
+	border-radius: .5rem;
+}
+
+.my-navigation:after
+{
+	content: "";
+	display: table;
+	clear: both;
+}
+.my-navigation div
+{
+	float: left;
+}
+
+th, td
+{
+	padding:8px !important;
+}
+
+th
+{
+	border-bottom: 4px solid #ddd; 
+}
+table
+{
+	margin-bottom: 6px !important;
+}
+@media screen and (max-width: 959px){
+	body > div,
+	header
+	{
+		width: 90%;
+	}
+}

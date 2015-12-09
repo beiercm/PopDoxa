@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="pic/icon.ico">
+  <title>State</title>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="/applications/js/html5shiv.min.js"></script>
+      <script src="/applications/js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/forumcss.css">
+  <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+  <link href="css/ct-navbar.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <script src="js/jquery-simple-pagination-plugin.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <link rel="stylesheet" href="css/pagination.css" media="screen" />
+  <link href="css/state.css" rel="stylesheet" />
+  <style>
+  .level-county
+  {
+    padding: 10rem 0; 
+    background: url(pic/map-455769.jpg) no-repeat center center fixed;
+  }
+
+  .level-new
+  {
+    background: url(pic/notepad-926787.jpg) no-repeat center center fixed;
+    background-size: 100% 100%; 
+  }
+  #quicklinks
+  {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+ th
+  {
+    width: 20%; 
+  }
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus
+  {
+    color: #333 !important; 
+  }
+  </style>
+  <script type="text/javascript">
+    var topic_id; //will be used in forums
+    $(document).ready(function(){
+      $(".dropdown-toggle").dropdown();
+      $(document).click(function() {
+        $('#staticRow').show(); 
+      });
+      $("#search").keyup(function(){
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val();
+        // Loop through the comment list
+          $("#quicklinks a").each(function(){
+          // If the list item does not contain the text phrase fade it out
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) 
+            {
+              $(this).addClass('hidden');
+            // Show the list item if the phrase matches and increase the count by 1
+            } 
+            else 
+            {
+              $(this).removeClass('hidden');
+            }
+          });//end of loop
+        }); 
+
+        //Set the carousel options
+        $('#quote-carousel').carousel({
+          pause: true,
+          interval: 5000,
+        });
+        topic_id = getParameterByName("topic"); 
+        getUserID(); 
+        showcounties(topic_id);
+        retrieveName(topic_id);
+      }); //end of ready document
+    
+    //The following function will find the name of the topic_id
+    function retrieveName(topic_id)
+    {
+      var xmlhttp; 
+      if(window.XMLHttpRequest)
+      { //code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest(); 
+      }
+      else
+      {//code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+      }
+      xmlhttp.onreadystatechange = function(){ 
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+             var topic = capitalizeFirstLetter(xmlhttp.responseText);
+             document.getElementById("topicheader").innerHTML = topic + " Forums"; 
+              document.getElementById("new-topic").innerHTML = "Create New Topic in " + topic + " Forum";  
+              document.title = topic;
+             breadcrumbs(topic); 
+        }
+      }
+      xmlhttp.open("GET", "/scripts/web_scripts/get_location_name.php?state="+topic_id, true); 
+      xmlhttp.send(); 
+      allForums(); 
+    }
+    
+    function allForums()
+    {
+      var xmlhttp; 
+      if(window.XMLHttpRequest)
+      { //code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest(); 
+      }
+      else
+      {//code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+      }
+      xmlhttp.onreadystatechange = function(){ 
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+          $("#forumInformation").append(xmlhttp.responseText); 
+          $('#first-container').simplePagination();
+          $('#showEntries').detach().prependTo("#entriesSearch"); 
+        }
+      }
+      xmlhttp.open("GET", "/scripts/web_scripts/get_posts.php?state=" + topic_id, true); 
+      xmlhttp.send();
+    }
+
+    //function checks if the three fields are filled out
+    //if not, then an error is sent to the user and topic will not be sent 2 db
+    function checkValid()
+    {
+      var valid = true;
+      $("#title").removeClass("error"); 
+      $("#multText").removeClass("error");
+      $("#loginError").hide(); 
+      if($("#title").val() == "")
+      {
+        $("#title").addClass("error"); 
+        valid = false; 
+      }
+      if($("#multText").val() == "" && $("#multText").val() == undefined)
+      {
+        $("#multText").addClass("error"); 
+        valid = false; 
+      }
+      if(user_id == 'false')
+      {
+        valid = false; 
+        $("#loginError").show(); 
+      }
+      if(valid == true)
+      {
+        $("#loginError").hide(); 
+        postforums(); 
+        //Clear Form
+        $("#title").removeClass("error"); 
+        $("#title").val("");
+        $("#multText").removeClass("error"); 
+        $("#multText").val("");
+      }
+    }
+    function showcounties(state)
+    { 
+      var xmlhttp; 
+      if(window.XMLHttpRequest)
+      { //code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest(); 
+      }
+      else
+      {//code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+      }
+      xmlhttp.onreadystatechange = function(){ 
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+          $("#quicklinks").append(xmlhttp.responseText);
+        }
+      }
+      xmlhttp.open("GET", "/scripts/web_scripts/get_counties.php?state=" + state, true); 
+      xmlhttp.send(); 
+     // showforums();
+    }
+  
+  function postforums()
+  { 
+    var xmlhttp; 
+    if(window.XMLHttpRequest)
+    { //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest(); 
+    }
+    else
+    {//code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+      var url = '/scripts/web_scripts/insert_post.php?author=' + user_id + '&title=' + $("#title").val() + '&content=' + $("#multText").val() + '&state=' + topic_id;
+      xmlhttp.open("POST", url, true); 
+      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xmlhttp.send(url); 
+        $("#success").show(); 
+      setTimeout(function(){
+        window.location.reload(1);
+      }, 2000);
+  }
+  function showforums()
+  { 
+    var xmlhttp; 
+    if(window.XMLHttpRequest)
+    { //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest(); 
+    }
+    else
+    {//code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+    xmlhttp.onreadystatechange = function(){ 
+      if(xmlhttp.readyState==4 &&xmlhttp.status==200)
+      {
+        $("#innerCarousel").prepend(xmlhttp.responseText); 
+      }
+    }
+    xmlhttp.open("GET", "/scripts/web_scripts/get_recent_posts.php?state=" + topic_id, true); 
+    xmlhttp.send(); 
+  }
+
+  function breadcrumbs(state)
+  {
+    var strBreadcrumbs = '<ol class="breadcrumb"><li><a href="/forum.html">Forum</a></li><li class="active">' + state + '</li></ol>';
+    $("#breadcrumbs").append(strBreadcrumbs); 
+  }
+
+  function changeOrder(sort)
+  { 
+    var url; 
+    if(sort.localeCompare("none") == 0)
+    {
+      url = "/scripts/web_scripts/get_posts.php?state=" + topic_id; 
+    }
+    else
+    {
+      url = "/scripts/web_scripts/get_posts.php?state=" + topic_id + "&sort_by=" + sort; 
+    }
+    var xmlhttp; 
+    if(window.XMLHttpRequest)
+    { //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest(); 
+    }
+    else
+    {//code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+    xmlhttp.onreadystatechange = function(){ 
+      if(xmlhttp.readyState==4 &&xmlhttp.status==200)
+      {
+        var title = "changeOrder('title')"; 
+        var views = "changeOrder('views')"; 
+        var replies = "changeOrder('replies')"; 
+        var dateCreated = "changeOrder('none')"; 
+
+          document.getElementById("first-container").innerHTML = '<table style="width: 100%"><tbody id="forumInformation"><tr id="staticRow"><th style="width:40%"><a href="#" onclick="' + title + '">Title</a></th><th><a href="#" onclick="' + views + '">Views</a></th><th><a href="#" onclick="' + replies + '">Replies</a></th><th><a href="#" onclick="' + dateCreated + '">Date Created</a></th></tr></tbody></table><div class="row"><div class="col-sm-6"><div class="simple-pagination-showing-x-of-x" style="padding-top:7px;"></div></div><div class="col-sm-6"><div class="my-navigation"><div class="simple-pagination-first"></div><div class="simple-pagination-page-numbers"></div><div class="simple-pagination-last"></div></div></div></div><div id="showEntries" class="col-sm-6">Show <select class="simple-pagination-items-per-page input-sm"></select> entries</div>';
+        $("#forumInformation").append(xmlhttp.responseText); 
+        $('#first-container').simplePagination();
+        document.getElementById("entriesSearch").innerHTML = ""; 
+        $('#showEntries').detach().prependTo("#entriesSearch");
+      }
+    }
+    xmlhttp.open("GET", url, true); 
+    xmlhttp.send();
+  }
+</script>
+</head>
+
+<body>
+  <!--Data Tables Row --> 
+  <div class="row level-table" id="top">
+    <span id="navbarSection"></span>
+    <div id="breadcrumbs" class="container" style="margin-top: 20px;"></div>
+    <div style="display:none" id="username"></div>
+    <div class="container">
+      <h1 class="title-bordered" id="topicheader">Florida Forums</h1>
+      <div id="tablesearch">
+        <div style="border: 1px solid #f0f0f0; padding: 10px; ">
+        <div class="row" id="entriesSearch" style="margin-bottom:7px">
+          </div>
+          <div id="first-container">
+            <table style="width: 100%">
+              <tbody id="forumInformation">
+                <tr id="staticRow"><th style="width:40%"><a href="#" onclick="changeOrder('title')">Title</a></th><th><a href="#" onclick="changeOrder('views')">Views</a></th><th><a href="#" onclick="changeOrder('replies')">Replies</a></th><th><a href="#" onclick="changeOrder('none')">Date Created</a></th></tr>
+              </tbody>
+            </table>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="simple-pagination-showing-x-of-x" style="padding-top:7px;"></div>
+              </div>
+              <div class="col-sm-6"><div class="my-navigation">
+                <div class="simple-pagination-first"></div>
+                <div class="simple-pagination-page-numbers"></div>
+                <div class="simple-pagination-last"></div>
+              </div></div>
+            </div>
+            <div id="showEntries" class="col-sm-6">
+              Show <select class="simple-pagination-items-per-page input-sm"></select> entries
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Form Section --> 
+  <div class="row level-new level-table">
+    <div class="container">
+      <h1 class="title-bordered" style="color: black;" id="new-topic">Start a New Topic</h1>
+      <div class="row" style="margin-top: 2em">
+        <div class="form-group col-md-6 col-md-offset-3">
+          <div style="margin-bottom: 25px; ">
+            <label for="title">Topic Title</label>
+            <input type="text" class="form-control" id="title" />
+          </div>
+          <div>
+            <label for="multText">Forum Description</label><br />
+            <textarea id="multText" class="form-control" rows="7" required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin: 0 auto 0 auto; width: 100%; text-align: center;">
+        <button type="submit" class="btn btn-default" id="submitButton" onclick="checkValid()">Submit</button>
+      </div>
+      <div id="success" style="display:none; color: green; text-align:center; font-size:medium; margin-top: 20px;">Topic has been Submitted!</div>
+      <div id="loginError" style="display:none; color: green; text-align:center; font-size:medium; margin-top: 20px;">You need to be log-in to take part of the forums.</div>
+    </div>
+  </div>
+
+    <!-- Counties Section --> 
+  <div class="row level-county">
+    <div class="container counties-level">
+      <h1 class="title">Counties</h1>
+      <div class="subcaps">Click on one of the counties to view its states.</div>
+      <form role="search" style="width:15%"><input type="search" id="search" class="form-control" placeholder="Search"></form>
+      <div  id="quicklinks"></div>        
+      </div>
+    </div>
+  </div>
+
+  <span id="footerSection"></span>
+</body>
+</html>

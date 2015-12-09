@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>State - Replace</title>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="/applications/js/html5shiv.min.js"></script>
+		  <script src="/applications/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- These files are for the datatable plugins -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#search").keyup(function(){
+			// Retrieve the input field text and reset the count to zero
+			var filter = $(this).val();
+			// Loop through the comment list
+				$("#quicklinks a").each(function(){
+				// If the list item does not contain the text phrase fade it out
+					if ($(this).text().search(new RegExp(filter, "i")) < 0) 
+					{
+						$(this).addClass('hidden');
+					// Show the list item if the phrase matches and increase the count by 1
+					} 
+					else 
+					{
+						$(this).removeClass('hidden');
+					}
+				});//end of loop
+			}); 
+			//alert(getParameterByName("topic")); 
+			retrieveForumns(); 
+		}); //end of ready document
+	//The following function will parse the url and search for a specific name
+	function getParameterByName(name) 
+	{
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	function retrieveForumns()
+	{
+		$("#tableForums").DataTable({
+				"bAutoWidth": false, 
+				"dDestroy": true, 
+				"bRetrieve": true, 
+				"aaSorting": []
+		});  
+	}
+	//function checks if the three fields are filled out
+	//if not, then an error is sent to the user and topic will not be sent 2 db
+	function checkValid()
+	{
+		var valid = true;
+		$("#title").removeClass("error"); 
+		$("#multText").removeClass("error");
+		$("#tags").removeClass("error");
+		if($("#title").val() == "")
+		{
+			$("#title").addClass("error"); 
+			valid = false; 
+		}
+		if($("#multText").val() == "")
+		{
+			$("#multText").addClass("error"); 
+			valid = false; 
+		}
+		if($("#tags").val() == "")
+		{
+			$("#tags").addClass("error"); 
+			valid = false; 
+		}
+		if(valid == true)
+		{
+			//alert("Form is completely filled out. Send to db!"); //Debugging
+			//Clear Form
+			$("#title").removeClass("error"); 
+			$("#title").val("");
+			$("#multText").removeClass("error"); 
+			$("#multText").val("");
+			$("#tags").removeClass("error"); 
+			$("#tags").val(""); 
+		}
+	}
+	</script>
+	<style type="text/css">
+	.entry-content table
+	{
+		width: 100% !important; 
+	}
+	#hottopicheader
+	{
+		font-weight: bold; 
+		font-size: 18px;
+		color: #0066a4; 
+		margin-bottom: 10px; 
+		margin-right: 20px; 
+		float: left; 
+	}
+	label
+	{
+		font-weight: 200; 
+	}
+	legend
+	{
+		color: #0066a4; 
+	}
+	.error
+	{
+		border-color: red; 
+	}
+	#search
+	{
+		float: left; 
+	}
+	#scrolling
+	{
+		max-height: 720px;
+		overflow-y: auto;
+	}
+	#topicheader
+	{
+		font-size: 28px; 
+		color: #0066a4; 
+		font-weight: bold; 
+		margin: 2em 0; 
+		padding-left: 10px;
+		text-align: center;
+	}
+	@media(max-width: 992px)
+	{
+		#topicheader
+		{
+			text-align: center;
+		}
+	}
+	#dropdownMenu3
+	{
+		width:100%;
+		height:50px; 
+		font-size:16px; 
+	}
+	.open > .dropdown-menu
+	{
+		width: 100%;
+	}
+	.dropdown-menu
+	{
+		max-height: 400px;
+		overflow-y:auto;
+	}
+	.list-group-item
+	{
+		border-style: none !important; 
+		padding:0 !important;
+		line-height: normal !important; 
+	}
+	.customize
+	{
+		width: 70%; 
+		display: inline;
+	}
+	.subtitle
+	{
+		font-size: x-small;
+		color: gray; 
+	}
+	#tableForums
+	{
+		text-align: center; 
+	}
+	table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled
+	{
+		text-align: center; 
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12">
+			<div class="row">
+				<div id="topicheader">Florida Example</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+		<!-- Dropdown when the screen is small -->
+			<div class="dropdown visible-xs visible-sm" style="margin:1em 0 1em 1em; display:inline-block">
+				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">
+					Counties <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="optionServices">
+					<li role="presentation">
+						<a href="#" role="menuitem" tabindex="-1">Orange</a>
+						<a href="#" role="menuitem" tabindex="-1">Marion</a>
+						<a href="#" role="menuitem" tabindex="-1">Lake</a>
+						<a href="#" role="menuitem" tabindex="-1">Polk</a>
+						<a href="#" role="menuitem" tabindex="-1">Hardee</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+						<a href="#" role="menuitem" tabindex="-1">Highlands</a>
+					</li>
+				</ul>
+			</div>
+			<!--Table that will show the forums -->
+			<div>
+				<!-- Table for Forums -->
+				<!--Implemented a plugin for the table part --> 
+				 <table id="tableForums" style="width: 100% !important">
+				 	<thead id="itemheader">
+				 		<tr>
+				 			<th>Forum</th>
+				 			<th>Topics</th>
+				 			<th>Posts</th>
+				 			<th>Date Posted</th>
+				 		</tr>	
+				 	</thead>
+				 	<tbody id="itemrows">
+				 	<!--Static Information -->
+						 <tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr> 
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr> 
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Test1</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>4</td>
+			                <td>10</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Test2</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Test3</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td></td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+			        	<tr>
+					        <td><a href="#">Welcome Florida Forum</a> <div class="subtitle">Started by: Username</div></td>
+			                <td>2</td>
+			                <td>5</td>
+			                <td>October 23, 2015</td>
+			        	</tr>
+				 	</tbody>
+				 </table>
+			</div>
+		</div>
+		<!--The following will show counties -->
+		<div class="col-md-4 visible-lg visible-md">
+			<div class="row">
+				<span id="hottopicheader">Counties</span>
+				<form role="search">
+					<input type="search" id="search" class="form-control customize" placeholder="Search">
+				</form>
+			</div>
+			<div id="scrolling" class="row" style="margin-top:10px;">
+				<div class="list-group" id="quicklinks">
+					<!--List all of the counties here -->
+					<a href="#" class="list-group-item">Marion</a>
+					<a href="#" class="list-group-item">Sumter</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Lake</a>
+					<a href="#" class="list-group-item">Seminole</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Polk</a>
+					<a href="#" class="list-group-item">Hardee</a>
+					<a href="#" class="list-group-item">Highlands</a>
+					<a href="#" class="list-group-item">Volusia</a>
+					<a href="#" class="list-group-item">Marion</a>
+					<a href="#" class="list-group-item">Sumter</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Lake</a>
+					<a href="#" class="list-group-item">Seminole</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Polk</a>
+					<a href="#" class="list-group-item">Hardee</a>
+					<a href="#" class="list-group-item">Highlands</a>
+					<a href="#" class="list-group-item">Volusia</a>
+					<a href="#" class="list-group-item">Marion</a>
+					<a href="#" class="list-group-item">Sumter</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Lake</a>
+					<a href="#" class="list-group-item">Seminole</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Polk</a>
+					<a href="#" class="list-group-item">Hardee</a>
+					<a href="#" class="list-group-item">Highlands</a>
+					<a href="#" class="list-group-item">Volusia</a>
+					<a href="#" class="list-group-item">Marion</a>
+					<a href="#" class="list-group-item">Sumter</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Lake</a>
+					<a href="#" class="list-group-item">Seminole</a>
+					<a href="#" class="list-group-item">Orange</a>
+					<a href="#" class="list-group-item">Polk</a>
+					<a href="#" class="list-group-item">Hardee</a>
+					<a href="#" class="list-group-item">Highlands</a>
+					<a href="#" class="list-group-item">Volusia</a>
+				</div>
+			</div>
+		</div>
+		<!-- For posting -->
+		<div class="col-sm-10 col-sm-offset-1" style="padding: 1em;">
+			<fieldset>
+				<legend>Create New Topic in "Florida Forum"</legend>
+				<div class="row">
+				  <div class="form-group col-md-6">
+				    <label for="title">Topic Title</label>
+				    <input type="text" class="form-control" id="title" />
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="form-group col-md-8">
+				    <label for="multText">Forum Description</label><br />
+				    <textarea rows="4" cols="80" id="multText"></textarea>
+				  </div>
+			  </div>
+			  <div class="row">
+				  <div class="form-group col-md-6">
+				    <label for="tags">Topic Tags</label>
+				    <input type="text" class="form-control" id="tags" />
+				  </div>
+			  </div>
+			  <div class="row" style="float:right;">
+			  		<button type="submit" class="btn btn-default" style="background-color: #5cb85c; color: white;" onclick="checkValid()">Submit</button>
+			  </div>
+			</fieldset>
+		</div>
+	
+	</div><!--End of container -->
+</body>
+</html>

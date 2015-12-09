@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Simple pagination</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1">
+	<link rel="stylesheet" href="css/pagination.css" media="screen" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="jquery-simple-pagination-plugin.js"></script>
+	<script>
+	(function($){
+
+	$('#first-container').simplePagination();
+
+	})(jQuery);
+	</script>
+</head>
+<body>
+	<div id="first-container">
+		<table>
+			<tbody id="forumInformation">
+				<tr><td>One</td></tr>
+			</tbody>
+		</table>
+		<div class="my-navigation">
+			<div class="simple-pagination-first"></div>
+			<div class="simple-pagination-previous"></div>
+			<div class="simple-pagination-page-numbers"></div>
+			<div class="simple-pagination-next"></div>
+			<div class="simple-pagination-last"></div>
+		</div>
+		<div class="simple-pagination-page-x-of-x"></div>
+		<div class="simple-pagination-showing-x-of-x"></div>
+		<div>
+			Display <select class="simple-pagination-items-per-page"></select> items per page.
+		</div>
+		<div>
+			Go directly to page <select class="simple-pagination-select-specific-page"></select>.
+		</div>
+	</div>
+</body>
+</html>

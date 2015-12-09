@@ -1,0 +1,70 @@
+ a:link, a:visited, a:hover
+  {
+    text-decoration: none;
+    color: black; 
+  }
+.unorderedList
+{
+  list-style-type: none !important; 
+  margin: 5px 0; 
+  font-size: 15px;
+  color: #666666 !important; 
+}
+a:hover
+{
+ color: #337ab7 !important; 
+}
+body
+{
+ background-color:white;
+   background: url(https://images.unsplash.com/45/PlEgx5PSoiiJOmnE2izQ_NYC%20skyline%20empire-1.jpg?q=80&fm=jpg&s=4df22208367f2351b55d2ff6804a0408) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.page_item >  a:link
+{
+  color: white !important; 
+}
+#title
+{
+  font-size: 35px !important; 
+  color: #730000;  
+}
+.center 
+{
+  margin:1em auto 3em auto;
+  vertical-align:center;
+  align:center;
+}
+.state-header > a
+{
+  font-size: 20px; 
+  color: #730000 !important; 
+}
+.line
+{
+  background-color: #A80000;
+  height: 3px;
+  margin: 0;
+  padding:0;
+  width:50%;
+}
+.entry-content ul li, .entry-content ol li
+{
+  margin-left: 1em;
+}
+.main-section
+{
+   padding: 30px; 
+   background-color: rgba(255, 255, 255, 0.8); 
+}
+.links-states
+{
+  font-size: 20px;
+  font-weight: 500; 
+  color: #1F4E79 !important;
+  padding: 4px; 
+}

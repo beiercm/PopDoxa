@@ -1,0 +1,188 @@
+#hottopicheader
+{
+	font-weight: bold; 
+	font-size: 18px;
+	color: #0066a4; 
+	margin:15px 20px 10px 0;
+	float: left; 
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover 
+{ 
+	color: black !important; 
+}
+
+label
+{
+	font-weight: 200; 
+}
+legend
+{
+	color: #0066a4; 
+}
+.error
+{
+	border-color: red !important; 
+}
+
+#scrolling
+{
+	max-height: 720px;
+	overflow-y: auto;
+}
+#topicheader
+{
+	font-size: 28px; 
+	color: #0066a4; 
+	font-weight: bold; 
+	padding-left: 10px;
+	text-align: center;
+}
+@media(max-width: 992px)
+{
+	#topicheader
+	{
+		text-align: center;
+	}
+}
+#dropdownMenu3
+{
+	width:100%;
+	height:50px; 
+	font-size:16px; 
+}
+.open > .dropdown-menu
+{
+	width: 100%;
+}
+.dropdown-menu
+{
+	max-height: 400px;
+	overflow-y:auto;
+}
+
+.subtitle
+{
+	font-size: x-small;
+	color: gray; 
+}
+
+td, th
+{ 
+	padding: 7px !important; 
+}
+
+th
+{ 
+	width: 200px; 
+}
+
+h1
+{
+  font-family: "Gotham SSm A", "Gotham SSm B", sans-serif; 
+  margin: 0; 
+}
+
+#quicklinks
+{
+  clear: both; 
+}
+.title-bordered
+{
+  font-size: 17px;
+  font-weight: 700; 
+  line-height: 1; 
+  letter-spacing: .1em; 
+  color: #5f5e5b; 
+  text-transform: uppercase; 
+  text-align: center; 
+  position: relative;
+  padding: 19px 0; 
+  margin-bottom: 45px; 
+}
+
+
+.level-table
+{
+ padding-bottom: 6rem; 
+}
+
+#tablesearch
+{
+  height: 100%; 
+  border-radius: 8px;
+  padding: 15px; 
+  position: relative;
+  z-index: 1; 
+  box-shadow: 0 45px 45px rgba(0,0,0,0.02); 
+  background: white; 
+  left: 15px; 
+  right: 15px; 
+  top: 0; 
+  bottom: 0; 
+}
+
+.counties-level
+{
+  background:rgba(255,255,255,0.8); 
+  padding: 20px;
+  clear: both;  
+}
+
+.level-new
+{
+	padding: 10rem 0; 
+}
+
+.subcaps
+{
+  text-align: center; 
+  color: #5f5e5b;
+  text-size: 8px !important; 
+}
+
+.title
+{
+  font-size: 17px;
+  font-weight: 700; 
+  line-height: 1; 
+  letter-spacing: .1em; 
+  color: #5f5e5b; 
+  text-transform: uppercase; 
+  text-align: center; 
+  position: relative;
+  text-align: center;
+  margin-top: 10px; 
+}
+
+.list-item
+{
+  background-color: white; 
+  padding: 10px 2px; 
+  border-radius: 5px; 
+  text-align: center; 
+  -webkit-box-shadow: 0 0 10px gray;
+  box-shadow: 0 0 10px gray;
+  color: #5f5e5b; 
+}
+
+.spacing
+{
+  margin: 10px auto;
+}
+
+form
+{
+  margin: 10px auto;  
+}
+
+#search
+{
+  border-top: none; 
+  border-left: none; 
+  border-right: none; 
+  background-color: transparent;
+  padding-left: 0; 
+  border-radius: initial; 
+  box-shadow: none; 
+}

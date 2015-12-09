@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PopDoxa</title>
+  <link rel="shortcut icon" href="pic/icon.ico">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="/applications/js/html5shiv.min.js"></script>
+      <script src="/applications/js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+  <link href="css/ct-navbar.css" rel="stylesheet" />
+  <link href="css/home.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <script src="/js/bootstrap-collapse.js"></script>
+  <script src="/js/bootstrap-transition.js"></script>
+  <script src="/js/bootstrap-tab.js"></script>
+
+  <script src="/js/prettify.js"></script>
+  <script src="/js/application.js"></script>
+  <!-- Owl Carousel Assets -->
+  <link href="/js/owl-carousel/owl.carousel.css" rel="stylesheet">
+  <link href="/js/owl-carousel/owl.theme.css" rel="stylesheet">
+
+  <link href="/js/prettify.css" rel="stylesheet">
+  <script src="js/main.js"></script>
+  <script src="/js/owl-carousel/owl.carousel.js"></script>
+
+  <style type="text/css">
+  #developers
+  {
+    background: url(pic/developers.png);
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    font-weight: 600; 
+    font-size: 36px; 
+    color: white; 
+    text-shadow: 1px 1px gray;
+  }
+  #feedbacklink
+  {
+    background: url(pic/notebook2.jpg);
+    background-repeat: no-repeat;
+    font-weight: 600; 
+    font-size: 36px; 
+    color: white; 
+    display: table;
+    text-shadow: 1px 1px gray;
+  }
+  .owl-theme .owl-controls
+  {
+    margin-top: 50px;
+    margin-bottom: 40px; 
+  }
+  #top
+  {
+    background: url(pic/firstBackground.png) no-repeat center center;
+    background-size: 100% 100%; 
+    height: 600px; 
+  }
+
+  h1
+  {
+    font-size: 34px; 
+    letter-spacing: -1px; 
+    font-weight: 300; 
+    margin-top: 40px; 
+    margin-bottom: 5px; 
+    color: #9EC9CB; 
+  }
+
+  ul.navbar li a:hover
+  {
+    color: black;
+  }
+
+  #form
+  {
+    margin-bottom: 20px; 
+  }
+  .h2
+  {
+    display: block; 
+    font-weight: 100; 
+    font-size: 18px; 
+    margin-bottom: 20px; 
+    color: #A9A9A9; 
+  }
+  .truncate1
+  {
+    height: 70px;
+    overflow: hidden;
+    display: table; 
+    margin: 0 auto;
+    font-family: ff-dagny-web-pro,"Helvetica Neue",sans-serif;
+  }
+  .truncate2
+  {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .usernameItem
+  {
+    font-size: 12px; 
+    text-align: left; 
+    color: gray;
+  }
+
+  .thumbnail
+  {
+    text-decoration: none; 
+    padding: 20px;
+  }
+  #owl-demo .item, #owl-demo1 .item
+  {
+    display: block;
+    cursor: pointer;
+    background: rgba(255,255,255,.9); /*#2a6496;#ffd800;*/
+    padding: 20px;
+    margin: 5px;
+    height: 130px;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,.15);
+    color: #464646;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+  }
+  #owl-demo .item:hover, #owl-demo1 .item:hover 
+  {
+      background: #708090; /*#F2CD00;*/
+      color: white; 
+      text-decoration: none; 
+    }
+  .height
+  {
+    height: 300px;
+  }
+  </style>
+  <script type="text/javascript">
+  var username; 
+  var user_id; 
+    //Set the carousel options
+  $('#quote-carousel').carousel({
+    pause: true,
+    interval: 4000,
+  });
+  $( document ).ready(function() {
+    
+    var p2=$('.trim1 .trim2');
+    var divh2=$('.trim1').height();
+    while ($(p2).outerHeight()>divh2) 
+    {
+      $(p2).text(function (index, text) {
+        return text.replace(/\W*\s(\S)*$/, '...');
+      });
+    }
+
+  });
+
+  $(window).load(function() 
+  {
+    if(user_id == 'false')
+    {
+      $("#latestForums").hide();
+      $("#latestpolls").hide(); 
+      $("#contact").hide(); 
+    }
+    else
+    {
+      getRecentNews(); 
+      setLast(); 
+    }
+  });  
+
+  function setLast()
+  {
+    var xmlhttp; 
+    if(window.XMLHttpRequest)
+    { //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest(); 
+    }
+    else
+    {//code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+      var url = 'http://10.171.204.135/scripts/web_scripts/set_last_checked.php?user_id' + user_id;
+      xmlhttp.open("POST", url, true); 
+      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xmlhttp.send(url); 
+  }
+
+  function getRecentNews()
+{
+  var xmlhttp; 
+  if(window.XMLHttpRequest)
+  { //code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest(); 
+  }
+  else
+  {//code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+  }
+  xmlhttp.onreadystatechange = function(){ 
+    if(xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+        var temp = $.parseJSON(xmlhttp.responseText);
+          var attach = ""; 
+          var attach1 = ""; 
+          for(i = 0; i < temp.polls.length; i++)
+          {
+            if(i < 20)
+            {
+              attach += "<a class='item' href='http://10.171.204.135/PollResults/Poll_Question.php?poll_id=" + temp.polls[i].id + "'><div class='truncate1'><div class='truncate2'>" + temp.polls[i].question + "</div></div><div class='usernameItem'>Created by: " + temp.polls[i].username + "</div></a>"; 
+            }
+          }
+          for(j=0; j < temp.posts.length; j++)
+          {
+            if(j < 20)
+            {
+             attach1 += "<a class='item' href='http://10.171.204.135/topic_id.html?post=" + temp.posts[j].id + "'><div class='truncate1'><div class='truncate2'>" + temp.posts[j].title + "</div></div><div class='usernameItem'>Created by: " + temp.posts[j].username + "</div></a>"; 
+            }
+          }
+          if(temp.polls.length == 0)
+          {
+            document.getElementById("owl-demo").innerHTML = "<h3 style='text-align:center'>No Recent Polls <br /><br />Check Back Later<h3>"; 
+            $(".owl-carousel").show(); 
+          }
+          else
+          {
+             document.getElementById("owl-demo").innerHTML = attach; 
+            var owl = $("#owl-demo"); 
+            owl.owlCarousel({
+              items : 3
+            });
+            owl.trigger('owl.play',3000);
+            var p = $('.truncate1 .truncate2');
+            var divh = $('.truncate1').height();
+            while ($(p).outerHeight()>divh) 
+            {
+              $(p).text(function (index, text) {
+                return text.replace(/\W*\s(\S)*$/, '...');
+              });
+            }
+
+          }
+          
+          if(temp.posts.length == 0)
+          {         
+            document.getElementById("owl-demo1").innerHTML = "<h3 style='text-align:center'>No Recent Forums <br /><br /> Check Back Later<h3>"; 
+            $(".owl-carousel").show(); 
+          }
+          else
+          {
+            document.getElementById("owl-demo1").innerHTML = attach1; 
+            var owl = $("#owl-demo1"); 
+            owl.owlCarousel({
+              items : 3
+            });
+            owl.trigger('owl.play',3000);
+            var p = $('.truncate1 .truncate2');
+            var divh = $('.truncate1').height();
+            while ($(p).outerHeight()>divh) 
+            {
+              $(p).text(function (index, text) {
+                return text.replace(/\W*\s(\S)*$/, '...');
+              });
+            }
+
+          }
+         
+          
+    }
+  }
+  xmlhttp.open("GET", 'http://10.171.204.135/scripts/web_scripts/get_since_last_checked.php?user_id=' + user_id, true); 
+  xmlhttp.send(); 
+}
+ 
+  function latestPosts()
+  {
+   var xmlhttp; 
+    if(window.XMLHttpRequest)
+    { //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest(); 
+    }
+    else
+    {//code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+    xmlhttp.onreadystatechange = function(){ 
+      if(xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("owl-demo").innerHTML = xmlhttp.responseText; 
+          var owl = $("#owl-demo"); 
+          owl.owlCarousel({
+            items : 3
+          });
+          owl.trigger('owl.play',3000);
+          var p = $('.truncate1 .truncate2');
+          var divh = $('.truncate1').height();
+          while ($(p).outerHeight()>divh) 
+          {
+            $(p).text(function (index, text) {
+              return text.replace(/\W*\s(\S)*$/, '...');
+            });
+          }
+      }
+    }
+    xmlhttp.open("GET", "/scripts/web_scripts/get_recent_county_polls.php?user_id=" + user_id, true); 
+    xmlhttp.send(); 
+  }
+
+
+  function check()
+  {
+      var valid = true;
+      $("#multText").removeClass("error");
+      if($("#multText").val() == "" && $("#multText").val() == undefined)
+      {
+        $("#multText").addClass("error"); 
+        valid = false; 
+      }
+      
+      if(valid == true)
+      {
+        insertFeedback(); 
+        //Clear Form
+        $("#multText").removeClass("error"); 
+        $("#multText").val("");
+      }
+  }
+  function insertFeedback()
+  {
+    var xmlhttp; 
+    if(window.XMLHttpRequest)
+    { //code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest(); 
+    }
+    else
+    {//code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+    }
+      var url = 'http://10.171.204.135/scripts/web_scripts/insert_feedback.php?user_id=' + user_id + '&content=' + $("#multText").val(); 
+      xmlhttp.open("POST", url, true); 
+      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xmlhttp.send(url); 
+      setTimeout(function(){
+        $("#multText").val = ''; 
+      }, 2000);
+  }
+  </script>
+</head>
+<body>
+  <!-- Main Section -->
+  <div class="row" id="top">
+    <span id="navbarSection"></span>
+
+    <div class='col-md-12' style="vertical-align: middle; display:table-cell">
+      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+        <!-- Carousel Slides / Quotes -->
+        <div class="carousel-inner">
+        
+          <!-- Quote 1 -->
+          <div class="item active">
+            <blockquote>
+                <p class="slider">Welcome to POPDOXA! Learn more about the political world in the United States!</p>
+            </blockquote>
+          </div>
+          <!-- Quote 2 -->
+          <div class="item">
+            <blockquote>
+                <p class="slider">Would you like to start a political debate? Click on Forums and speak out now! </p>
+            </blockquote>
+          </div>
+   
+            <!-- Carousel Buttons Next/Prev -->
+          <a class="left carousel-control" href="#quote-carousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+          <a class="right carousel-control" href="#quote-carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a>
+        </div>                          
+      </div>
+    </div></div>
+  </div>
+
+  </div>
+
+  <!-- Three links to talk about the site -->
+  <div class="row" style="background-color: #f6f6f6; padding: 8em 0 8em 0;">
+    <div class="container">
+      <div class="title-bordered" style="color: #9EC9CB; font-size: 20px;">View and Participate in PopDoxa</div>
+      <div class="row" style="margin-top: 40px; ">
+        <div class="col-sm-4">
+          <div style="margin-bottom: 40px"><img class="pic" style="width: 100px" src="pic/us.png" /></div>
+          <div class="subtopic-title">Political Topics</div>
+          <p class="p">Discover the latest and most popular political topics in the polls or forums. Start now and choose to participate in your state, county, or city forums/polls.</p>
+        </div>
+        <div class="col-sm-4">
+          <div style="margin-bottom: 40px"><img class="pic" src="pic/pencil.png" /></div>
+          <div class="subtopic-title">Earn Points</div>
+          <p class="p">Whether it is creating a new poll or forum, you can start collecting points. Take part in forums and gather up even more points. </p>
+        </div>
+        <div class="col-sm-4">
+          <div style="margin-bottom: 40px"><img class="pic" src="pic/forums.png" /></div>
+          <div class="subtopic-title">Speak Out Now</div>
+          <p class="p">Get involved in political debates. Discuss about various issues and learn more about the government world in the United States! </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show the latest Forums -->
+  <div class="row" style="background-color: #f9f9f9; padding-top: 70px; padding-bottom: 70px;" id="latestForums">
+    <div class="container">
+      <div class="span12">
+        <h2 style="text-align:center; margin-bottom: 50px;">View the latest polls since you last signed in</h2>
+        <div id="owl-demo" class="owl-carousel" style="margin-bottom: 10px;">
+          
+          <a class="item" href="#">
+            <!-- Show question from the poll -->
+            <div class="truncate1">
+              <div class="truncate2">
+                Testing Testing Testing Question Testing Testing Testing Testing Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing Testing
+                TestingTesting Testing Testing
+              </div>
+            </div>
+              <div class="usernameItem">
+                Created by: username
+              </div>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show the latest forums since last sign in -->
+  <div class="row" style="background-color: #f9f9f9; padding-top: 70px; padding-bottom: 70px;" id="latestpolls">
+    <div class="container">
+      <div class="span12">
+        <h2 style="text-align:center; margin-bottom: 50px;">View the latest posts since you last signed in</h2>
+        <div id="owl-demo1" class="owl-carousel" style="margin-bottom: 10px;">
+          
+          <a class="item" href="#">
+            <!-- Show question from the poll -->
+            <div class="truncate1">
+              <div class="truncate2">
+                Testing Testing Testing Question Testing Testing Testing Testing Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing TestingTesting Testing Testing
+                TestingTesting Testing Testing
+              </div>
+            </div>
+              <div class="usernameItem">
+                Created by: username
+              </div>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+  <!-- Links to Developers and Feedback -->
+  <div class="row">
+    <div class="col-md-12 height" id="developers">
+      <div style="text-align: center; margin-top:95px" >
+        The Developers
+        <a href="http://10.171.204.135/developers.html"><em>Know more</em></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Level  -->
+  <div class="row" style="background-color: whitesmoke; " id="contact">
+    <div class="container">
+      <div class="col-md-12" style="text-align:center; margin-top: 5rem;">
+        <h1>Contact Us</h1>
+        <h2 class="h2">Please write any suggestions/options for the site.</h2>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3" id="form">
+        <div class="form-group">
+          <textarea name="Text1" rows="5" id="multText" class="col-xs-12"></textarea>
+      </div>
+      <div style="margin-top: 20px">
+        <button id="send" type="submit" onclick="check()" class="btn btn-default">Submit</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <span id="footerSection"></span>
+
+</body>
+</html>
