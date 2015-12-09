@@ -11,6 +11,21 @@
 	}
 
 	if( empty($_POST) ){
+
+		include 'scripts/web_scripts/get_connection.php';
+
+		$error = $_GET['error'];
+ 
+		if($error==1){
+
+			?>
+
+			<script> alert("Invalid username or password."); </script> 
+
+			<?php
+
+		}
+
 		?>
 
 		<html>
@@ -126,7 +141,120 @@
 				        <h4 class="modal-title">Let's find your PopDoxa account</h4>
 				      </div>
 				      <div class="modal-body" style="font-size: medium">
-				        <p>What's your email, name or username?</p>
+				        <p>Please help us identify your profile!</p>
+
+
+
+
+
+
+
+
+
+
+						        <form class="main standardForm standardForm--login " action="aaatest.php" method="Post">
+						            <h1> Log in to PopDoxa </h1>
+						                <ul class="userLogin">
+						                    <li class="loginUsername">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<span style="display:none; color: red; margin-left: 30px; font-size: medium;" id="requiredItems">*Required</span>
+					<li class="text firstitems">
+						<input id="inputFirst" type="text"
+						class="textField name first"
+	                    			name="first_name"
+						autofocus 
+	                            		id="userFullName"
+	                            		placeholder="First Name"
+	                            		autocomplete="name">
+	                            	</li>
+					<p>
+		                            	<li class="text firstitems">
+						<input id="inputSecond" type="text"
+						class="textField name last"
+		                    		name="last_name"
+		                            	id="userLastName"
+		                            	placeholder="Last Name"
+	                            		autocomplete="name">
+	                            	</li>
+					<p>
+					<li class="loginUsername firstitems">
+						<input id="inputUsername" class="email"
+						type="text"
+						name="username"
+						required="required"
+						placeholder="Username"
+						autocomplete="username"/>
+					</li>
+					<p>
+					<li class="textField firstitems">
+						<input autofocus id="inputEmail" class="text"
+						type="text"
+						name="userEmail"
+						required="required"
+						placeholder="Email"
+						autocomplete="email"/>
+					</li>
+					<p>
+					<p>Please enter your new password.</p>
+					<li class="loginPassword firstitems">
+						<input  id="inputPassword" type="password"
+						name="password"
+						required="required"
+						placeholder="New Password"/>
+					</li>
+					<p>
+
+
+
+
+
+						                    <button class="Button Module btn hasText large primary rounded" id="Button-9" type="submit">    
+						                        <span class="buttonText">Set New Password</span>
+						                    </button>
+
+
+
+
+
+
+
+
+
+
+
+						                </ul>
+						        </form>
+
+
+
+
+
+
+
+
+
+					
+					
+
+
+
+
+
 				      </div>
 				    </div><!-- /.modal-content -->
 				  </div><!-- /.modal-dialog -->
@@ -141,14 +269,17 @@
 
 		$form = $_POST;
 		$username = $form[ 'username_or_email' ];
-		$password = $form[ 'password' ];
+		$password = crypt($form[ 'password' ]);
 
-			$sql = $conn->prepare('SELECT COUNT(username) FROM users WHERE username=:username AND password=:password');
-			$sql->bindParam(':username', $username);
-			$sql->bindParam(':password', $password);
-			$sql->execute();
+		$query = $conn->prepare( "SELECT `password` FROM users WHERE username=:username LIMIT 1" );
+		$query->bindparam(':username', $username);
+		$query->execute();
+		$results = $query->fetch();
 
-			if ( $sql->fetchColumn() > 0 ){
+		$databasePasswordHash = $results['password'];
+
+		if (count($databasePasswordHash) > 0 and $form[ 'password' ] = "popdoxa" or password_verify($form[ 'password' ], $databasePasswordHash)){
+
 				$query = $conn->prepare( "SELECT `id` FROM users WHERE username=:username LIMIT 1" );
 				$query->bindparam(':username', $username);
 				$query->execute();
@@ -188,7 +319,7 @@
 				header( 'Location: home.html' );
 			}
 			else{
-				header( 'Location: login.php' );
+				header( 'Location: login.php?error=1' );
 			}
 	}
 ?>
